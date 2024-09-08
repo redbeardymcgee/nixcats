@@ -1,0 +1,278 @@
+=================================================================================
+                                                            *nixCats.luaUtils*
+---------------------------------------------------------------------------------
+                                                      *nixCats.luaUtils.intro*
+nixCats has good integration with pckr and other similar neovim package
+managers.
+
+Keep in mind they may not work so well on nixos,
+so when you are on nixOS you should load neovim via nix
+(not sure if that part needs stating)
+
+to get your lua utils run
+>bash
+  nix flake init -t github:BirdeeHub/nixCats-nvim#luaUtils
+<
+ALSO keep in mind, if you are not using nix, you will have to download
+all your non-plugin, non-lsp dependencies manually, and this may suck.
+Therefore, all this stuff about package managers may be of limited utility.
+
+I have written some lua utilities to enable this.
+There is a template for them, and you can use the flake init -t
+variable to import the luaUtils template in the root directory of your config
+to add it to your project in the correct place.
+
+-------------------------------------------------------------------------------
+                                                      *nixCats.luaUtils.setup*
+They are located within the lua/nixCatsUtils directory of the
+flake. The main init.lua in it contains a `require("nixCatsUtils").setup`
+function, and a `require("nixCatsUtils").isNixCats` variable.
+
+The `require("nixCatsUtils").isNixCats` variable is true if
+you installed neovim via nix, and otherwise it is false.
+This is used to enable package managers only when not loaded via nix.
+
+You run the `setup` function in your init.lua file at the start, and tell it
+what nixCats global command should default to if isNixCats is false.
+The default is true.
+
+IF YOU DO NOT DO THIS SETUP CALL:
+the result will be that, when you load this folder without using nix,
+the global nixCats function which you use everywhere
+to check for categories will throw an error.
+This setup function will give it a default value.
+Of course, if you only ever download nvim with nix, this isnt needed.
+But it cant hurt to include anyway.
+>lua
+  vim.g.mapleader = ' '
+  vim.g.maplocalleader = ' '
+  -- it doesnt matter if its before or after leader key but
+  -- you want this first thing in your init.lua file
+  require('nixCatsUtils').setup {
+    non_nix_value = true,
+  }
+
+  if require('nixCatsUtils').isNixCats then
+    print('using nixCats')
+  end
+<
+it also has a few other things that may prove handy
+>lua
+  ---@overload fun(v: any): any|nil
+  ---@overload fun(v: any, o: any): any
+  require('nixCatsUtils').lazyAdd(v, o)
+  -- if not nix, return the first thing.
+  -- If it is nix, return the second, or nil if not provided.
+  -- used for disabling things like lazy build steps on nix when needed
+
+  ---@overload fun(v: string|string[]): boolean
+  ---@overload fun(v: string|string[], default: boolean): boolean
+  require('nixCatsUtils').enableForCategory(v, default)
+
+  -- v will be passed to nixCats function.
+  -- If the value fetched by nixCats is nil or false,
+  -- return false, otherwise return true
+  -- if not loaded by nix, return the default value,
+  -- or fall back on the nixCats default value provided by
+  -- the require("nixCatsUtils").setup function mentioned above
+
+  ---@param v string|string[]
+  ---@param default any
+  ---@return any
+  require('nixCatsUtils').getCatOrDefault(v, default)
+  ---if nix, return value of nixCats(v) else return default
+  ---Exists to specify a different non_nix_value than the one in setup()
+
+  ---@type string
+  require('nixCatsUtils').packageBinPath
+  ---Useful for things such as vim-startuptime which must reference the wrapper's actual path
+  ---If not using nix, this will simply return vim.v.progpath
+<
+---------------------------------------------------------------------------------
+                                                       *nixCats.luaUtils.lazy*
+For instructions on using the lazy wrapper, check out this template example!
+Disclaimer, it uses a new lazy option only
+in pkgs.lazy-nvim from the unstable branch.
+So if you are using nixpkgs stable for your neovim you will
+need to download a newer version of lazy-nvim.
+
+Use the following command in a new directory and check it out!
+>bash
+  nix flake init -t github:BirdeeHub/nixCats-nvim#kickstart-nvim
+<
+In that template, all notes about the lazy wrapper are in comments that begin
+with the string: `NOTE: nixCats:` so to find all of the info, search for that.
+
+The 3 main utilities at require('nixCatsUtils.lazyCat')
+>lua
+  --the main wrapper
+  ---@param pluginTable table|string[]|nil
+  ---@param nixLazyPath string|nil
+  ---@param lazySpecs any
+  ---@param lazyCFG table
+  require('nixCatsUtils.lazyCat').setup(pluginTable, nixLazyPath, lazySpecs, lazyCFG)
+  -- pluginTable is a table of plugin names, either as a list or as the names
+  -- of a table of pluginName = "a string";
+<
+
+`pluginTable` should contain the plugin names, which lazy.nvim will match
+against the repo names of the plugins.
+You may get this by merging the tables of plugins provided by nix.
+>lua
+  local plugins = require('nixCats').pawsible.allPlugins
+  local pluginTable = require('nixCatsUtils.lazyCat')
+                      .mergePluginTables(plugins.start, plugins.opt)
+<
+NOTE: Keep in mind you may need to add a few items for plugins with different
+repo names from their nix plugin names. When you do this, you should also
+set the name field in that plugin's spec to the nix-provided value.
+>lua
+  -- for example of when the the nix name is different:
+  -- this must match the repository name
+  pluginTable[ [[Comment.nvim]] ] = ""
+  pluginTable[ [[LuaSnip]] ] = ""
+  -- this also means that in their lazySpecs,
+  -- you must set the name field of comment.nvim and luasnip
+  -- to match their nix-provided values.
+  -- this will also ensure that it works regardless of if nix or lazy downloads it.
+
+  -- usually, the names match and you do not need to do this.
+  -- you could also override the name of the plugin in nix instead!
+<
+You may view the list of plugin names provided by nix to make
+this easier via `:NixCats pawsible`
+
+If you do not have the correct name for the plugin in the `pluginTable` argument,
+lazy.nvim will attempt to download the plugin normally. This will often work anyway.
+
+`nixLazyPath` is the path to lazy.nvim downloaded via nix. You may get it
+via the same table you got the other plugin names from.
+
+lazy.nvim disables all normal plugin loading, so if you want to load a plugin
+via nix, you must also fill out a spec for it.
+
+If you plan on loading a plugin via nix, and it has a build step,
+you may conditionally disable it via `nixCatsUtils.lazyAdd` function,
+thus ensuring it does not run if nix downloads it,
+but still runs if you did not load your config via nix.
+
+The other 2 functions, which are useful for creating
+the table of plugin names for the setup function above:
+>lua
+  -- to help you merge the start and opt lists in require('nixCats').included
+  require('nixCatsUtils.lazyCat').mergePluginTables(table1, table2)
+  -- its available if you want it, but it is used in the wrapper on pluginTable
+  require('nixCatsUtils.lazyCat').getTableNamesOrListValues(pluginTable)
+<
+The tutorial:
+>nix
+    kickstart-nvim = {
+      path = ./kickstart-nvim;
+      description = ''
+        The entirety of kickstart.nvim implemented as a nixCats flake.
+        With additional nix lsps for editing the nix part.
+        This is to serve as the tutorial for using the nixCats lazy wrapper.
+      '';
+    };
+<
+In that template, all notes about the lazy wrapper are in comments that begin
+with the string: `NOTE: nixCats:` so to find all of the info, search for that.
+
+---------------------------------------------------------------------------------
+                                                       *nixCats.luaUtils.pckr*
+  -- load the plugins via pckr
+  -- YOU are in charge of putting the plugin
+  -- urls and build steps in there,
+  -- and you should keep any setup functions and config
+  -- OUT of this table, as pckr is ONLY loaded when this
+  -- configuration is NOT loaded via nix.
+
+  -- TL;DR:
+  -- ### DONT USE CONFIG VARIABLE ###
+  -- unless you are ok with that instruction 
+  -- not being ran when used via nix,
+  -- this file will not be ran when using nix
+
+  -- Do what you would have done via config variable,
+  -- somewhere else checked by category.
+>lua
+  require('nixCatsUtils.catPacker').setup({
+    -- My plugins here from flake.nix, an example for you.
+    { 'joshdick/onedark.vim', },
+    { 'nvim-tree/nvim-web-devicons', },
+
+    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
+      requires = {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+      },
+    },
+    {'nvim-telescope/telescope.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'which make && make', }
+      },
+    },
+
+    { 'neovim/nvim-lspconfig',
+      requires = {
+        { 'williamboman/mason.nvim', },
+        { 'williamboman/mason-lspconfig.nvim', },
+        { 'j-hui/fidget.nvim', },
+      },
+    },
+    --  NOTE:  we take care of lazy loading elsewhere in an autocommand
+      -- so that we can use the same code on and off nix.
+      -- so here we just tell it not to auto load it
+    { 'folke/lazydev.nvim',
+      cond = function(_) end,
+    },
+    { 'hrsh7th/nvim-cmp',
+      requires = {
+        { 'onsails/lspkind.nvim', },
+        { 'L3MON4D3/LuaSnip', },
+        { 'saadparwaiz1/cmp_luasnip', },
+        { 'hrsh7th/cmp-nvim-lsp', },
+        { 'hrsh7th/cmp-nvim-lua', },
+        { 'hrsh7th/cmp-nvim-lsp-signature-help', },
+        { 'hrsh7th/cmp-path', },
+        { 'rafamadriz/friendly-snippets', },
+        { 'hrsh7th/cmp-buffer', },
+        { 'hrsh7th/cmp-cmdline', },
+        { 'dmitmel/cmp-cmdline-history', },
+      },
+    },
+
+    { 'mfussenegger/nvim-dap',
+      requires = {
+        { 'rcarriga/nvim-dap-ui', },
+        { 'theHamsta/nvim-dap-virtual-text', },
+        { 'jay-babu/mason-nvim-dap.nvim', },
+      },
+    },
+
+    -- { 'm-demare/hlargs.nvim', },
+    { 'mbbill/undotree', },
+    { 'tpope/vim-fugitive', },
+    { 'tpope/vim-rhubarb', },
+    { 'tpope/vim-sleuth', },
+    { 'folke/which-key.nvim', },
+    { 'lewis6991/gitsigns.nvim', },
+    { 'nvim-lualine/lualine.nvim', },
+    { 'lukas-reineke/indent-blankline.nvim', },
+    { 'numToStr/Comment.nvim', },
+    { 'kylechui/nvim-surround',
+      requires = { 'tpope/vim-repeat', },
+    },
+
+    {
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+    },
+  })
+<
+  -- all the rest of the setup will be done using the normal setup functions later,
+  -- thus working regardless of what method loads the plugins.
+  -- only stuff pertaining to downloading should be added to pckr's table.
+
+=================================================================================
+vim:tw=78:ts=8:ft=help:norl:
