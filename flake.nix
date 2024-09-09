@@ -317,7 +317,11 @@
           # will check for config in the store rather than .config
           wrapRc = true;
           configDirName = "nixCats-nvim";
-          aliases = ["vim" "vimcat"];
+          aliases = [
+            "redvim"
+            "vim"
+            "vimcat"
+          ];
           # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
         };
         # see :help nixCats.flake.outputs.packageDefinitions
@@ -352,7 +356,10 @@
           wrapRc = false;
           # will now look for nixCats-nvim within .config and .local and others
           configDirName = "nixCats-nvim";
-          aliases = ["testCat"];
+          aliases = [
+            "redvim"
+            "testCat"
+          ];
           # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
         };
         categories = {
@@ -371,19 +378,6 @@
             # putting the derivation. otherwise,
             # nix would try to evaluate the entire nixpkgs.
             nixpkgs = nixpkgs.outPath;
-          };
-          theBestCat = "says meow!!";
-          # yes even tortured inputs work.
-          theWorstCat = {
-            thing'1 = ["MEOW" '']]' ]=][=[HISSS]]"[[''];
-            thing2 = [
-              {
-                thing3 = ["give" "treat"];
-              }
-              "I LOVE KEYBOARDS"
-              (utils.mkLuaInline ''[[I am a]] .. [[ lua ]] .. type("value")'')
-            ];
-            thing4 = "couch is for scratching";
           };
         };
       };
@@ -481,6 +475,6 @@
           ;
       };
       inherit utils;
-      # inherit (utils) templates;
+      inherit (utils) templates;
     };
 }
