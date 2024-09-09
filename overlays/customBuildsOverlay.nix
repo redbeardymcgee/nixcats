@@ -1,8 +1,7 @@
 importName: inputs: let
-  overlay = self: super: { 
+  overlay = self: super: {
     ${importName} = {
-
     };
   };
 in
-overlay
+  overlay
