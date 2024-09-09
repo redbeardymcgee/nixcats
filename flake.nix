@@ -149,6 +149,7 @@
         # yes these category names are arbitrary
         markdown = with pkgs.vimPlugins; [
           markdown-preview-nvim
+          render-markdown
         ];
         general = {
           gitPlugins = [
@@ -205,6 +206,8 @@
               indent-blankline-nvim
               nvim-web-devicons
               oil-nvim
+              yazi-nvim
+              zk-nvim
             ];
           };
         };
