@@ -16,9 +16,26 @@
         "type": "github"
       }
     },
+    "plugins-mini-surround": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1725613928,
+        "narHash": "sha256-glR9BMYPIrXDAmJaCTsJ2df8n43+Flzgy1W3eNbc6fM=",
+        "owner": "echasnovski",
+        "repo": "mini.surround",
+        "rev": "0e67c4bc147f2a15cee94e7c94dcc0e115b9f55e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "echasnovski",
+        "repo": "mini.surround",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "plugins-mini-surround": "plugins-mini-surround"
       }
     }
   },
