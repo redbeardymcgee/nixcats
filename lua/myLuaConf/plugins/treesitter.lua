@@ -4,7 +4,10 @@
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
 
-    highlight = { enable = true, },
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = { "markdown" },
+    },
     indent = { enable = true, },
     incremental_selection = {
       enable = true,

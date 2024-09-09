@@ -12,12 +12,29 @@ require('myLuaConf.plugins.completion')
 
 if nixCats('markdown') then
   vim.g.mkdp_auto_close = 0
-  vim.keymap.set('n','<leader>mp','<cmd>MarkdownPreview <CR>',{ noremap = true, desc = 'markdown preview' })
-  vim.keymap.set('n','<leader>ms','<cmd>MarkdownPreviewStop <CR>',{ noremap = true, desc = 'markdown preview stop' })
-  vim.keymap.set('n','<leader>mt','<cmd>MarkdownPreviewToggle <CR>',{ noremap = true, desc = 'markdown preview toggle' })
+  vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview <CR>', { noremap = true, desc = 'markdown preview' })
+  vim.keymap.set('n', '<leader>ms', '<cmd>MarkdownPreviewStop <CR>', { noremap = true, desc = 'markdown preview stop' })
+  vim.keymap.set('n', '<leader>mt', '<cmd>MarkdownPreviewToggle <CR>',
+    { noremap = true, desc = 'markdown preview toggle' })
 
   require('render-markdown').setup()
   require('zk').setup()
+
+  local opts = { noremap = true, silent = false }
+
+  -- Create a new note after asking for its title.
+  vim.api.nvim_set_keymap("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", opts)
+
+  -- Open notes.
+  vim.api.nvim_set_keymap("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", opts)
+  -- Open notes associated with the selected tags.
+  vim.api.nvim_set_keymap("n", "<leader>zt", "<Cmd>ZkTags<CR>", opts)
+
+  -- Search for the notes matching a given query.
+  vim.api.nvim_set_keymap("n", "<leader>zf",
+    "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>", opts)
+  -- Search for the notes matching the current visual selection.
+  vim.api.nvim_set_keymap("v", "<leader>zf", ":'<,'>ZkMatch<CR>", opts)
 end
 
 vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
@@ -50,7 +67,7 @@ require('lualine').setup({
         'filename', path = 3, status = true,
       },
     },
-    lualine_x = {'filetype'},
+    lualine_x = { 'filetype' },
   },
   tabline = {
     lualine_a = { 'buffers' },
@@ -172,22 +189,22 @@ vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = 'Ope
 require('which-key').setup({
 })
 require('which-key').add {
-    { "<leader><leader>", group = "buffer commands" },
-    { "<leader><leader>_", hidden = true },
-    { "<leader>c", group = "[c]ode" },
-    { "<leader>c_", hidden = true },
-    { "<leader>d", group = "[d]ocument" },
-    { "<leader>d_", hidden = true },
-    { "<leader>g", group = "[g]it" },
-    { "<leader>g_", hidden = true },
-    { "<leader>m", group = "[m]arkdown" },
-    { "<leader>m_", hidden = true },
-    { "<leader>r", group = "[r]ename" },
-    { "<leader>r_", hidden = true },
-    { "<leader>s", group = "[s]earch" },
-    { "<leader>s_", hidden = true },
-    { "<leader>t", group = "[t]oggles" },
-    { "<leader>t_", hidden = true },
-    { "<leader>w", group = "[w]orkspace" },
-    { "<leader>w_", hidden = true },
-  }
+  { "<leader><leader>",  group = "buffer commands" },
+  { "<leader><leader>_", hidden = true },
+  { "<leader>c",         group = "[c]ode" },
+  { "<leader>c_",        hidden = true },
+  { "<leader>d",         group = "[d]ocument" },
+  { "<leader>d_",        hidden = true },
+  { "<leader>g",         group = "[g]it" },
+  { "<leader>g_",        hidden = true },
+  { "<leader>m",         group = "[m]arkdown" },
+  { "<leader>m_",        hidden = true },
+  { "<leader>r",         group = "[r]ename" },
+  { "<leader>r_",        hidden = true },
+  { "<leader>s",         group = "[s]earch" },
+  { "<leader>s_",        hidden = true },
+  { "<leader>t",         group = "[t]oggles" },
+  { "<leader>t_",        hidden = true },
+  { "<leader>w",         group = "[w]orkspace" },
+  { "<leader>w_",        hidden = true },
+}
