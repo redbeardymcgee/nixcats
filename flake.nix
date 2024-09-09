@@ -40,6 +40,11 @@
     #   flake = false;
     # };
 
+    "plugins-mini-surround" = {
+      url = "github:echasnovski/mini.surround";
+      flake = false;
+    };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -166,6 +171,7 @@
             # If it was included in your flake inputs as plugins-hlargs,
             # this would be how to add that plugin in your config.
             # pkgs.neovimPlugins.hlargs
+            pkgs.neovimPlugins.mini-surround
           ];
           vimPlugins = {
             # you can make a subcategory

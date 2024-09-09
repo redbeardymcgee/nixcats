@@ -78,7 +78,8 @@ require('lualine').setup({
 })
 require('fidget').setup({})
 
-require('nvim-surround').setup()
+-- require('nvim-surround').setup()
+require("mini.surround").setup()
 
 -- indent-blank-line
 require("ibl").setup()
