@@ -243,6 +243,11 @@ require('yazi').setup({
   -- hovered_buffer_in_same_directory = nil,
 })
 vim.keymap.set("n", "-", function() require("yazi").yazi() end, { noremap = true, desc = 'Browse parent directory' })
--- vim.keymap.set("n", "<leader>-", "<cmd>Yazi cwd<CR>", { noremap = true, desc = 'Browse current working directory' })
+vim.keymap.set("n", "<leader>-", function() require("yazi").yazi(nil, vim.fn.getcwd()) end,
+  {
+    noremap = true,
+    desc = 'Browse current working directory'
+  }
+)
 
 require('grug-far').setup({})
