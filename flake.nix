@@ -235,6 +235,7 @@
               indent-blankline-nvim
               nvim-web-devicons
               oil-nvim
+              dial-nvim
               yazi-nvim
               grug-far-nvim
             ];
