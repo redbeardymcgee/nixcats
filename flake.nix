@@ -140,9 +140,10 @@
       # this includes LSPs
       lspsAndRuntimeDeps = {
         general = with pkgs; [
-          universal-ctags
-          ripgrep
           fd
+          glow
+          ripgrep
+          universal-ctags
         ];
         neonixdev = {
           # also you can do this.
@@ -173,9 +174,10 @@
         ];
         # yes these category names are arbitrary
         markdown = with pkgs.vimPlugins; [
+          glow-nvim
+          markdown-nvim
           markdown-preview-nvim
           render-markdown
-          markdown-nvim
           zk-nvim
         ];
         general = {
@@ -335,8 +337,7 @@
         # see :help nixCats.flake.outputs.packageDefinitions
         categories = {
           markdown = true;
-          general.vimPlugins = true;
-          general.gitPlugins = true;
+          general = true;
           custom = true;
           lint = true;
           format = true;

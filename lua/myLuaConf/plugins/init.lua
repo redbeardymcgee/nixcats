@@ -294,3 +294,5 @@ require("dial.config").augends:register_group {
     augend.constant.new{ elements = {"let", "const"} },
   },
 }
+
+require('glow').setup()
