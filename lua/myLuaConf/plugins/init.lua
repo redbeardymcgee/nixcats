@@ -8,41 +8,39 @@ require('myLuaConf.plugins.telescope')
 require('myLuaConf.plugins.treesitter')
 require('myLuaConf.plugins.completion')
 
-if nixCats('markdown') then
-  require('zk').setup()
-  vim.keymap.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
-    {
-      noremap = true,
-      silent = false,
-      desc = "New note (input title)",
-    })
-  vim.keymap.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", {
+require('zk').setup()
+vim.keymap.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
+  {
     noremap = true,
     silent = false,
-    desc = "Open notes",
+    desc = "New note (input title)",
   })
-  vim.keymap.set("n", "<leader>zt", "<Cmd>ZkTags<CR>", {
+vim.keymap.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", {
+  noremap = true,
+  silent = false,
+  desc = "Open notes",
+})
+vim.keymap.set("n", "<leader>zt", "<Cmd>ZkTags<CR>", {
+  noremap = true,
+  silent = false,
+  desc = "Search notes by tag",
+})
+vim.keymap.set("n", "<leader>zf",
+  "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
+  {
     noremap = true,
     silent = false,
-    desc = "Search notes by tag",
+    desc = "Search notes",
   })
-  vim.keymap.set("n", "<leader>zf",
-    "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
-    {
-      noremap = true,
-      silent = false,
-      desc = "Search notes",
-    })
-  vim.keymap.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>", {
-    noremap = true,
-    silent = false,
-    desc = "Search notes with selection",
-  })
-end
+vim.keymap.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>", {
+  noremap = true,
+  silent = false,
+  desc = "Search notes with selection",
+})
 
-vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
 vim.g.undotree_WindowLayout = 1
 vim.g.undotree_SplitWidth = 40
+vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
 
 -- require('hlargs').setup {
 --   color = '#32a88f',
@@ -191,8 +189,9 @@ require('which-key').setup({
 })
 require('which-key').add {
   {
-    "<leader><leader>",
-    group = "buffer",
+     "<leader>b",
+    group = "[b]uffer",
+    proxy = "<leader><leader>",
     expand = function()
       return require("which-key.extras").expand.buf()
     end,
@@ -299,7 +298,6 @@ require("mini.pairs").setup({
   -- better deal with markdown code blocks
   markdown = true,
 })
-
 
 require("todo-comments").setup()
 vim.keymap.set("n", "]t", function()
