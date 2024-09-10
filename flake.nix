@@ -245,6 +245,7 @@
               grug-far-nvim
               todo-comments-nvim
               trouble-nvim
+              flash-nvim
             ];
           };
         };

@@ -210,9 +210,8 @@ vim.keymap.set("n", "<leader>_", "<cmd>Oil .<CR>", { noremap = true, desc = 'Edi
 require('which-key').setup({
 })
 require('which-key').add {
-  { "<leader><leader>", group = "buffer", },
   {
-    "<leader>b",
+    "<leader><leader>",
     group = "buffer",
     expand = function()
       return require("which-key.extras").expand.buf()
@@ -226,22 +225,22 @@ require('which-key').add {
       return require("which-key.extras").expand.win()
     end,
   },
-  { "<leader>c",        group = "[c]ode" },
-  { "<leader>d",        group = "[d]ocument" },
-  { "<leader>g",        group = "[g]it" },
-  { "<leader>m",        group = "[m]arkdown" },
-  { "<leader>r",        group = "[r]ename" },
-  { "<leader>s",        group = "[s]earch" },
-  { "<leader>t",        group = "[t]oggles" },
-  { "<leader>W",        group = "[W]orkspace" },
-  { "<leader>z",        group = "[z]ettelkasten" },
-  { "<leader>x",        group = "debug" },
-  { "[",                group = "prev" },
-  { "]",                group = "next" },
-  { "g",                group = "[g]oto" },
-  { "s",                group = "[s]urround" },
-  { "gx",               desc = "Open with system app" },
-  { "z",                group = "fold" },
+  { "<leader>c", group = "[c]ode" },
+  { "<leader>d", group = "[d]ocument" },
+  { "<leader>g", group = "[g]it" },
+  { "<leader>m", group = "[m]arkdown" },
+  { "<leader>r", group = "[r]ename" },
+  { "<leader>s", group = "[s]earch" },
+  { "<leader>t", group = "[t]oggles" },
+  { "<leader>W", group = "[W]orkspace" },
+  { "<leader>z", group = "[z]ettelkasten" },
+  { "<leader>x", group = "debug" },
+  { "[",         group = "prev" },
+  { "]",         group = "next" },
+  { "g",         group = "[g]oto" },
+  { "s",         group = "[s]urround" },
+  { "gx",        desc = "Open with system app" },
+  { "z",         group = "fold" },
 }
 
 require('yazi').setup({
@@ -403,3 +402,11 @@ require("typescript-tools").setup({
     }
   },
 })
+
+require("flash").setup()
+vim.keymap.set({ "n", "x", "o" }, "<C-f>",
+  function() require("flash").treesitter() end,
+  { desc = "Flash Treesitter", })
+vim.keymap.set("c", "<c-s>",
+  function() require("flash").toggle() end,
+  { desc = "Toggle Flash Search" })
