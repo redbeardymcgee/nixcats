@@ -24,7 +24,7 @@ if nixCats('markdown') then
       map({ 'n', 'i' }, '<leader>ml', '<Cmd>MDListItemBelow<CR>', opts)
       map({ 'n', 'i' }, '<leader>mL', '<Cmd>MDListItemAbove<CR>', opts)
       map('n', '<leader>mc', '<Cmd>MDTaskToggle<CR>', opts)
-      map('x', '<M-c>', ':MDTaskToggle<CR>', opts)
+      map('x', '<leader>mc', ':MDTaskToggle<CR>', opts)
     end,
   })
   require('render-markdown').setup()
@@ -263,3 +263,34 @@ vim.keymap.set("n", "<leader>-", function() require("yazi").yazi(nil, vim.fn.get
 
 require('grug-far').setup()
 
+local augend = require("dial.augend")
+require("dial.config").augends:register_group {
+  default = {
+    augend.integer.alias.decimal,
+    augend.integer.alias.decimal_int,
+    augend.integer.alias.hex,
+    augend.integer.alias.octal,
+    augend.integer.alias.binary,
+    augend.date.alias["%Y/%m/%d"],
+    augend.date.alias["%m/%d/%Y"],
+    augend.date.alias["%d/%m/%Y"],
+    augend.date.alias["%m/%d/%y"],
+    augend.date.alias["%d/%m/%y"],
+    augend.date.alias["%m/%d"],
+    augend.date.alias["%-m/%-d"],
+    augend.date.alias["%Y-%m-%d"],
+    augend.date.alias["%d.%m.%Y"],
+    augend.date.alias["%d.%m.%y"],
+    augend.date.alias["%d.%m."],
+    augend.date.alias["%-d.%-m."],
+    augend.date.alias["%H:%M:%S"],
+    augend.date.alias["%H:%M"],
+    augend.constant.alias.bool,
+    augend.constant.alias.alpha,
+    augend.constant.alias.Alpha,
+    augend.semver.alias.semver,
+  },
+  typescript = {
+    augend.constant.new{ elements = {"let", "const"} },
+  },
+}
