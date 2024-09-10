@@ -140,9 +140,12 @@
       # this includes LSPs
       lspsAndRuntimeDeps = {
         general = with pkgs; [
+          alejandra
           fd
           glow
+          prettierd
           ripgrep
+          stylua
           universal-ctags
         ];
         neonixdev = {
