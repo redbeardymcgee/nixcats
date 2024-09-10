@@ -233,14 +233,14 @@ require('which-key').add {
 }
 
 require('yazi').setup({
-  open_for_directories = true,
-  open_multiple_tabs = true,
+  -- open_for_directories = true,
+  -- open_multiple_tabs = true,
 
-  use_ya_for_events_reading = true,
-  highlight_groups = {
-    hovered_buffer_background = { bg = "#363a4f" },
-  },
-  hovered_buffer_in_same_directory = nil,
+  -- use_ya_for_events_reading = true,
+  -- highlight_groups = {
+  --   hovered_buffer_background = { bg = "#363a4f" },
+  -- },
+  -- hovered_buffer_in_same_directory = nil,
 })
 vim.keymap.set("n", "-", "<cmd>Yazi<CR>", { noremap = true, desc = 'Browse parent directory' })
 vim.keymap.set("n", "<leader>-", "<cmd>Yazi cwd<CR>", { noremap = true, desc = 'Browse current working directory' })
