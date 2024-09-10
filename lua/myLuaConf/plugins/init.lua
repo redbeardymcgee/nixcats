@@ -383,7 +383,13 @@ require("typescript-tools").setup({
   },
 })
 
-require("flash").setup()
+require("flash").setup({
+  modes = {
+    char = {
+      jump_labels = true
+    }
+  }
+})
 vim.keymap.set({ "n", "x", "o" }, "<C-f>",
   function() require("flash").treesitter() end,
   { desc = "Flash Treesitter", })
