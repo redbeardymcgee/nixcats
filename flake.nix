@@ -170,14 +170,16 @@
         markdown = with pkgs.vimPlugins; [
           markdown-preview-nvim
           render-markdown
+          markdown-nvim
+          zk-nvim
         ];
         general = {
-          gitPlugins = [
+          gitPlugins = with pkgs.neovimPlugins; [
             # If it was included in your flake inputs as plugins-hlargs,
             # this would be how to add that plugin in your config.
             # pkgs.neovimPlugins.hlargs
-            pkgs.neovimPlugins.mini-surround
-            pkgs.neovimPlugins.tmux-navigate
+            mini-surround
+            tmux-navigate
           ];
           vimPlugins = {
             # you can make a subcategory
@@ -229,7 +231,6 @@
               oil-nvim
               yazi-nvim
               grug-far-nvim
-              zk-nvim
             ];
           };
         };

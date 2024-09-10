@@ -17,6 +17,16 @@ if nixCats('markdown') then
   vim.keymap.set('n', '<leader>mt', '<cmd>MarkdownPreviewToggle <CR>',
     { noremap = true, desc = 'markdown preview toggle' })
 
+  require('markdown').setup({
+    on_attach = function(bufnr)
+      local map = vim.keymap.set
+      local opts = { buffer = bufnr }
+      map({ 'n', 'i' }, '<leader>ml', '<Cmd>MDListItemBelow<CR>', opts)
+      map({ 'n', 'i' }, '<leader>mL', '<Cmd>MDListItemAbove<CR>', opts)
+      map('n', '<leader>mc', '<Cmd>MDTaskToggle<CR>', opts)
+      map('x', '<M-c>', ':MDTaskToggle<CR>', opts)
+    end,
+  })
   require('render-markdown').setup()
   require('zk').setup()
 
