@@ -243,6 +243,8 @@
               dial-nvim
               yazi-nvim
               grug-far-nvim
+              todo-comments-nvim
+              trouble-nvim
             ];
           };
         };

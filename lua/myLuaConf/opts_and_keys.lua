@@ -140,15 +140,37 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- vim.o.clipboard = 'unnamedplus'
 
 -- You should instead use these keybindings so that they are still easy to use, but dont conflict
-vim.keymap.set({ "n", "v", "x" }, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
+vim.keymap.set({ "n", "v", "x" }, '<leader>y', '"+y', {
+  noremap = true,
+  silent = true,
+  desc = 'Yank to clipboard'
+})
 vim.keymap.set({ "n", "v", "x" }, '<leader>Y', '"+yy',
-  { noremap = true, silent = true, desc = 'Yank line to clipboard' })
-vim.keymap.set({ "n", "v", "x" }, '<C-A>', 'gg0vG$', { noremap = true, silent = true, desc = 'Select all' })
-vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
-vim.keymap.set('i', '<C-p>', '<C-r><C-p>+',
-  { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
-vim.keymap.set("x", "<leader>P", '"_dP',
-  { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
+  {
+    noremap = true,
+    silent = true,
+    desc = 'Yank line to clipboard'
+  })
+vim.keymap.set({ "n", "v", "x" }, '<C-A>', 'gg0vG$', {
+  noremap = true,
+  silent = true,
+  desc = 'Select all'
+})
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p', {
+  noremap = true,
+  silent = true,
+  desc = 'Paste from clipboard'
+})
+vim.keymap.set('i', '<C-p>', '<C-r><C-p>+', {
+    noremap = true,
+    silent = true,
+    desc = 'Paste from clipboard from within insert mode'
+  })
+vim.keymap.set("x", "<leader>P", '"_dP', {
+    noremap = true,
+    silent = true,
+    desc = 'Paste over selection without erasing unnamed register'
+  })
 
 -- dial.nvim
 vim.keymap.set("n", "<C-a>", function()

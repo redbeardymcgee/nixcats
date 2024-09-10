@@ -235,10 +235,11 @@ require('which-key').add {
   { "<leader>t",        group = "[t]oggles" },
   { "<leader>W",        group = "[W]orkspace" },
   { "<leader>z",        group = "[z]ettelkasten" },
+  { "<leader>x",        group = "debug" },
   { "[",                group = "prev" },
   { "]",                group = "next" },
   { "g",                group = "[g]oto" },
-  { "s",                group = "surround" },
+  { "s",                group = "[s]urround" },
   { "gx",               desc = "Open with system app" },
   { "z",                group = "fold" },
 }
@@ -253,8 +254,19 @@ require('yazi').setup({
   -- },
   -- hovered_buffer_in_same_directory = nil,
 })
-vim.keymap.set("n", "-", function() require("yazi").yazi() end, { noremap = true, desc = 'Browse parent directory' })
-vim.keymap.set("n", "<leader>-", function() require("yazi").yazi(nil, vim.fn.getcwd()) end,
+vim.keymap.set("n", "-",
+  function()
+    require("yazi").yazi()
+  end,
+  {
+    noremap = true,
+    desc = 'Browse parent directory'
+  }
+)
+vim.keymap.set("n", "<leader>-",
+  function()
+    require("yazi").yazi(nil, vim.fn.getcwd())
+  end,
   {
     noremap = true,
     desc = 'Browse current working directory'
@@ -309,6 +321,74 @@ require("mini.pairs").setup({
   markdown = true,
 })
 
+
+require("todo-comments").setup()
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, {
+  noremap = true,
+  silent = false,
+  desc = "Next todo comment"
+})
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, {
+  noremap = true,
+  silent = false,
+  desc = "Previous todo comment"
+})
+vim.keymap.set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Todo (Trouble)"
+})
+vim.keymap.set("n", "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Todo/Fix/Fixme (Trouble)"
+})
+vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Todo"
+})
+vim.keymap.set("n", "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Todo/Fix/Fixme"
+})
+
+require("trouble").setup()
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Diagnostics (Trouble)"
+})
+vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Buffer Diagnostics (Trouble)"
+})
+vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Symbols (Trouble)"
+})
+vim.keymap.set("n", "<leader>cS", "<cmd>Trouble lsp toggle<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "LSP references/definitions/... (Trouble)"
+})
+vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Location List (Trouble)"
+})
+vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Quickfix List (Trouble)"
+})
 
 require("typescript-tools").setup({
   settings = {
