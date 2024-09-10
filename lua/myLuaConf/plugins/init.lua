@@ -9,26 +9,6 @@ require('myLuaConf.plugins.treesitter')
 require('myLuaConf.plugins.completion')
 
 if nixCats('markdown') then
-  require('glow').setup()
-  require('render-markdown').setup()
-
-  vim.g.mkdp_auto_close = 0
-  vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview <CR>', { noremap = true, desc = 'markdown preview' })
-  vim.keymap.set('n', '<leader>ms', '<cmd>MarkdownPreviewStop <CR>', { noremap = true, desc = 'markdown preview stop' })
-  vim.keymap.set('n', '<leader>mt', '<cmd>MarkdownPreviewToggle <CR>',
-    { noremap = true, desc = 'markdown preview toggle' })
-
-  require('markdown').setup({
-    on_attach = function(bufnr)
-      local map = vim.keymap.set
-      local opts = { buffer = bufnr }
-      map({ 'n', 'i' }, '<leader>ml', '<Cmd>MDListItemBelow<CR>', opts)
-      map({ 'n', 'i' }, '<leader>mL', '<Cmd>MDListItemAbove<CR>', opts)
-      map('n', '<leader>mc', '<Cmd>MDTaskToggle<CR>', opts)
-      map('x', '<leader>mc', ':MDTaskToggle<CR>', opts)
-    end,
-  })
-
   require('zk').setup()
   vim.keymap.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
     {
