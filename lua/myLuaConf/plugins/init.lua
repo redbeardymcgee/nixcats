@@ -5,12 +5,13 @@ end
 vim.cmd.colorscheme(colorschemeName)
 
 require('myLuaConf.plugins.telescope')
-
 require('myLuaConf.plugins.treesitter')
-
 require('myLuaConf.plugins.completion')
 
 if nixCats('markdown') then
+  require('glow').setup()
+  require('render-markdown').setup()
+
   vim.g.mkdp_auto_close = 0
   vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview <CR>', { noremap = true, desc = 'markdown preview' })
   vim.keymap.set('n', '<leader>ms', '<cmd>MarkdownPreviewStop <CR>', { noremap = true, desc = 'markdown preview stop' })
@@ -27,31 +28,24 @@ if nixCats('markdown') then
       map('x', '<leader>mc', ':MDTaskToggle<CR>', opts)
     end,
   })
-  require('render-markdown').setup()
-  require('zk').setup()
 
-  -- Create a new note after asking for its title.
+  require('zk').setup()
   vim.keymap.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
     {
       noremap = true,
       silent = false,
       desc = "New note (input title)",
     })
-
-  -- Open notes.
   vim.keymap.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", {
     noremap = true,
     silent = false,
     desc = "Open notes",
   })
-  -- Open notes associated with the selected tags.
   vim.keymap.set("n", "<leader>zt", "<Cmd>ZkTags<CR>", {
     noremap = true,
     silent = false,
     desc = "Search notes by tag",
   })
-
-  -- Search for the notes matching a given query.
   vim.keymap.set("n", "<leader>zf",
     "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
     {
@@ -59,7 +53,6 @@ if nixCats('markdown') then
       silent = false,
       desc = "Search notes",
     })
-  -- Search for the notes matching the current visual selection.
   vim.keymap.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>", {
     noremap = true,
     silent = false,
@@ -107,10 +100,6 @@ require('lualine').setup({
   },
 })
 require('fidget').setup({})
-
--- require('nvim-surround').setup()
-require("mini.surround").setup()
-require("mini.pairs").setup()
 
 -- indent-blank-line
 require("ibl").setup()
@@ -221,26 +210,37 @@ vim.keymap.set("n", "<leader>_", "<cmd>Oil .<CR>", { noremap = true, desc = 'Edi
 require('which-key').setup({
 })
 require('which-key').add {
-  { "<leader><leader>",  group = "buffer commands" },
-  { "<leader><leader>_", hidden = true },
-  { "<leader>c",         group = "[c]ode" },
-  { "<leader>c_",        hidden = true },
-  { "<leader>d",         group = "[d]ocument" },
-  { "<leader>d_",        hidden = true },
-  { "<leader>g",         group = "[g]it" },
-  { "<leader>g_",        hidden = true },
-  { "<leader>m",         group = "[m]arkdown" },
-  { "<leader>m_",        hidden = true },
-  { "<leader>r",         group = "[r]ename" },
-  { "<leader>r_",        hidden = true },
-  { "<leader>s",         group = "[s]earch" },
-  { "<leader>s_",        hidden = true },
-  { "<leader>t",         group = "[t]oggles" },
-  { "<leader>t_",        hidden = true },
-  { "<leader>w",         group = "[w]orkspace" },
-  { "<leader>w_",        hidden = true },
-  { "<leader>z",         group = "[z]k" },
-  { "<leader>z_",        hidden = true },
+  { "<leader><leader>", group = "buffer", },
+  {
+    "<leader>b",
+    group = "buffer",
+    expand = function()
+      return require("which-key.extras").expand.buf()
+    end,
+  },
+  {
+    "<leader>w",
+    group = "[w]indows",
+    proxy = "<c-w>",
+    expand = function()
+      return require("which-key.extras").expand.win()
+    end,
+  },
+  { "<leader>c",        group = "[c]ode" },
+  { "<leader>d",        group = "[d]ocument" },
+  { "<leader>g",        group = "[g]it" },
+  { "<leader>m",        group = "[m]arkdown" },
+  { "<leader>r",        group = "[r]ename" },
+  { "<leader>s",        group = "[s]earch" },
+  { "<leader>t",        group = "[t]oggles" },
+  { "<leader>W",        group = "[W]orkspace" },
+  { "<leader>z",        group = "[z]ettelkasten" },
+  { "[",                group = "prev" },
+  { "]",                group = "next" },
+  { "g",                group = "[g]oto" },
+  { "s",                group = "surround" },
+  { "gx",               desc = "Open with system app" },
+  { "z",                group = "fold" },
 }
 
 require('yazi').setup({
@@ -291,8 +291,20 @@ require("dial.config").augends:register_group {
     augend.semver.alias.semver,
   },
   typescript = {
-    augend.constant.new{ elements = {"let", "const"} },
+    augend.constant.new { elements = { "let", "const" } },
   },
 }
 
-require('glow').setup()
+require("mini.surround").setup()
+require("mini.pairs").setup({
+  modes = { insert = true, command = true, terminal = false },
+  -- skip autopair when next character is one of these
+  skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+  -- skip autopair when the cursor is inside these treesitter nodes
+  skip_ts = { "string" },
+  -- skip autopair when next character is closing pair
+  -- and there are more closing pairs than opening pairs
+  skip_unbalanced = true,
+  -- better deal with markdown code blocks
+  markdown = true,
+})
