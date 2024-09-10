@@ -140,14 +140,38 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- vim.o.clipboard = 'unnamedplus'
 
 -- You should instead use these keybindings so that they are still easy to use, but dont conflict
-vim.keymap.set("n", '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
-vim.keymap.set({ "v", "x" }, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
-vim.keymap.set({ "n", "v", "x" }, '<leader>yy', '"+yy',
+vim.keymap.set({ "n", "v", "x" }, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
+vim.keymap.set({ "n", "v", "x" }, '<leader>Y', '"+yy',
   { noremap = true, silent = true, desc = 'Yank line to clipboard' })
-vim.keymap.set({ "n", "v", "x" }, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
 vim.keymap.set({ "n", "v", "x" }, '<C-A>', 'gg0vG$', { noremap = true, silent = true, desc = 'Select all' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
 vim.keymap.set('i', '<C-p>', '<C-r><C-p>+',
   { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
 vim.keymap.set("x", "<leader>P", '"_dP',
   { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
+
+-- dial.nvim
+vim.keymap.set("n", "<C-a>", function()
+  require("dial.map").manipulate("increment", "normal")
+end)
+vim.keymap.set("n", "<C-x>", function()
+  require("dial.map").manipulate("decrement", "normal")
+end)
+vim.keymap.set("n", "g<C-a>", function()
+  require("dial.map").manipulate("increment", "gnormal")
+end)
+vim.keymap.set("n", "g<C-x>", function()
+  require("dial.map").manipulate("decrement", "gnormal")
+end)
+vim.keymap.set("v", "<C-a>", function()
+  require("dial.map").manipulate("increment", "visual")
+end)
+vim.keymap.set("v", "<C-x>", function()
+  require("dial.map").manipulate("decrement", "visual")
+end)
+vim.keymap.set("v", "g<C-a>", function()
+  require("dial.map").manipulate("increment", "gvisual")
+end)
+vim.keymap.set("v", "g<C-x>", function()
+  require("dial.map").manipulate("decrement", "gvisual")
+end)
