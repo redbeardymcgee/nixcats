@@ -45,6 +45,11 @@
       flake = false;
     };
 
+    "plugins-tmux-navigate" = {
+      url = "github:sunaku/tmux-navigate";
+      flake = false;
+    };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -172,6 +177,7 @@
             # this would be how to add that plugin in your config.
             # pkgs.neovimPlugins.hlargs
             pkgs.neovimPlugins.mini-surround
+            pkgs.neovimPlugins.tmux-navigate
           ];
           vimPlugins = {
             # you can make a subcategory
@@ -218,7 +224,6 @@
               vim-rhubarb
               vim-repeat
               undotree
-              nvim-surround
               indent-blankline-nvim
               nvim-web-devicons
               oil-nvim
@@ -315,7 +320,6 @@
           configDirName = "nixCats-nvim";
           aliases = [
             "redvim"
-            "vim"
             "vimcat"
           ];
           # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
