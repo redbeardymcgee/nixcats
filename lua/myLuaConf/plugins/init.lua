@@ -204,8 +204,8 @@ require("oil").setup({
     ["g\\"] = "actions.toggle_trash",
   },
 })
-vim.keymap.set("n", "_", "<cmd>Oil<CR>", { noremap = true, desc = 'Edit parent directory' })
-vim.keymap.set("n", "<leader>_", "<cmd>Oil .<CR>", { noremap = true, desc = 'Edit current working directory' })
+vim.keymap.set("n", "-", "<cmd>Oil<CR>", { noremap = true, desc = 'Edit parent directory' })
+vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = 'Edit current working directory' })
 
 require('which-key').setup({
 })
@@ -242,7 +242,7 @@ require('yazi').setup({
   -- },
   -- hovered_buffer_in_same_directory = nil,
 })
-vim.keymap.set("n", "-", "<cmd>Yazi<CR>", { noremap = true, desc = 'Browse parent directory' })
-vim.keymap.set("n", "<leader>-", "<cmd>Yazi cwd<CR>", { noremap = true, desc = 'Browse current working directory' })
+vim.keymap.set("n", "_", "<cmd>Yazi<CR>", { noremap = true, desc = 'Browse parent directory' })
+vim.keymap.set("n", "<leader>_", "<cmd>Yazi cwd<CR>", { noremap = true, desc = 'Browse current working directory' })
 
 require('grug-far').setup({})
