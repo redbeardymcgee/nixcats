@@ -228,7 +228,10 @@ require('which-key').add {
   { "<leader>t_",        hidden = true },
   { "<leader>w",         group = "[w]orkspace" },
   { "<leader>w_",        hidden = true },
+  { "<leader>z",         group = "[z]k" },
+  { "<leader>z_",        hidden = true },
 }
+
 require('yazi').setup({
   open_for_directories = true,
   open_multiple_tabs = true,
@@ -241,4 +244,5 @@ require('yazi').setup({
 })
 vim.keymap.set("n", "-", "<cmd>Yazi<CR>", { noremap = true, desc = 'Browse parent directory' })
 vim.keymap.set("n", "<leader>-", "<cmd>Yazi cwd<CR>", { noremap = true, desc = 'Browse current working directory' })
+
 require('grug-far').setup({})

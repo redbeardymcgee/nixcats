@@ -329,9 +329,6 @@
           lint = true;
           format = true;
           neonixdev = true;
-          test = {
-            subtest1 = true;
-          };
           debug = false;
           # this does not have an associated category of plugins,
           # but lua can still check for it
@@ -365,7 +362,6 @@
           neonixdev = true;
           lint = true;
           format = true;
-          test = true;
           lspDebugMode = false;
           themer = true;
           colorscheme = "catppuccin";
