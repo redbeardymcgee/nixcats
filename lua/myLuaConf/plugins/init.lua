@@ -189,7 +189,7 @@ require('which-key').setup({
 })
 require('which-key').add {
   {
-     "<leader>b",
+    "<leader>b",
     group = "[b]uffer",
     proxy = "<leader><leader>",
     expand = function()

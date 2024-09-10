@@ -3,14 +3,8 @@ local conform = require("conform")
 conform.setup({
   formatters_by_ft = {
     nix = { "alejandra" },
-    -- lua = { "stylua" },
-    -- go = { "gofmt", "golint" },
-    -- templ = { "templ" },
-    -- Conform will run multiple formatters sequentially
-    -- python = { "isort", "black" },
-    -- Use a sub-list to run only the first available formatter
-    javascript = { "prettierd", "prettier" },
-    typescript = { "prettierd", "prettier" },
+    javascript = { "prettierd" },
+    typescript = { "prettierd" },
   },
 })
 
@@ -20,4 +14,4 @@ vim.keymap.set({ "n", "v" }, "<leader>cf", function()
     async = false,
     timeout_ms = 1000,
   })
-end, { desc = "[F]ormat [F]ile" })
+end, { desc = "Format file" })
