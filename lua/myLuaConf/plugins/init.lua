@@ -110,6 +110,7 @@ require('fidget').setup({})
 
 -- require('nvim-surround').setup()
 require("mini.surround").setup()
+require("mini.pairs").setup()
 
 -- indent-blank-line
 require("ibl").setup()

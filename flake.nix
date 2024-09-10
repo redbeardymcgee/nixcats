@@ -45,6 +45,11 @@
       flake = false;
     };
 
+    "plugins-mini-pairs" = {
+      url = "github:echasnovski/mini.pairs";
+      flake = false;
+    };
+
     "plugins-tmux-navigate" = {
       url = "github:sunaku/tmux-navigate";
       flake = false;
@@ -178,6 +183,7 @@
             # If it was included in your flake inputs as plugins-hlargs,
             # this would be how to add that plugin in your config.
             # pkgs.neovimPlugins.hlargs
+            mini-pairs
             mini-surround
             tmux-navigate
           ];
