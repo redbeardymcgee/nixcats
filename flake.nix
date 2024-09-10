@@ -223,6 +223,7 @@
               nvim-web-devicons
               oil-nvim
               yazi-nvim
+              grug-far-nvim
               zk-nvim
             ];
           };
