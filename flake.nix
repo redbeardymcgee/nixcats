@@ -180,6 +180,9 @@
           render-markdown
           zk-nvim
         ];
+        typescript = with pkgs.vimPlugins; [
+          typescript-tools-nvim
+        ];
         general = {
           gitPlugins = with pkgs.neovimPlugins; [
             # If it was included in your flake inputs as plugins-hlargs,
@@ -337,6 +340,7 @@
         # see :help nixCats.flake.outputs.packageDefinitions
         categories = {
           markdown = true;
+          typescript = true;
           general = true;
           custom = true;
           lint = true;
@@ -370,6 +374,7 @@
         };
         categories = {
           markdown = true;
+          typescript = true;
           general = true;
           custom = true;
           neonixdev = true;
