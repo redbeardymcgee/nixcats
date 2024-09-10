@@ -263,7 +263,7 @@ vim.keymap.set("n", "<leader>-", function() require("yazi").yazi(nil, vim.fn.get
 
 require('grug-far').setup()
 
-require('dial').setup()
+-- require('dial').setup()
 vim.keymap.set("n", "<C-a>", function()
     require("dial.map").manipulate("increment", "normal")
 end)
