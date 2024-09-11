@@ -394,3 +394,16 @@ vim.keymap.set({ "n", "x", "o" }, "<C-f>",
 vim.keymap.set("c", "<c-s>",
   function() require("flash").toggle() end,
   { desc = "Toggle Flash Search" })
+
+
+require("lazygit").setup({})
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Lazygit"
+})
+vim.keymap.set("n", "<leader>gf", "<cmd>LazyGitFilterCurrentFile<cr>", {
+  noremap = true,
+  silent = false,
+  desc = "Lazygit filter current file"
+})

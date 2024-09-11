@@ -249,6 +249,7 @@
               todo-comments-nvim
               trouble-nvim
               flash-nvim
+              lazygit-nvim
             ];
           };
         };
