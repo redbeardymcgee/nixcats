@@ -250,6 +250,7 @@
               trouble-nvim
               flash-nvim
               lazygit-nvim
+              yanky-nvim
             ];
           };
         };
