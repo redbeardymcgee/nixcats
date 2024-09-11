@@ -396,7 +396,7 @@ vim.keymap.set("c", "<c-s>",
   { desc = "Toggle Flash Search" })
 
 
-require("lazygit").setup({})
+-- require("lazygit").setup({})
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", {
   noremap = true,
   silent = false,
