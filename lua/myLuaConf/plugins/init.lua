@@ -353,8 +353,8 @@ vim.keymap.set("n", "<leader>gf", "<cmd>LazyGitFilterCurrentFile<cr>",
   { noremap = true, silent = false, desc = "Lazygit filter current file" })
 
 require('yanky').setup()
-vim.keymap.set({ "n", "x" }, "<leader>p",
-  require("telescope").extensions.yank_history.yank_history({}) { desc = "Open Yank History" })
+-- vim.keymap.set({ "n", "x" }, "<leader>p",
+--   require("telescope").extensions.yank_history.yank_history({}) { desc = "Open Yank History" })
 vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { desc = "Yank Text" })
 vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Put Text After Cursor" })
 vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Put Text Before Cursor" })
