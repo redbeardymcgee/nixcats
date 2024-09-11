@@ -10,33 +10,14 @@ require('myLuaConf.plugins.completion')
 
 require('zk').setup()
 vim.keymap.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
-  {
-    noremap = true,
-    silent = false,
-    desc = "New note (input title)",
-  })
-vim.keymap.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", {
-  noremap = true,
-  silent = false,
-  desc = "Open notes",
-})
-vim.keymap.set("n", "<leader>zt", "<Cmd>ZkTags<CR>", {
-  noremap = true,
-  silent = false,
-  desc = "Search notes by tag",
-})
-vim.keymap.set("n", "<leader>zf",
-  "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
-  {
-    noremap = true,
-    silent = false,
-    desc = "Search notes",
-  })
-vim.keymap.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>", {
-  noremap = true,
-  silent = false,
-  desc = "Search notes with selection",
-})
+  { noremap = true, silent = false, desc = "New note (input title)", })
+vim.keymap.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
+  { noremap = true, silent = false, desc = "Open notes", })
+vim.keymap.set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { noremap = true, silent = false, desc = "Search notes by tag", })
+vim.keymap.set("n", "<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
+  { noremap = true, silent = false, desc = "Search notes", })
+vim.keymap.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>",
+  { noremap = true, silent = false, desc = "Search notes with selection", })
 
 vim.g.undotree_WindowLayout = 1
 vim.g.undotree_SplitWidth = 40
@@ -136,13 +117,9 @@ require('gitsigns').setup({
     map('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
     map('n', '<leader>gR', gs.reset_buffer, { desc = 'git Reset buffer' })
     map('n', '<leader>gp', gs.preview_hunk, { desc = 'preview git hunk' })
-    map('n', '<leader>gb', function()
-      gs.blame_line { full = false }
-    end, { desc = 'git blame line' })
+    map('n', '<leader>gb', function() gs.blame_line { full = false } end, { desc = 'git blame line' })
     map('n', '<leader>gd', gs.diffthis, { desc = 'git diff against index' })
-    map('n', '<leader>gD', function()
-      gs.diffthis '~'
-    end, { desc = 'git diff against last commit' })
+    map('n', '<leader>gD', function() gs.diffthis '~' end, { desc = 'git diff against last commit' })
 
     -- Toggles
     map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
@@ -166,8 +143,8 @@ require("oil").setup({
   keymaps = {
     ["g?"] = "actions.show_help",
     ["<CR>"] = "actions.select",
-    ["<C-s>"] = "actions.select_vsplit",
-    ["<C-h>"] = "actions.select_split",
+    ["<C-v>"] = "actions.select_vsplit",
+    ["<C-s>"] = "actions.select_split",
     ["<C-t>"] = "actions.select_tab",
     ["<C-p>"] = "actions.preview",
     ["<C-c>"] = "actions.close",
@@ -217,9 +194,18 @@ require('which-key').add {
   { "[",         group = "prev" },
   { "]",         group = "next" },
   { "g",         group = "[g]oto" },
-  { "s",         group = "[s]urround" },
   { "gx",        desc = "Open with system app" },
-  { "z",         group = "fold" },
+  { "z",         group = "Fold" },
+  { "gs",        group = "Surround" },
+  { 'gsa',       desc = "Add surrounding in Normal and Visual modes" },
+  { 'gsd',       desc = "Delete surrounding" },
+  { 'gsf',       desc = "Find surrounding (to the right)" },
+  { 'gsF',       desc = "Find surrounding (to the left)" },
+  { 'gsh',       desc = "Highlight surrounding" },
+  { 'gsr',       desc = "Replace surrounding" },
+  { 'gsn',       desc = "Update `n_lines`" },
+  { 'l',         desc = "Suffix to search with 'prev' method" },
+  { 'n',         desc = "Suffix to search with 'next' method" },
 }
 
 require('yazi').setup({
@@ -285,7 +271,20 @@ require("dial.config").augends:register_group {
   },
 }
 
-require("mini.surround").setup()
+require("mini.surround").setup({
+  mappings = {
+    add = 'gsa',            -- Add surrounding in Normal and Visual modes
+    delete = 'gsd',         -- Delete surrounding
+    find = 'gsf',           -- Find surrounding (to the right)
+    find_left = 'gsF',      -- Find surrounding (to the left)
+    highlight = 'gsh',      -- Highlight surrounding
+    replace = 'gsr',        -- Replace surrounding
+    update_n_lines = 'gsn', -- Update `n_lines`
+
+    suffix_last = 'l',      -- Suffix to search with "prev" method
+    suffix_next = 'n',      -- Suffix to search with "next" method
+  },
+})
 require("mini.pairs").setup({
   modes = { insert = true, command = true, terminal = false },
   -- skip autopair when next character is one of these
@@ -300,72 +299,31 @@ require("mini.pairs").setup({
 })
 
 require("todo-comments").setup()
-vim.keymap.set("n", "]t", function()
-  require("todo-comments").jump_next()
-end, {
-  noremap = true,
-  silent = false,
-  desc = "Next todo comment"
-})
-vim.keymap.set("n", "[t", function()
-  require("todo-comments").jump_prev()
-end, {
-  noremap = true,
-  silent = false,
-  desc = "Previous todo comment"
-})
-vim.keymap.set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Todo (Trouble)"
-})
-vim.keymap.set("n", "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Todo/Fix/Fixme (Trouble)"
-})
-vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Todo"
-})
-vim.keymap.set("n", "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Todo/Fix/Fixme"
-})
+vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end,
+  { noremap = true, silent = false, desc = "Next todo comment" })
+vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end,
+  { noremap = true, silent = false, desc = "Previous todo comment" })
+vim.keymap.set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>",
+  { noremap = true, silent = false, desc = "Todo (Trouble)" })
+vim.keymap.set("n", "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
+  { noremap = true, silent = false, desc = "Todo/Fix/Fixme (Trouble)" })
+vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { noremap = true, silent = false, desc = "Todo" })
+vim.keymap.set("n", "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
+  { noremap = true, silent = false, desc = "Todo/Fix/Fixme" })
 
 require("trouble").setup()
-vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Diagnostics (Trouble)"
-})
-vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Buffer Diagnostics (Trouble)"
-})
-vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Symbols (Trouble)"
-})
-vim.keymap.set("n", "<leader>cS", "<cmd>Trouble lsp toggle<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "LSP references/definitions/... (Trouble)"
-})
-vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Location List (Trouble)"
-})
-vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Quickfix List (Trouble)"
-})
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",
+  { noremap = true, silent = false, desc = "Diagnostics (Trouble)" })
+vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+  { noremap = true, silent = false, desc = "Buffer Diagnostics (Trouble)" })
+vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle<cr>",
+  { noremap = true, silent = false, desc = "Symbols (Trouble)" })
+vim.keymap.set("n", "<leader>cS", "<cmd>Trouble lsp toggle<cr>",
+  { noremap = true, silent = false, desc = "LSP references/definitions/... (Trouble)" })
+vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>",
+  { noremap = true, silent = false, desc = "Location List (Trouble)" })
+vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",
+  { noremap = true, silent = false, desc = "Quickfix List (Trouble)" })
 
 require("typescript-tools").setup({
   settings = {
@@ -388,22 +346,9 @@ require("flash").setup({
     }
   }
 })
-vim.keymap.set({ "n", "x", "o" }, "<C-f>",
-  function() require("flash").treesitter() end,
-  { desc = "Flash Treesitter", })
-vim.keymap.set("c", "<c-s>",
-  function() require("flash").toggle() end,
-  { desc = "Toggle Flash Search" })
+vim.keymap.set({ "n", "x", "o" }, "<C-f>", function() require("flash").treesitter() end, { desc = "Flash Treesitter", })
+vim.keymap.set("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { noremap = true, silent = false, desc = "Lazygit" })
+vim.keymap.set("n", "<leader>gf", "<cmd>LazyGitFilterCurrentFile<cr>",
+  { noremap = true, silent = false, desc = "Lazygit filter current file" })
 
-
--- require("lazygit").setup({})
-vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Lazygit"
-})
-vim.keymap.set("n", "<leader>gf", "<cmd>LazyGitFilterCurrentFile<cr>", {
-  noremap = true,
-  silent = false,
-  desc = "Lazygit filter current file"
-})
