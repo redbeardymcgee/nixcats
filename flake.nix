@@ -251,6 +251,7 @@
               flash-nvim
               lazygit-nvim
               yanky-nvim
+              multicursors-nvim
             ];
           };
         };

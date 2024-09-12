@@ -375,3 +375,24 @@ vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", { desc = "Pu
 vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", { desc = "Put Before and Indent Left" })
 vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)", { desc = "Put After Applying a Filter" })
 vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)", { desc = "Put Before Applying a Filter" })
+
+ require('multicursors').setup {
+    hint_config = {
+        float_opts = {
+            border = 'rounded',
+        },
+        position = 'bottom-right',
+    },
+    generate_hints = {
+        normal = true,
+        insert = true,
+        extend = true,
+        config = {
+            column_count = 1,
+        },
+    },
+}
+vim.keymap.set("n", "<c-d>", "<cmd>MCstart<cr>", { desc = "Multicursor"})
+vim.keymap.set("n", "g<c-d>", "<cmd>MCpattern<cr>", { desc = "Multicursor pattern"})
+vim.keymap.set("v", "<c-d>", "<cmd>MCvisual<cr>", { desc = "Multicursor"})
+vim.keymap.set("v", "g<c-d>", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor pattern"})
