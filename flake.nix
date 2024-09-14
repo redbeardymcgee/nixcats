@@ -252,6 +252,7 @@
               yanky-nvim
               multicursors-nvim
               guess-indent-nvim
+              nvim-ts-context-commentstring
             ];
           };
         };

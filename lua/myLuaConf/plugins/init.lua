@@ -28,7 +28,6 @@ vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
 -- }
 -- vim.cmd([[hi clear @lsp.type.parameter]])
 -- vim.cmd([[hi link @lsp.type.parameter Hlargs]])
-require('Comment').setup()
 require('lualine').setup({
   options = {
     icons_enabled = false,
@@ -411,4 +410,12 @@ vim.keymap.set("v", "g<c-d>", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor 
 
 require("guess-indent").setup()
 
+
+}
+
+require('ts_context_commentstring').setup {
+  enable_autocmd = false,
+}
+require('Comment').setup {
+  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 }
