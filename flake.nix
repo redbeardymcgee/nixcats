@@ -236,7 +236,6 @@
               which-key-nvim
               comment-nvim
               vim-fugitive
-              vim-rhubarb
               vim-repeat
               undotree
               indent-blankline-nvim
@@ -252,6 +251,7 @@
               yanky-nvim
               multicursors-nvim
               guess-indent-nvim
+              rainbow-delimiters-nvim
               nvim-ts-context-commentstring
             ];
           };

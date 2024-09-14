@@ -410,6 +410,36 @@ vim.keymap.set("v", "g<c-d>", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor 
 
 require("guess-indent").setup()
 
+local rainbow_delimiters = require 'rainbow-delimiters'
+require('rainbow-delimiters.setup').setup {
+  strategy = {
+    [''] = rainbow_delimiters.strategy['local'],
+    -- vim = rainbow_delimiters.strategy['local'],
+  },
+  query = {
+    [''] = 'rainbow-delimiters',
+    lua = 'rainbow-blocks',
+
+    query = function(bufnr)
+      -- Use blocks for read-only buffers like in `:InspectTree`
+      local is_nofile = vim.bo[bufnr].buftype == 'nofile'
+      return is_nofile and 'rainbow-blocks' or 'rainbow-delimiters'
+    end
+
+  },
+  priority = {
+    [''] = 110,
+    lua = 210,
+  },
+  highlight = {
+    'RainbowDelimiterRed',
+    'RainbowDelimiterYellow',
+    'RainbowDelimiterBlue',
+    'RainbowDelimiterOrange',
+    'RainbowDelimiterGreen',
+    'RainbowDelimiterViolet',
+    'RainbowDelimiterCyan',
+  },
 
 }
 
