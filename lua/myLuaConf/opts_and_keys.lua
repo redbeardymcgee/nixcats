@@ -102,6 +102,8 @@ vim.g.netrw_banner = 0
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
+vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+vim.keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode with kj" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Moves Line Down' })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Moves Line Up' })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = 'Scroll Down' })
@@ -129,48 +131,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
-
--- kickstart.nvim starts you with this.
--- But it constantly clobbers your system clipboard whenever you delete anything.
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
--- vim.o.clipboard = 'unnamedplus'
-
--- You should instead use these keybindings so that they are still easy to use, but dont conflict
--- vim.keymap.set({ "n", "v", "x" }, '<leader>y', '"+y', {
---   noremap = true,
---   silent = true,
---   desc = 'Yank to clipboard'
--- })
--- vim.keymap.set({ "n", "v", "x" }, '<leader>Y', '"+yy',
---   {
---     noremap = true,
---     silent = true,
---     desc = 'Yank line to clipboard'
---   })
--- vim.keymap.set({ "n", "v", "x" }, '<C-A>', 'gg0vG$', {
---   noremap = true,
---   silent = true,
---   desc = 'Select all'
--- })
--- vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p', {
---   noremap = true,
---   silent = true,
---   desc = 'Paste from clipboard'
--- })
--- vim.keymap.set('i', '<C-p>', '<C-r><C-p>+', {
---     noremap = true,
---     silent = true,
---     desc = 'Paste from clipboard from within insert mode'
---   })
--- vim.keymap.set("x", "<leader>P", '"_dP', {
---     noremap = true,
---     silent = true,
---     desc = 'Paste over selection without erasing unnamed register'
---   })
 
 -- dial.nvim
 vim.keymap.set("n", "<C-a>", function()
