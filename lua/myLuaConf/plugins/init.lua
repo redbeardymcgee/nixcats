@@ -61,7 +61,19 @@ require('lualine').setup({
 require('fidget').setup({})
 
 -- indent-blank-line
-require("ibl").setup()
+local highlight = {
+  "CursorColumn",
+  "Whitespace",
+}
+require("ibl").setup({
+
+  indent = { highlight = highlight, char = "" },
+  whitespace = {
+    highlight = highlight,
+    remove_blankline_trail = false,
+  },
+  scope = { enabled = true },
+})
 
 require('gitsigns').setup({
   -- See `:help gitsigns.txt`
@@ -396,4 +408,7 @@ vim.keymap.set("n", "<c-d>", "<cmd>MCstart<cr>", { desc = "Multicursor" })
 vim.keymap.set("n", "g<c-d>", "<cmd>MCpattern<cr>", { desc = "Multicursor pattern" })
 vim.keymap.set("v", "<c-d>", "<cmd>MCvisual<cr>", { desc = "Multicursor" })
 vim.keymap.set("v", "g<c-d>", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor pattern" })
+
+require("guess-indent").setup()
+
 }

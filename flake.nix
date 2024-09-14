@@ -235,7 +235,6 @@
               gitsigns-nvim
               which-key-nvim
               comment-nvim
-              vim-sleuth
               vim-fugitive
               vim-rhubarb
               vim-repeat
@@ -252,6 +251,7 @@
               lazygit-nvim
               yanky-nvim
               multicursors-nvim
+              guess-indent-nvim
             ];
           };
         };
