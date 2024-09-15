@@ -33,12 +33,12 @@
 
     # No longer fetched to avoid forcing people to import it, but this remains here as a tutorial.
     # How to import it into your config is shown farther down in the startupPlugins set.
-    # You put it here like this, and then below you would use it with `pkgs.neovimPlugins.hlargs`
 
-    # "plugins-hlargs" = {
-    #   url = "github:m-demare/hlargs.nvim";
-    #   flake = false;
-    # };
+    # You put it here like this, and then below you would use it with `pkgs.neovimPlugins.hlargs`
+    "plugins-hlargs" = {
+      url = "github:m-demare/hlargs.nvim";
+      flake = false;
+    };
 
     "plugins-mini-surround" = {
       url = "github:echasnovski/mini.surround";
@@ -188,9 +188,7 @@
         ];
         general = {
           gitPlugins = with pkgs.neovimPlugins; [
-            # If it was included in your flake inputs as plugins-hlargs,
-            # this would be how to add that plugin in your config.
-            # pkgs.neovimPlugins.hlargs
+            hlargs
             mini-pairs
             mini-surround
             tmux-navigate

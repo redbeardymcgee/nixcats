@@ -22,6 +22,9 @@ vim.keymap.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>",
 vim.g.undotree_WindowLayout = 1
 vim.g.undotree_SplitWidth = 40
 vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
+require('hlargs').setup {
+  color = '#32a88f',
+}
 
 -- require('hlargs').setup {
 --   color = '#32a88f',
