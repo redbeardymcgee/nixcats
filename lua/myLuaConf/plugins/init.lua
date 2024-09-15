@@ -433,6 +433,7 @@ vim.keymap.set("v", "<c-d>", "<cmd>MCvisual<cr>", { desc = "Multicursor" })
 vim.keymap.set("v", "g<c-d>", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor pattern" })
 
 require("guess-indent").setup()
+require("guess-indent").setup({})
 
 local rainbow_delimiters = require 'rainbow-delimiters'
 require('rainbow-delimiters.setup').setup {
@@ -473,3 +474,5 @@ require('ts_context_commentstring').setup {
 require('Comment').setup {
   pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 }
+
+require('mini-animate').setup()

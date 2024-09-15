@@ -45,6 +45,11 @@
       flake = false;
     };
 
+    "plugins-mini-animate" = {
+      url = "github:echasnovski/mini.surround";
+      flake = false;
+    };
+
     "plugins-mini-pairs" = {
       url = "github:echasnovski/mini.pairs";
       flake = false;
@@ -189,6 +194,7 @@
         general = {
           gitPlugins = with pkgs.neovimPlugins; [
             hlargs
+            mini-animate
             mini-pairs
             mini-surround
             tmux-navigate
