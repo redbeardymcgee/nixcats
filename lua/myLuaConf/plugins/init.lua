@@ -1,3 +1,5 @@
+local km = vim.keymap
+
 local colorschemeName = nixCats('colorscheme')
 if not require('nixCatsUtils').isNixCats then
   colorschemeName = 'onedark'
@@ -9,28 +11,26 @@ require('myLuaConf.plugins.treesitter')
 require('myLuaConf.plugins.completion')
 
 require('zk').setup()
-vim.keymap.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
+km.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
   { noremap = true, silent = false, desc = "New note (input title)", })
-vim.keymap.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
+km.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
   { noremap = true, silent = false, desc = "Open notes", })
-vim.keymap.set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { noremap = true, silent = false, desc = "Search notes by tag", })
-vim.keymap.set("n", "<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
+km.set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { noremap = true, silent = false, desc = "Search notes by tag", })
+km.set("n", "<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
   { noremap = true, silent = false, desc = "Search notes", })
-vim.keymap.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>",
+km.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>",
   { noremap = true, silent = false, desc = "Search notes with selection", })
 
 vim.g.undotree_WindowLayout = 1
 vim.g.undotree_SplitWidth = 40
-vim.keymap.set('n', '<leader>U', vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
+km.set('n', '<leader>U', vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
+
 require('hlargs').setup {
   color = '#32a88f',
 }
+vim.cmd([[hi clear @lsp.type.parameter]])
+vim.cmd([[hi link @lsp.type.parameter Hlargs]])
 
--- require('hlargs').setup {
---   color = '#32a88f',
--- }
--- vim.cmd([[hi clear @lsp.type.parameter]])
--- vim.cmd([[hi link @lsp.type.parameter Hlargs]])
 require('lualine').setup({
   options = {
     icons_enabled = false,
@@ -92,7 +92,7 @@ require('gitsigns').setup({
     local function map(mode, l, r, opts)
       opts = opts or {}
       opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
+      km.set(mode, l, r, opts)
     end
 
     -- Navigation
@@ -173,8 +173,8 @@ require("oil").setup({
     ["g\\"] = "actions.toggle_trash",
   },
 })
-vim.keymap.set("n", "_", "<cmd>Oil<CR>", { noremap = true, desc = 'Edit parent directory' })
-vim.keymap.set("n", "<leader>_", "<cmd>Oil .<CR>", { noremap = true, desc = 'Edit current working directory' })
+km.set("n", "_", "<cmd>Oil<CR>", { noremap = true, desc = 'Edit parent directory' })
+km.set("n", "<leader>_", "<cmd>Oil .<CR>", { noremap = true, desc = 'Edit current working directory' })
 
 require('which-key').setup({
 })
@@ -232,7 +232,7 @@ require('yazi').setup({
   -- },
   -- hovered_buffer_in_same_directory = nil,
 })
-vim.keymap.set("n", "-",
+km.set("n", "-",
   function()
     require("yazi").yazi()
   end,
@@ -241,7 +241,7 @@ vim.keymap.set("n", "-",
     desc = 'Browse parent directory'
   }
 )
-vim.keymap.set("n", "<leader>-",
+km.set("n", "<leader>-",
   function()
     require("yazi").yazi(nil, vim.fn.getcwd())
   end,
@@ -284,28 +284,28 @@ require("dial.config").augends:register_group {
     augend.constant.new { elements = { "let", "const" } },
   },
 }
-vim.keymap.set("n", "<C-a>", function()
+km.set("n", "<C-a>", function()
   require("dial.map").manipulate("increment", "normal")
 end)
-vim.keymap.set("n", "<C-x>", function()
+km.set("n", "<C-x>", function()
   require("dial.map").manipulate("decrement", "normal")
 end)
-vim.keymap.set("n", "g<C-a>", function()
+km.set("n", "g<C-a>", function()
   require("dial.map").manipulate("increment", "gnormal")
 end)
-vim.keymap.set("n", "g<C-x>", function()
+km.set("n", "g<C-x>", function()
   require("dial.map").manipulate("decrement", "gnormal")
 end)
-vim.keymap.set("v", "<C-a>", function()
+km.set("v", "<C-a>", function()
   require("dial.map").manipulate("increment", "visual")
 end)
-vim.keymap.set("v", "<C-x>", function()
+km.set("v", "<C-x>", function()
   require("dial.map").manipulate("decrement", "visual")
 end)
-vim.keymap.set("v", "g<C-a>", function()
+km.set("v", "g<C-a>", function()
   require("dial.map").manipulate("increment", "gvisual")
 end)
-vim.keymap.set("v", "g<C-x>", function()
+km.set("v", "g<C-x>", function()
   require("dial.map").manipulate("decrement", "gvisual")
 end)
 
@@ -334,30 +334,30 @@ require("mini.pairs").setup({
 })
 
 require("todo-comments").setup()
-vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end,
+km.set("n", "]t", function() require("todo-comments").jump_next() end,
   { noremap = true, silent = false, desc = "Next todo comment" })
-vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end,
+km.set("n", "[t", function() require("todo-comments").jump_prev() end,
   { noremap = true, silent = false, desc = "Previous todo comment" })
-vim.keymap.set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>",
+km.set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>",
   { noremap = true, silent = false, desc = "Todo (Trouble)" })
-vim.keymap.set("n", "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
+km.set("n", "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
   { noremap = true, silent = false, desc = "Todo/Fix/Fixme (Trouble)" })
-vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { noremap = true, silent = false, desc = "Todo" })
-vim.keymap.set("n", "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
+km.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { noremap = true, silent = false, desc = "Todo" })
+km.set("n", "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
   { noremap = true, silent = false, desc = "Todo/Fix/Fixme" })
 
 require("trouble").setup()
-vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",
+km.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",
   { noremap = true, silent = false, desc = "Diagnostics (Trouble)" })
-vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+km.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
   { noremap = true, silent = false, desc = "Buffer Diagnostics (Trouble)" })
-vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle<cr>",
+km.set("n", "<leader>cs", "<cmd>Trouble symbols toggle<cr>",
   { noremap = true, silent = false, desc = "Symbols (Trouble)" })
-vim.keymap.set("n", "<leader>cS", "<cmd>Trouble lsp toggle<cr>",
+km.set("n", "<leader>cS", "<cmd>Trouble lsp toggle<cr>",
   { noremap = true, silent = false, desc = "LSP references/definitions/... (Trouble)" })
-vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>",
+km.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>",
   { noremap = true, silent = false, desc = "Location List (Trouble)" })
-vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",
+km.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",
   { noremap = true, silent = false, desc = "Quickfix List (Trouble)" })
 
 require("typescript-tools").setup({
@@ -381,35 +381,35 @@ require("flash").setup({
     }
   }
 })
-vim.keymap.set({ "n", "x", "o" }, "<C-f>", function() require("flash").treesitter() end, { desc = "Flash Treesitter", })
-vim.keymap.set("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
-vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { noremap = true, silent = false, desc = "Lazygit" })
-vim.keymap.set("n", "<leader>gf", "<cmd>LazyGitFilterCurrentFile<cr>",
+km.set({ "n", "x", "o" }, "<C-f>", function() require("flash").treesitter() end, { desc = "Flash Treesitter", })
+km.set("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
+km.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { noremap = true, silent = false, desc = "Lazygit" })
+km.set("n", "<leader>gf", "<cmd>LazyGitFilterCurrentFile<cr>",
   { noremap = true, silent = false, desc = "Lazygit filter current file" })
 
 require('yanky').setup()
-vim.keymap.set({ "n", "x" }, "<leader>p",
+km.set({ "n", "x" }, "<leader>p",
   function()
     require("telescope").extensions.yank_history.yank_history()
   end,
   { desc = "Open Yank History" })
-vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { desc = "Yank Text" })
-vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Put Text After Cursor" })
-vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Put Text Before Cursor" })
-vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", { desc = "Put Text After Selection" })
-vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", { desc = "Put Text Before Selection" })
-vim.keymap.set("n", "[y", "<Plug>(YankyCycleForward)", { desc = "Cycle Forward Through Yank History" })
-vim.keymap.set("n", "]y", "<Plug>(YankyCycleBackward)", { desc = "Cycle Backward Through Yank History" })
-vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)", { desc = "Put Indented After Cursor (Linewise)" })
-vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)", { desc = "Put Indented Before Cursor (Linewise)" })
-vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)", { desc = "Put Indented After Cursor (Linewise)" })
-vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)", { desc = "Put Indented Before Cursor (Linewise)" })
-vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)", { desc = "Put and Indent Right" })
-vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", { desc = "Put and Indent Left" })
-vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", { desc = "Put Before and Indent Right" })
-vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", { desc = "Put Before and Indent Left" })
-vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)", { desc = "Put After Applying a Filter" })
-vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)", { desc = "Put Before Applying a Filter" })
+km.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { desc = "Yank Text" })
+km.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Put Text After Cursor" })
+km.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Put Text Before Cursor" })
+km.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)", { desc = "Put Text After Selection" })
+km.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)", { desc = "Put Text Before Selection" })
+km.set("n", "[y", "<Plug>(YankyCycleForward)", { desc = "Cycle Forward Through Yank History" })
+km.set("n", "]y", "<Plug>(YankyCycleBackward)", { desc = "Cycle Backward Through Yank History" })
+km.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)", { desc = "Put Indented After Cursor (Linewise)" })
+km.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)", { desc = "Put Indented Before Cursor (Linewise)" })
+km.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)", { desc = "Put Indented After Cursor (Linewise)" })
+km.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)", { desc = "Put Indented Before Cursor (Linewise)" })
+km.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)", { desc = "Put and Indent Right" })
+km.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", { desc = "Put and Indent Left" })
+km.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", { desc = "Put Before and Indent Right" })
+km.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", { desc = "Put Before and Indent Left" })
+km.set("n", "=p", "<Plug>(YankyPutAfterFilter)", { desc = "Put After Applying a Filter" })
+km.set("n", "=P", "<Plug>(YankyPutBeforeFilter)", { desc = "Put Before Applying a Filter" })
 
 require('multicursors').setup {
   hint_config = {
@@ -427,12 +427,11 @@ require('multicursors').setup {
     },
   },
 }
-vim.keymap.set("n", "<c-d>", "<cmd>MCstart<cr>", { desc = "Multicursor" })
-vim.keymap.set("n", "g<c-d>", "<cmd>MCpattern<cr>", { desc = "Multicursor pattern" })
-vim.keymap.set("v", "<c-d>", "<cmd>MCvisual<cr>", { desc = "Multicursor" })
-vim.keymap.set("v", "g<c-d>", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor pattern" })
+km.set("n", "<c-d>", "<cmd>MCstart<cr>", { desc = "Multicursor" })
+km.set("n", "g<c-d>", "<cmd>MCpattern<cr>", { desc = "Multicursor pattern" })
+km.set("v", "<c-d>", "<cmd>MCvisual<cr>", { desc = "Multicursor" })
+km.set("v", "g<c-d>", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor pattern" })
 
-require("guess-indent").setup()
 require("guess-indent").setup({})
 
 local rainbow_delimiters = require 'rainbow-delimiters'
