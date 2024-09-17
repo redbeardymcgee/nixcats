@@ -209,8 +209,8 @@ require('which-key').add {
   { "]",         group = "next" },
   { "g",         group = "[g]oto" },
   { "gx",        desc = "Open with system app" },
-  { "z",         group = "Fold" },
-  { "gs",        group = "Surround" },
+  { "z",         group = "fold" },
+  { "gs",        group = "surround" },
   { 'gsa',       desc = "Add surrounding in Normal and Visual modes" },
   { 'gsd',       desc = "Delete surrounding" },
   { 'gsf',       desc = "Find surrounding (to the right)" },
@@ -218,8 +218,6 @@ require('which-key').add {
   { 'gsh',       desc = "Highlight surrounding" },
   { 'gsr',       desc = "Replace surrounding" },
   { 'gsn',       desc = "Update `n_lines`" },
-  { 'l',         desc = "Suffix to search with 'prev' method" },
-  { 'n',         desc = "Suffix to search with 'next' method" },
 }
 
 require('yazi').setup({
