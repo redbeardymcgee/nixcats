@@ -221,7 +221,7 @@ require('which-key').add {
 }
 
 require('yazi').setup({
-  -- open_for_directories = true,
+  open_for_directories = true,
   -- open_multiple_tabs = true,
 
   -- use_ya_for_events_reading = true,
