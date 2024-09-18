@@ -473,3 +473,5 @@ require('Comment').setup {
 }
 
 require('mini-animate').setup()
+require('mini-align').setup()
+

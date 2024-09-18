@@ -50,6 +50,11 @@
       flake = false;
     };
 
+    "plugins-mini-align" = {
+      url = "github:echasnovski/mini.align";
+      flake = false;
+    };
+
     "plugins-mini-pairs" = {
       url = "github:echasnovski/mini.pairs";
       flake = false;
@@ -194,6 +199,7 @@
         general = {
           gitPlugins = with pkgs.neovimPlugins; [
             hlargs
+            mini-align
             mini-animate
             mini-pairs
             mini-surround
