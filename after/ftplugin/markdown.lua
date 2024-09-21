@@ -17,7 +17,7 @@ require('markdown').setup({
     map('n', '<leader>mL', '<Cmd>MDListItemAbove<CR>', opts)
     map('n', '<leader>mc', '<Cmd>MDTaskToggle<CR>', opts)
     map('x', '<leader>mc', ':MDTaskToggle<CR>', opts)
-    map('n', '<leader>mr', '<Cmd>MDResetListNumbering<CR>', opts)
+    map('n', '<leader>mn', '<Cmd>MDResetListNumbering<CR>', opts)
   end,
 })
 
@@ -35,10 +35,7 @@ if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
   map("v", "<leader>zsf", ":'<,'>ZkMatch<CR>",
     { noremap = true, silent = false, desc = "Search notes with selection", })
 
-  map("n", "<CR>", "<Cmd>lua vim.lsp.buf.definition()<CR>", {
-    noremap = true,
-    silent = false,
-  })
+  map("n", "<CR>", "<Cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = false, })
 
   map("n", "<leader>zn", "<Cmd>ZkNew { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>", {
     noremap = true,
