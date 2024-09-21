@@ -152,6 +152,8 @@
         general = with pkgs; [
           fd
           glow
+          imagemagick
+          luajitPackages.magick
           ripgrep
           universal-ctags
         ];
@@ -185,9 +187,9 @@
         format = with pkgs.vimPlugins; [
           conform-nvim
         ];
-        # yes these category names are arbitrary
         markdown = with pkgs.vimPlugins; [
           glow-nvim
+          image-nvim
           markdown-nvim
           markdown-preview-nvim
           render-markdown
