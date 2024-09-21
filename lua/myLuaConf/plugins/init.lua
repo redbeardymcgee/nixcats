@@ -13,13 +13,6 @@ require('myLuaConf.plugins.completion')
 require('zk').setup()
 km.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
   { noremap = true, silent = false, desc = "New note (input title)", })
-km.set("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
-  { noremap = true, silent = false, desc = "Open notes", })
-km.set("n", "<leader>zt", "<Cmd>ZkTags<CR>", { noremap = true, silent = false, desc = "Search notes by tag", })
-km.set("n", "<leader>zf", "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
-  { noremap = true, silent = false, desc = "Search notes", })
-km.set("v", "<leader>zf", ":'<,'>ZkMatch<CR>",
-  { noremap = true, silent = false, desc = "Search notes with selection", })
 
 vim.g.undotree_WindowLayout = 1
 vim.g.undotree_SplitWidth = 40

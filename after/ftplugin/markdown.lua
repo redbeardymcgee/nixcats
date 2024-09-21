@@ -24,6 +24,17 @@ require('markdown').setup({
 if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
   local map = vim.keymap.set
 
+  map("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
+    { noremap = true, silent = false, desc = "Open notes", })
+
+  map("n", "<leader>zst", "<Cmd>ZkTags<CR>", { noremap = true, silent = false, desc = "Search notes by tag", })
+
+  map("n", "<leader>zsf", "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>",
+    { noremap = true, silent = false, desc = "Search notes", })
+
+  map("v", "<leader>zsf", ":'<,'>ZkMatch<CR>",
+    { noremap = true, silent = false, desc = "Search notes with selection", })
+
   map("n", "<CR>", "<Cmd>lua vim.lsp.buf.definition()<CR>", {
     noremap = true,
     silent = false,
@@ -35,13 +46,13 @@ if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
     desc = "New note in buffer's parent dir with title from input"
   })
 
-  map("v", "<leader>znt", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>", {
+  map("v", "<leader>zt", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>", {
     noremap = true,
     silent = false,
     desc = "New note in buffer's parent dir with title from selection"
   })
 
-  map("v", "<leader>znc",
+  map("v", "<leader>zc",
     ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>", {
       noremap = true,
       silent = false,
