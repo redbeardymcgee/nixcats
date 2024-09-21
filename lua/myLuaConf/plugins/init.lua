@@ -468,4 +468,4 @@ require('Comment').setup {
 -- require('mini-animate').setup()
 -- require('mini-align').setup()
 
-require('image').setup()
+-- require('image').setup()
