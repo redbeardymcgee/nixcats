@@ -192,7 +192,7 @@
           image-nvim
           markdown-nvim
           markdown-preview-nvim
-          render-markdown
+          render-markdown-nvim
           zk-nvim
         ];
         typescript = with pkgs.vimPlugins; [
