@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1725816686,
-        "narHash": "sha256-0Kq2MkQ/sQX1rhWJ/ySBBQlBJBUK8mPMDcuDhhdBkSU=",
+        "lastModified": 1729980323,
+        "narHash": "sha256-eWPRZAlhf446bKSmzw6x7RWEE4IuZgAp8NW3eXZwRAY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "add0443ee587a0c44f22793b8c8649a0dbc3bb00",
+        "rev": "86e78d3d2084ff87688da662cf78c2af085d8e73",
         "type": "github"
       },
       "original": {
@@ -16,14 +16,46 @@
         "type": "github"
       }
     },
-    "plugins-mini-surround": {
+    "plugins-hlargs": {
       "flake": false,
       "locked": {
-        "lastModified": 1725613928,
-        "narHash": "sha256-glR9BMYPIrXDAmJaCTsJ2df8n43+Flzgy1W3eNbc6fM=",
+        "lastModified": 1725582855,
+        "narHash": "sha256-K4hoTSYtriCNOz43Xl3KPeR3K9MNw8euY8QLYwBGQE4=",
+        "owner": "m-demare",
+        "repo": "hlargs.nvim",
+        "rev": "53ec5d8ca6ed012de5545ba83ea1eb3d636b09fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "m-demare",
+        "repo": "hlargs.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-mini-align": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1725543211,
+        "narHash": "sha256-65rVlLKJN2LxRkOGVyeTkLOxGSmCyV8L6EXZx7bqo7M=",
+        "owner": "echasnovski",
+        "repo": "mini.align",
+        "rev": "26111a737494bc39576ad67b52bbc2638ca23553",
+        "type": "github"
+      },
+      "original": {
+        "owner": "echasnovski",
+        "repo": "mini.align",
+        "type": "github"
+      }
+    },
+    "plugins-mini-animate": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729012180,
+        "narHash": "sha256-Rzg2yYbOAjOPVNEiUv5qOBObqO1bcDsAgc5ned9HZQw=",
         "owner": "echasnovski",
         "repo": "mini.surround",
-        "rev": "0e67c4bc147f2a15cee94e7c94dcc0e115b9f55e",
+        "rev": "48a9795c9d352c771e1ab5dedab6063c0a2df037",
         "type": "github"
       },
       "original": {
@@ -32,10 +64,63 @@
         "type": "github"
       }
     },
+    "plugins-mini-pairs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1728656795,
+        "narHash": "sha256-PtHxLKU1smVTx655r5SINxuz5CJmZWnBW70T8zJ/oxM=",
+        "owner": "echasnovski",
+        "repo": "mini.pairs",
+        "rev": "7e834c5937d95364cc1740e20d673afe2d034cdb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "echasnovski",
+        "repo": "mini.pairs",
+        "type": "github"
+      }
+    },
+    "plugins-mini-surround": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729012180,
+        "narHash": "sha256-Rzg2yYbOAjOPVNEiUv5qOBObqO1bcDsAgc5ned9HZQw=",
+        "owner": "echasnovski",
+        "repo": "mini.surround",
+        "rev": "48a9795c9d352c771e1ab5dedab6063c0a2df037",
+        "type": "github"
+      },
+      "original": {
+        "owner": "echasnovski",
+        "repo": "mini.surround",
+        "type": "github"
+      }
+    },
+    "plugins-tmux-navigate": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1665505688,
+        "narHash": "sha256-Rn/rIbFx2zCyzvLZmbf7q1nF97Yi9dONUDv1QDcscxo=",
+        "owner": "sunaku",
+        "repo": "tmux-navigate",
+        "rev": "27c83cd229bceff55e6318cce7945995623a6106",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sunaku",
+        "repo": "tmux-navigate",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "plugins-mini-surround": "plugins-mini-surround"
+        "plugins-hlargs": "plugins-hlargs",
+        "plugins-mini-align": "plugins-mini-align",
+        "plugins-mini-animate": "plugins-mini-animate",
+        "plugins-mini-pairs": "plugins-mini-pairs",
+        "plugins-mini-surround": "plugins-mini-surround",
+        "plugins-tmux-navigate": "plugins-tmux-navigate"
       }
     }
   },
