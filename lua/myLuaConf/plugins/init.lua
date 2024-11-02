@@ -418,10 +418,10 @@ require('multicursors').setup {
     },
   },
 }
-km.set("n", "<c-d>", "<cmd>MCstart<cr>", { desc = "Multicursor" })
-km.set("n", "g<c-d>", "<cmd>MCpattern<cr>", { desc = "Multicursor pattern" })
-km.set("v", "<c-d>", "<cmd>MCvisual<cr>", { desc = "Multicursor" })
-km.set("v", "g<c-d>", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor pattern" })
+km.set("n", "<leader>mc", "<cmd>MCstart<cr>", { desc = "Multicursor" })
+km.set("n", "<leader>mC", "<cmd>MCpattern<cr>", { desc = "Multicursor pattern" })
+km.set("v", "<leader>mc", "<cmd>MCvisual<cr>", { desc = "Multicursor" })
+km.set("v", "<leader>mC", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor pattern" })
 
 require("guess-indent").setup({})
 
