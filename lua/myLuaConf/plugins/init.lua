@@ -140,35 +140,6 @@ vim.cmd([[hi GitSignsAdd guifg=#04de21]])
 vim.cmd([[hi GitSignsChange guifg=#83fce6]])
 vim.cmd([[hi GitSignsDelete guifg=#fa2525]])
 
-require("oil").setup({
-  columns = {
-    "icon",
-    "permissions",
-    "size",
-    -- "mtime",
-  },
-  keymaps = {
-    ["g?"] = "actions.show_help",
-    ["<CR>"] = "actions.select",
-    ["<C-v>"] = "actions.select_vsplit",
-    ["<C-s>"] = "actions.select_split",
-    ["<C-t>"] = "actions.select_tab",
-    ["<C-p>"] = "actions.preview",
-    ["<C-c>"] = "actions.close",
-    ["<C-l>"] = "actions.refresh",
-    ["-"] = "actions.parent",
-    ["_"] = "actions.open_cwd",
-    ["`"] = "actions.cd",
-    ["~"] = "actions.tcd",
-    ["gs"] = "actions.change_sort",
-    ["gx"] = "actions.open_external",
-    ["g."] = "actions.toggle_hidden",
-    ["g\\"] = "actions.toggle_trash",
-  },
-})
-km.set("n", "_", "<cmd>Oil<CR>", { noremap = true, desc = 'Edit parent directory' })
-km.set("n", "<leader>_", "<cmd>Oil .<CR>", { noremap = true, desc = 'Edit current working directory' })
-
 require('which-key').setup({
 })
 require('which-key').add {
