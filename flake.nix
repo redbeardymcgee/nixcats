@@ -46,7 +46,7 @@
     };
 
     "plugins-mini-animate" = {
-      url = "github:echasnovski/mini.surround";
+      url = "github:echasnovski/mini.animate";
       flake = false;
     };
 
