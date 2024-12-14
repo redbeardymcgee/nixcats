@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1730272153,
-        "narHash": "sha256-B5WRZYsRlJgwVHIV6DvidFN7VX7Fg9uuwkRW9Ha8z+w=",
+        "lastModified": 1733935885,
+        "narHash": "sha256-xyiHLs6KJ1fxeGmcCxKjJE4yJknVJxbC8Y/ZRYyC8WE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2d2a9ddbe3f2c00747398f3dc9b05f7f2ebb0f53",
+        "rev": "5a48e3c2e435e95103d56590188cfed7b70e108c",
         "type": "github"
       },
       "original": {
@@ -35,11 +35,11 @@
     "plugins-mini-align": {
       "flake": false,
       "locked": {
-        "lastModified": 1725543211,
-        "narHash": "sha256-65rVlLKJN2LxRkOGVyeTkLOxGSmCyV8L6EXZx7bqo7M=",
+        "lastModified": 1733662805,
+        "narHash": "sha256-ng3OsPMuQHbavRfrWGhi87ONdh7WOKnOAv670EJyYB4=",
         "owner": "echasnovski",
         "repo": "mini.align",
-        "rev": "26111a737494bc39576ad67b52bbc2638ca23553",
+        "rev": "acf1ad6031e49553ed887a2a5e3603211346f1de",
         "type": "github"
       },
       "original": {
@@ -51,16 +51,16 @@
     "plugins-mini-animate": {
       "flake": false,
       "locked": {
-        "lastModified": 1729012180,
-        "narHash": "sha256-Rzg2yYbOAjOPVNEiUv5qOBObqO1bcDsAgc5ned9HZQw=",
+        "lastModified": 1733078395,
+        "narHash": "sha256-ZePmJuHCCymTgaK46nSg5tRloxs+UKrVgVmT++rGKpc=",
         "owner": "echasnovski",
-        "repo": "mini.surround",
-        "rev": "48a9795c9d352c771e1ab5dedab6063c0a2df037",
+        "repo": "mini.animate",
+        "rev": "d14190ac3040116540889e2ebc25f488b195799e",
         "type": "github"
       },
       "original": {
         "owner": "echasnovski",
-        "repo": "mini.surround",
+        "repo": "mini.animate",
         "type": "github"
       }
     },
@@ -83,16 +83,32 @@
     "plugins-mini-surround": {
       "flake": false,
       "locked": {
-        "lastModified": 1729012180,
-        "narHash": "sha256-Rzg2yYbOAjOPVNEiUv5qOBObqO1bcDsAgc5ned9HZQw=",
+        "lastModified": 1733662812,
+        "narHash": "sha256-okWJlG0KOdg1ShvkIIMnPSoOzGd7K84eDcp5kx6eVP8=",
         "owner": "echasnovski",
         "repo": "mini.surround",
-        "rev": "48a9795c9d352c771e1ab5dedab6063c0a2df037",
+        "rev": "aa5e245829dd12d8ff0c96ef11da28681d6049aa",
         "type": "github"
       },
       "original": {
         "owner": "echasnovski",
         "repo": "mini.surround",
+        "type": "github"
+      }
+    },
+    "plugins-snacks": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734186602,
+        "narHash": "sha256-UzDH37frJG9y4JSn/SQJfK29YW5Dl+UP2iIo1hfnGS0=",
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "rev": "a7608b13ea476ecca471cf0900a77b8dd1650d76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "snacks.nvim",
         "type": "github"
       }
     },
@@ -120,6 +136,7 @@
         "plugins-mini-animate": "plugins-mini-animate",
         "plugins-mini-pairs": "plugins-mini-pairs",
         "plugins-mini-surround": "plugins-mini-surround",
+        "plugins-snacks": "plugins-snacks",
         "plugins-tmux-navigate": "plugins-tmux-navigate"
       }
     }
