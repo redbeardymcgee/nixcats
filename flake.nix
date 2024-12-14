@@ -65,6 +65,11 @@
       flake = false;
     };
 
+    "plugins-snacks" = {
+      url = "github:folke/snacks.nvim";
+      flake = false;
+    };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -191,7 +196,6 @@
           glow-nvim
           image-nvim
           markdown-nvim
-          markdown-preview-nvim
           render-markdown-nvim
           zk-nvim
         ];
@@ -206,6 +210,7 @@
             mini-pairs
             mini-surround
             tmux-navigate
+            snacks
           ];
           vimPlugins = {
             # you can make a subcategory
@@ -242,7 +247,7 @@
               # other
               nvim-lspconfig
               fidget-nvim
-              # lualine-lsp-progress
+              lualine-lsp-progress
               lualine-nvim
               gitsigns-nvim
               which-key-nvim
