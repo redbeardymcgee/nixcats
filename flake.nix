@@ -159,6 +159,7 @@
           glow
           imagemagick
           luajitPackages.magick
+          pyright
           ripgrep
           universal-ctags
         ];
@@ -168,6 +169,7 @@
           # and each will be its own sub category
         };
         lint = with pkgs; [
+          ruff
         ];
         debug = with pkgs; [
         ];
@@ -185,6 +187,7 @@
           nvim-dap
           nvim-dap-ui
           nvim-dap-virtual-text
+          nvim-dap-python
         ];
         lint = with pkgs.vimPlugins; [
           nvim-lint
@@ -215,7 +218,6 @@
           vimPlugins = {
             # you can make a subcategory
             cmp = with pkgs.vimPlugins; [
-              # cmp stuff
               nvim-cmp
               luasnip
               friendly-snippets

@@ -99,12 +99,13 @@ end
 --  define the property 'filetypes' to the map in question.
 --  You may do the same thing with cmd
 
--- servers.clangd = {},
--- servers.gopls = {},
--- servers.pyright = {},
--- servers.rust_analyzer = {},
--- servers.tsserver = {},
--- servers.html = { filetypes = { 'html', 'twig', 'hbs'} },
+-- servers.clangd = {}
+-- servers.gopls = {}
+servers.pyright = {}
+servers.ruff = {}
+-- servers.rust_analyzer = {}
+-- servers.tsserver = {}
+-- servers.html = { filetypes = { 'html', 'twig', 'hbs'} }
 
 
 if not require('nixCatsUtils').isNixCats and nixCats('lspDebugMode') then
