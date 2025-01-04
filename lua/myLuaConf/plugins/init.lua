@@ -311,8 +311,30 @@ km.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>",
 km.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",
   { noremap = true, silent = false, desc = "Quickfix List (Trouble)" })
 
-require("typescript-tools").setup({
+require("typescript-tools").setup {
+  -- on_attach = function() ... end,
+  -- handlers = { ... },
+  -- ...
   settings = {
+    -- spawn additional tsserver instance to calculate diagnostics on it
+    separate_diagnostic_server = true,
+    -- "change"|"insert_leave" determine when the client asks the server about diagnostic
+    publish_diagnostic_on = "insert_leave",
+    -- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
+    -- "remove_unused_imports"|"organize_imports") -- or string "all"
+    -- to include all supported code actions
+    -- specify commands exposed as code_actions
+    expose_as_code_action = { "all" },
+    -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
+    -- not exists then standard path resolution strategy is applied
+    tsserver_path = nil,
+    -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
+    -- (see 💅 `styled-components` support section)
+    tsserver_plugins = {},
+    -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
+    -- memory limit in megabytes or "auto"(basically no limit)
+    tsserver_max_memory = "auto",
+    -- described below
     tsserver_file_preferences = {
       includeInlayParameterNameHints = "all",
       includeCompletionsForModuleExports = true,
@@ -321,9 +343,69 @@ require("typescript-tools").setup({
     tsserver_format_options = {
       allowIncompleteCompletions = false,
       allowRenameOfImportPath = false,
+    },
+    -- locale of all tsserver messages, supported locales you can find here:
+    -- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
+    tsserver_locale = "en",
+    -- mirror of VSCode's `typescript.suggest.completeFunctionCalls`
+    complete_function_calls = true,
+    include_completions_with_insert_text = true,
+    -- CodeLens
+    -- WARNING: Experimental feature also in VSCode, because it might hit performance of server.
+    -- possible values: ("off"|"all"|"implementations_only"|"references_only")
+    code_lens = "all",
+    -- by default code lenses are displayed on all referencable values and for some of you it can
+    -- be too much this option reduce count of them by removing member references from lenses
+    disable_member_code_lens = true,
+    -- JSXCloseTag
+    -- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-ts-autotag,
+    -- that maybe have a conflict if enable this feature. )
+    jsx_close_tag = {
+      enable = true,
+      filetypes = { "javascriptreact", "typescriptreact" },
     }
   },
-})
+}
+
+require("tailwind-tools").setup({
+  server = {
+    override = true,                           -- setup the server from the plugin if true
+    settings = {},                             -- shortcut for `settings.tailwindCSS`
+    on_attach = function(client, bufnr) end,   -- callback triggered when the server attaches to a buffer
+  },
+  document_color = {
+    enabled = true, -- can be toggled by commands
+    kind = "inline", -- "inline" | "foreground" | "background"
+    inline_symbol = "󰝤 ", -- only used in inline mode
+    debounce = 200, -- in milliseconds, only applied in insert mode
+  },
+  conceal = {
+    enabled = false, -- can be toggled by commands
+    min_length = nil, -- only conceal classes exceeding the provided length
+    symbol = "󱏿", -- only a single character is allowed
+    highlight = { -- extmark highlight options, see :h 'highlight'
+      fg = "#38BDF8",
+    },
+  },
+  cmp = {
+    highlight = "foreground",   -- color preview style, "foreground" | "background"
+  },
+  telescope = {
+    utilities = {
+      callback = function(name, class) end,   -- callback used when selecting an utility class in telescope
+    },
+  },
+  -- see the extension section to learn more
+  extension = {
+    queries = {},   -- a list of filetypes having custom `class` queries
+    patterns = {    -- a map of filetypes to Lua pattern lists
+      -- example:
+      -- rust = { "class=[\"']([^\"']+)[\"']" },
+      -- javascript = { "clsx%(([^)]+)%)" },
+    },
+  },
+}
+)
 
 require("flash").setup({
   modes = {
@@ -336,23 +418,23 @@ km.set({ "n", "x", "o" }, "<C-f>", function() require("flash").treesitter() end,
 km.set("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
 
 require("snacks").setup({
-    bigfile = { enabled = true },
-    dashboard = { enabled = true },
-    indent = { enabled = true },
-    input = { enabled = true },
-    notifier = {
-      enabled = true,
-      timeout = 3000,
-    },
-    quickfile = { enabled = true },
-    scroll = { enabled = true },
-    statuscolumn = { enabled = true },
-    words = { enabled = true },
-    styles = {
-      notification = {
-        -- wo = { wrap = true } -- Wrap notifications
-      }
+  bigfile = { enabled = true },
+  dashboard = { enabled = true },
+  indent = { enabled = true },
+  input = { enabled = true },
+  notifier = {
+    enabled = true,
+    timeout = 3000,
+  },
+  quickfile = { enabled = true },
+  scroll = { enabled = true },
+  statuscolumn = { enabled = true },
+  words = { enabled = true },
+  styles = {
+    notification = {
+      -- wo = { wrap = true } -- Wrap notifications
     }
+  }
 })
 
 -- vim.api.nvim_create_autocmd("User", {
@@ -473,5 +555,3 @@ require('Comment').setup {
 -- require('mini-align').setup()
 
 -- require('image').setup()
-
-

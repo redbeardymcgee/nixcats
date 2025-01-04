@@ -162,6 +162,7 @@
           nixd
           pyright
           ripgrep
+          tailwindcss-language-server
           universal-ctags
         ];
         neonixdev = {
@@ -205,6 +206,9 @@
         ];
         typescript = with pkgs.vimPlugins; [
           typescript-tools-nvim
+        ];
+        css = with pkgs.vimPlugins; [
+          tailwind-tools-nvim
         ];
         general = {
           gitPlugins = with pkgs.neovimPlugins; [
