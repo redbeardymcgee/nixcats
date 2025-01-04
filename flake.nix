@@ -159,6 +159,7 @@
           glow
           imagemagick
           luajitPackages.magick
+          nixd
           pyright
           ripgrep
           universal-ctags
