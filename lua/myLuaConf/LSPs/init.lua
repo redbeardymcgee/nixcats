@@ -50,7 +50,7 @@ if nixCats('neonixdev') then
           expr = [[import (builtins.getFlake "]] .. nixCats("nixdExtras.nixpkgs") .. [[") { }   ]],
         },
         formatting = {
-          command = { "nixfmt" }
+          command = { "alejandra -qq" }
         },
         diagnostic = {
           suppress = {
