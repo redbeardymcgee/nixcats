@@ -19,7 +19,7 @@
   description = "A Lua-natic's neovim flake, with extra cats! nixCats!";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
 
     # see :help nixCats.flake.inputs
     # If you want your plugin to be loaded by the standard overlay,
@@ -159,6 +159,7 @@
           glow
           imagemagick
           luajitPackages.magick
+          marksman
           nixd
           pyright
           ripgrep
@@ -264,14 +265,14 @@
               undotree
               indent-blankline-nvim
               nvim-web-devicons
-              oil-nvim
+              # oil-nvim
               dial-nvim
               yazi-nvim
               grug-far-nvim
               todo-comments-nvim
               trouble-nvim
               flash-nvim
-              lazygit-nvim
+              # lazygit-nvim
               yanky-nvim
               multicursors-nvim
               guess-indent-nvim

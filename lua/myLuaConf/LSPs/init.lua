@@ -101,9 +101,10 @@ end
 
 -- servers.clangd = {}
 -- servers.gopls = {}
+servers.marksman = {}
 servers.pyright = {}
 servers.ruff = {}
--- servers.tailwindcss = {}
+servers.tailwindcss = {}
 -- servers.rust_analyzer = {}
 -- servers.tsserver = {}
 -- servers.html = { filetypes = { 'html', 'twig', 'hbs'} }

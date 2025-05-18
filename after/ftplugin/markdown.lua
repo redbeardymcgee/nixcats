@@ -6,7 +6,7 @@ vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview <CR>',
   { noremap = true, desc = 'markdown preview' })
 vim.keymap.set('n', '<leader>ms', '<cmd>MarkdownPreviewStop <CR>',
   { noremap = true, desc = 'markdown preview stop' })
-vim.keymap.set('n', '<leader>mt', '<cmd>MarkdownPreviewToggle <CR>',
+vim.keymap.set('n', '<leader>mT', '<cmd>MarkdownPreviewToggle <CR>',
   { noremap = true, desc = 'markdown preview toggle' })
 
 require('markdown').setup({
@@ -15,8 +15,8 @@ require('markdown').setup({
     local opts = { buffer = bufnr }
     map('n', '<leader>ml', '<Cmd>MDListItemBelow<CR>', opts)
     map('n', '<leader>mL', '<Cmd>MDListItemAbove<CR>', opts)
-    map('n', '<leader>mc', '<Cmd>MDTaskToggle<CR>', opts)
-    map('x', '<leader>mc', ':MDTaskToggle<CR>', opts)
+    map('n', '<leader>mt', '<Cmd>MDTaskToggle<CR>', opts)
+    map('x', '<leader>mt', ':MDTaskToggle<CR>', opts)
     map('n', '<leader>mn', '<Cmd>MDResetListNumbering<CR>', opts)
   end,
 })

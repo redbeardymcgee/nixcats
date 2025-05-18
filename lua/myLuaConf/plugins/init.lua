@@ -367,45 +367,44 @@ require("typescript-tools").setup {
   },
 }
 
-require("tailwind-tools").setup({
-  server = {
-    override = true,                           -- setup the server from the plugin if true
-    settings = {},                             -- shortcut for `settings.tailwindCSS`
-    on_attach = function(client, bufnr) end,   -- callback triggered when the server attaches to a buffer
-  },
-  document_color = {
-    enabled = true, -- can be toggled by commands
-    kind = "inline", -- "inline" | "foreground" | "background"
-    inline_symbol = "󰝤 ", -- only used in inline mode
-    debounce = 200, -- in milliseconds, only applied in insert mode
-  },
-  conceal = {
-    enabled = false, -- can be toggled by commands
-    min_length = nil, -- only conceal classes exceeding the provided length
-    symbol = "󱏿", -- only a single character is allowed
-    highlight = { -- extmark highlight options, see :h 'highlight'
-      fg = "#38BDF8",
-    },
-  },
-  cmp = {
-    highlight = "foreground",   -- color preview style, "foreground" | "background"
-  },
-  telescope = {
-    utilities = {
-      callback = function(name, class) end,   -- callback used when selecting an utility class in telescope
-    },
-  },
-  -- see the extension section to learn more
-  extension = {
-    queries = {},   -- a list of filetypes having custom `class` queries
-    patterns = {    -- a map of filetypes to Lua pattern lists
-      -- example:
-      -- rust = { "class=[\"']([^\"']+)[\"']" },
-      -- javascript = { "clsx%(([^)]+)%)" },
-    },
-  },
-}
-)
+-- require("tailwind-tools").setup({
+--   server = {
+--     override = true,                           -- setup the server from the plugin if true
+--     settings = {},                             -- shortcut for `settings.tailwindCSS`
+--     on_attach = function(client, bufnr) end,   -- callback triggered when the server attaches to a buffer
+--   },
+--   document_color = {
+--     enabled = true, -- can be toggled by commands
+--     kind = "inline", -- "inline" | "foreground" | "background"
+--     inline_symbol = "󰝤 ", -- only used in inline mode
+--     debounce = 200, -- in milliseconds, only applied in insert mode
+--   },
+--   conceal = {
+--     enabled = false, -- can be toggled by commands
+--     min_length = nil, -- only conceal classes exceeding the provided length
+--     symbol = "󱏿", -- only a single character is allowed
+--     highlight = { -- extmark highlight options, see :h 'highlight'
+--       fg = "#38BDF8",
+--     },
+--   },
+--   cmp = {
+--     highlight = "foreground",   -- color preview style, "foreground" | "background"
+--   },
+--   telescope = {
+--     utilities = {
+--       callback = function(name, class) end,   -- callback used when selecting an utility class in telescope
+--     },
+--   },
+--   -- see the extension section to learn more
+--   extension = {
+--     queries = {},   -- a list of filetypes having custom `class` queries
+--     patterns = {    -- a map of filetypes to Lua pattern lists
+--       -- example:
+--       -- rust = { "class=[\"']([^\"']+)[\"']" },
+--       -- javascript = { "clsx%(([^)]+)%)" },
+--     },
+--   },
+-- })
 
 require("flash").setup({
   modes = {
@@ -436,33 +435,6 @@ require("snacks").setup({
     }
   }
 })
-
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "VeryLazy",
---   callback = function()
---     -- Setup some globals for debugging (lazy-loaded)
---     _G.dd = function(...)
---       Snacks.debug.inspect(...)
---     end
---     _G.bt = function()
---       Snacks.debug.backtrace()
---     end
---     vim.print = _G.dd -- Override print to use snacks for `:=` command
---
---     -- Create some toggle mappings
---     Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
---     Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
---     Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
---     Snacks.toggle.diagnostics():map("<leader>ud")
---     Snacks.toggle.line_number():map("<leader>ul")
---     Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
---     Snacks.toggle.treesitter():map("<leader>uT")
---     Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
---     Snacks.toggle.inlay_hints():map("<leader>uh")
---     Snacks.toggle.indent():map("<leader>ug")
---     Snacks.toggle.dim():map("<leader>uD")
---   end,
--- })
 
 require('yanky').setup()
 km.set({ "n", "x" }, "<leader>p",
