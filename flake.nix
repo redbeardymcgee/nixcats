@@ -70,6 +70,11 @@
       flake = false;
     };
 
+    # "quadlet-lsp" = {
+    #   url = "github:onlyati/quadlet-lsp.nvim";
+    #   flake = false;
+    # };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
