@@ -283,6 +283,7 @@
               guess-indent-nvim
               rainbow-delimiters-nvim
               nvim-ts-context-commentstring
+              vim-tridactyl
             ];
           };
         };
