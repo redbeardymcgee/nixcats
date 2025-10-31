@@ -418,7 +418,7 @@ km.set("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle 
 
 require("snacks").setup({
   bigfile = { enabled = true },
-  dashboard = { enabled = true },
+  -- dashboard = { enabled = true },
   indent = { enabled = true },
   input = { enabled = true },
   notifier = {
