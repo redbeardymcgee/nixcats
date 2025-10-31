@@ -96,22 +96,6 @@
         "type": "github"
       }
     },
-    "plugins-snacks": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1761892878,
-        "narHash": "sha256-u3nVUpimeUBmqbd2YhOEqRXUUpn8oa6OKKu8DeQ7FHU=",
-        "owner": "folke",
-        "repo": "snacks.nvim",
-        "rev": "76160be5d38cd67e46557cb5d0b3e36ececdfa3c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "snacks.nvim",
-        "type": "github"
-      }
-    },
     "plugins-tmux-navigate": {
       "flake": false,
       "locked": {
@@ -136,7 +120,6 @@
         "plugins-mini-animate": "plugins-mini-animate",
         "plugins-mini-pairs": "plugins-mini-pairs",
         "plugins-mini-surround": "plugins-mini-surround",
-        "plugins-snacks": "plugins-snacks",
         "plugins-tmux-navigate": "plugins-tmux-navigate"
       }
     }

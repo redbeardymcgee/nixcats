@@ -416,25 +416,25 @@ require("flash").setup({
 km.set({ "n", "x", "o" }, "<C-f>", function() require("flash").treesitter() end, { desc = "Flash Treesitter", })
 km.set("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
 
-require("snacks").setup({
-  bigfile = { enabled = true },
-  dashboard = { enabled = true },
-  indent = { enabled = true },
-  input = { enabled = true },
-  notifier = {
-    enabled = true,
-    timeout = 3000,
-  },
-  quickfile = { enabled = true },
-  scroll = { enabled = true },
-  statuscolumn = { enabled = true },
-  words = { enabled = true },
-  styles = {
-    notification = {
-      -- wo = { wrap = true } -- Wrap notifications
-    }
-  }
-})
+-- require("snacks").setup({
+--   bigfile = { enabled = true },
+--   dashboard = { enabled = true },
+--   indent = { enabled = true },
+--   input = { enabled = true },
+--   notifier = {
+--     enabled = true,
+--     timeout = 3000,
+--   },
+--   quickfile = { enabled = true },
+--   scroll = { enabled = true },
+--   statuscolumn = { enabled = true },
+--   words = { enabled = true },
+--   styles = {
+--     notification = {
+--       wo = { wrap = true } -- Wrap notifications
+--     }
+--   }
+-- })
 
 require('yanky').setup()
 km.set({ "n", "x" }, "<leader>p",

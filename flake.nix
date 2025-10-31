@@ -65,10 +65,10 @@
       flake = false;
     };
 
-    "plugins-snacks" = {
-      url = "github:folke/snacks.nvim";
-      flake = false;
-    };
+    # "plugins-snacks" = {
+    #   url = "github:folke/snacks.nvim";
+    #   flake = false;
+    # };
 
     # "quadlet-lsp" = {
     #   url = "github:onlyati/quadlet-lsp.nvim";
@@ -224,7 +224,7 @@
             mini-pairs
             mini-surround
             tmux-navigate
-            snacks
+            # snacks
           ];
           vimPlugins = {
             # you can make a subcategory
