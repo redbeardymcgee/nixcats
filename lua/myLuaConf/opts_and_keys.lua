@@ -1,4 +1,4 @@
-if os.getenv('WAYLAND_DISPLAY') and vim.fn.exepath('wl-copy') ~= "" then
+if os.getenv('WAYLAND_DISPLAY') and vim.fn.executable('wl-copy') then
   vim.g.clipboard = {
     name = 'wl-clipboard',
     copy = {
