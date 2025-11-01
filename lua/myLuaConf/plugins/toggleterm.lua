@@ -91,15 +91,15 @@ end
 
 vim.keymap.set("n", "<leader>gg", "<cmd>lua LazygitToggle()<CR>", { noremap = true, silent = true })
 
-local yaziTerminal = require('toggleterm.terminal').Terminal
-local yazi         = yaziTerminal:new({
-  cmd = "yazi",
-  hidden = true,
-  direction = "float"
-})
-
-function YaziToggle()
-  yazi:toggle()
-end
-
-vim.keymap.set("n", "<leader>-", "<cmd>lua YaziToggle()<CR>", { noremap = true, silent = true })
+-- local yaziTerminal = require('toggleterm.terminal').Terminal
+-- local yazi         = yaziTerminal:new({
+--   cmd = "yazi",
+--   hidden = true,
+--   direction = "float"
+-- })
+--
+-- function YaziToggle()
+--   yazi:toggle()
+-- end
+--
+-- vim.keymap.set("n", "<leader>-", "<cmd>lua YaziToggle()<CR>", { noremap = true, silent = true })

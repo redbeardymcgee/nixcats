@@ -285,6 +285,7 @@
               vim-tridactyl
               which-key-nvim
               yanky-nvim
+              yazi-nvim
             ];
           };
         };
