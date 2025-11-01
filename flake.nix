@@ -65,8 +65,8 @@
       flake = false;
     };
 
-    "plugins-floaterm" = {
-      url = "github:voldikss/vim-floaterm";
+    "plugins-toggleterm" = {
+      url = "github:akinsho/toggleterm.nvim";
       flake = false;
     };
 
@@ -229,7 +229,7 @@
             mini-pairs
             mini-surround
             tmux-navigate
-            floaterm
+            toggleterm
           ];
           vimPlugins = {
             # you can make a subcategory

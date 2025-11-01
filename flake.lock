@@ -16,22 +16,6 @@
         "type": "github"
       }
     },
-    "plugins-floaterm": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1761453817,
-        "narHash": "sha256-jHCZcba3U+wNrj/GUwOIR6uPy7Yi9Mx8/o1me4mzoUY=",
-        "owner": "voldikss",
-        "repo": "vim-floaterm",
-        "rev": "a720490bd9dc02c5492e800aa08d4802f22b01f8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "voldikss",
-        "repo": "vim-floaterm",
-        "type": "github"
-      }
-    },
     "plugins-hlargs": {
       "flake": false,
       "locked": {
@@ -128,16 +112,32 @@
         "type": "github"
       }
     },
+    "plugins-toggleterm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741512039,
+        "narHash": "sha256-fytbX+L12TK45YKFU9K+iFJcDrwboKabihc2LtX29J4=",
+        "owner": "akinsho",
+        "repo": "toggleterm.nvim",
+        "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "toggleterm.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "plugins-floaterm": "plugins-floaterm",
         "plugins-hlargs": "plugins-hlargs",
         "plugins-mini-align": "plugins-mini-align",
         "plugins-mini-animate": "plugins-mini-animate",
         "plugins-mini-pairs": "plugins-mini-pairs",
         "plugins-mini-surround": "plugins-mini-surround",
-        "plugins-tmux-navigate": "plugins-tmux-navigate"
+        "plugins-tmux-navigate": "plugins-tmux-navigate",
+        "plugins-toggleterm": "plugins-toggleterm"
       }
     }
   },

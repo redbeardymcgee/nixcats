@@ -9,6 +9,7 @@ vim.cmd.colorscheme(colorschemeName)
 require('myLuaConf.plugins.telescope')
 require('myLuaConf.plugins.treesitter')
 require('myLuaConf.plugins.completion')
+require('myLuaConf.plugins.toggleterm')
 
 require('zk').setup()
 km.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
