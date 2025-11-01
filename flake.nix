@@ -65,6 +65,11 @@
       flake = false;
     };
 
+    "plugins-floaterm" = {
+      url = "github:voldikss/vim-floaterm";
+      flake = false;
+    };
+
     # "plugins-snacks" = {
     #   url = "github:folke/snacks.nvim";
     #   flake = false;
@@ -191,11 +196,11 @@
       # This is for plugins that will load at startup without using packadd:
       startupPlugins = {
         debug = with pkgs.vimPlugins; [
-          nvim-nio
           nvim-dap
+          nvim-dap-python
           nvim-dap-ui
           nvim-dap-virtual-text
-          nvim-dap-python
+          nvim-nio
         ];
         lint = with pkgs.vimPlugins; [
           nvim-lint
@@ -224,30 +229,37 @@
             mini-pairs
             mini-surround
             tmux-navigate
-            # snacks
+            floaterm
           ];
           vimPlugins = {
             # you can make a subcategory
             cmp = with pkgs.vimPlugins; [
-              nvim-cmp
-              luasnip
-              friendly-snippets
-              cmp_luasnip
               cmp-buffer
-              cmp-path
-              cmp-nvim-lua
-              cmp-nvim-lsp
               cmp-cmdline
-              cmp-nvim-lsp-signature-help
               cmp-cmdline-history
+              cmp-nvim-lsp
+              cmp-nvim-lsp-signature-help
+              cmp-nvim-lua
+              cmp-path
+              cmp_luasnip
+              friendly-snippets
               lspkind-nvim
+              luasnip
+              nvim-cmp
             ];
             general = with pkgs.vimPlugins; [
-              telescope-fzf-native-nvim
-              telescope-ui-select-nvim
-              plenary-nvim
-              telescope-nvim
-              # treesitter
+              comment-nvim
+              dial-nvim
+              fidget-nvim
+              flash-nvim
+              gitsigns-nvim
+              grug-far-nvim
+              guess-indent-nvim
+              indent-blankline-nvim
+              lualine-lsp-progress
+              lualine-nvim
+              multicursors-nvim
+              nvim-lspconfig
               nvim-treesitter-textobjects
               nvim-treesitter.withAllGrammars
               # This is for if you only want some of the grammars
@@ -258,32 +270,22 @@
               #   ]
               # ))
               # other
-              nvim-lspconfig
-              fidget-nvim
-              lualine-lsp-progress
-              lualine-nvim
-              gitsigns-nvim
-              which-key-nvim
-              comment-nvim
-              vim-fugitive
-              vim-repeat
-              undotree
-              indent-blankline-nvim
+              nvim-ts-context-commentstring
               nvim-web-devicons
-              # oil-nvim
-              dial-nvim
-              yazi-nvim
-              grug-far-nvim
+              plenary-nvim
+              rainbow-delimiters-nvim
+              telescope-fzf-native-nvim
+              telescope-nvim
+              telescope-ui-select-nvim
               todo-comments-nvim
               trouble-nvim
-              flash-nvim
-              # lazygit-nvim
-              yanky-nvim
-              multicursors-nvim
-              guess-indent-nvim
-              rainbow-delimiters-nvim
-              nvim-ts-context-commentstring
+              undotree
+              vim-fugitive
+              vim-repeat
               vim-tridactyl
+              which-key-nvim
+              yanky-nvim
+              yazi-nvim
             ];
           };
         };

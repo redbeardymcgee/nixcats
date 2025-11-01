@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "plugins-floaterm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1761453817,
+        "narHash": "sha256-jHCZcba3U+wNrj/GUwOIR6uPy7Yi9Mx8/o1me4mzoUY=",
+        "owner": "voldikss",
+        "repo": "vim-floaterm",
+        "rev": "a720490bd9dc02c5492e800aa08d4802f22b01f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "voldikss",
+        "repo": "vim-floaterm",
+        "type": "github"
+      }
+    },
     "plugins-hlargs": {
       "flake": false,
       "locked": {
@@ -115,6 +131,7 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
+        "plugins-floaterm": "plugins-floaterm",
         "plugins-hlargs": "plugins-hlargs",
         "plugins-mini-align": "plugins-mini-align",
         "plugins-mini-animate": "plugins-mini-animate",
