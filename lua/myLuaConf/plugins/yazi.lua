@@ -6,10 +6,7 @@ vim.api.nvim_create_autocmd("UIEnter", {
     require("yazi").setup({
       open_multiple_tabs = true,
       open_for_directories = true,
-
-      highlight_groups = {
-        hovered_buffer = true
-      },
+      highlight_hovered_buffers_in_same_directory = true,
 
       -- log_level = vim.log.levels.OFF,
     })
