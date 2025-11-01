@@ -184,24 +184,6 @@ require('which-key').add {
   { 'gsn',       desc = "Update `n_lines`" },
 }
 
-require('yazi').setup({
-  open_multiple_tabs = true,
-  open_for_directories = true,
-  log_level = vim.log.levels.OFF,
-})
-km.set("n", "-", "<cmd>Yazi<cr>",
-  {
-    noremap = true,
-    desc = 'Browse parent directory'
-  }
-)
-km.set("n", "<leader>-", "<cmd>Yazi cwd<cr>",
-  {
-    noremap = true,
-    desc = 'Browse current working directory'
-  }
-)
-
 require('grug-far').setup()
 
 local augend = require("dial.augend")
