@@ -17,7 +17,6 @@ end
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
--- NOTE: You can change these options as you wish!
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
