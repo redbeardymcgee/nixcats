@@ -1,3 +1,5 @@
+local km = vim.keymap
+
 if os.getenv('WAYLAND_DISPLAY') and vim.fn.executable('wl-copy') then
   vim.g.clipboard = {
     name = 'wl-clipboard',
@@ -12,6 +14,7 @@ if os.getenv('WAYLAND_DISPLAY') and vim.fn.executable('wl-copy') then
     cache_enabled = 1,
   }
 end
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
