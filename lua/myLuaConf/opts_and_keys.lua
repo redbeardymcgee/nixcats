@@ -81,6 +81,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.g.netrw_liststyle = 0
 vim.g.netrw_banner = 0
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -112,6 +113,9 @@ km.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- km.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Git Blame Line" })
 -- km.set("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit Current File History" })
 
+-- Set floaterm window foreground to gray once the cursor moves out from it
+-- FIXME: What is the lua native version?
+-- hi FloatermNC guifg=gray
 
 km.set("n", "<leader>gg", "<cmd>FloatermNew lazygit<cr>", { desc = "Lazygit" })
 km.set("n", "<leader>gl", "<cmd>FloatermNew lazygit log<cr>", { desc = "Lazygit Log (cwd )" })
