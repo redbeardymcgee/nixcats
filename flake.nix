@@ -70,6 +70,11 @@
       flake = false;
     };
 
+    "plugins-dashboard-nvim" = {
+      url = "github:nvimdev/dashboard-nvim";
+      flake = false;
+    };
+
     # "plugins-snacks" = {
     #   url = "github:folke/snacks.nvim";
     #   flake = false;
@@ -223,6 +228,7 @@
         ];
         general = {
           gitPlugins = with pkgs.neovimPlugins; [
+            dashboard-nvim
             hlargs
             mini-align
             mini-animate

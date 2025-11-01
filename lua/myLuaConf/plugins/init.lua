@@ -7,6 +7,7 @@ end
 vim.cmd.colorscheme(colorschemeName)
 
 require('myLuaConf.plugins.completion')
+require('myLuaConf.plugins.dashboard')
 require('myLuaConf.plugins.telescope')
 require('myLuaConf.plugins.toggleterm')
 require('myLuaConf.plugins.treesitter')

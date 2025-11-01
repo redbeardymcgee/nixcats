@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "plugins-dashboard": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756627730,
+        "narHash": "sha256-0eXKel2IVbDcJqBtr2g8HliqLG8GS3QHqXhH/2CyhkA=",
+        "owner": "nvimdev",
+        "repo": "dashboard-nvim",
+        "rev": "0775e567b6c0be96d01a61795f7b64c1758262f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvimdev",
+        "repo": "dashboard-nvim",
+        "type": "github"
+      }
+    },
     "plugins-hlargs": {
       "flake": false,
       "locked": {
@@ -131,6 +147,7 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
+        "plugins-dashboard": "plugins-dashboard",
         "plugins-hlargs": "plugins-hlargs",
         "plugins-mini-align": "plugins-mini-align",
         "plugins-mini-animate": "plugins-mini-animate",
