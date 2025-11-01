@@ -26,7 +26,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Set highlight on search
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+km.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -113,10 +113,10 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = 'Scroll Up' })
 vim.keymap.set("n", "n", "nzzzv", { desc = 'Next Search Result' })
 vim.keymap.set("n", "N", "Nzzzv", { desc = 'Previous Search Result' })
 
-vim.keymap.set("n", "<leader><leader>[", "<cmd>bprev<CR>", { desc = 'Previous buffer' })
-vim.keymap.set("n", "<leader><leader>]", "<cmd>bnext<CR>", { desc = 'Next buffer' })
-vim.keymap.set("n", "<leader><leader>l", "<cmd>b#<CR>", { desc = 'Last buffer' })
-vim.keymap.set("n", "<leader><leader>d", "<cmd>bdelete<CR>", { desc = 'delete buffer' })
+km.set("n", "<leader><leader>[", "<cmd>bprev<CR>", { desc = 'Previous buffer' })
+km.set("n", "<leader><leader>]", "<cmd>bnext<CR>", { desc = 'Next buffer' })
+km.set("n", "<leader><leader>l", "<cmd>b#<CR>", { desc = 'Last buffer' })
+km.set("n", "<leader><leader>d", "<cmd>bdelete<CR>", { desc = 'delete buffer' })
 
 -- see help sticky keys on windows
 vim.cmd([[command! W w]])
@@ -125,32 +125,14 @@ vim.cmd([[command! WQ wq]])
 vim.cmd([[command! Q q]])
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+km.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+km.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- km.set("n", "<leader>cR", function() Snacks.rename.rename_file() end, { desc = "Rename File" })
+-- km.set("n", "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse" })
+-- km.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Git Blame Line" })
+-- km.set("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit Current File History" })
 
--- vim.keymap.set("n", "<leader>Z", function() Snacks.zen() end, { desc = "Toggle Zen Mode" })
--- vim.keymap.set("n", "<leader>ZZ", function() Snacks.zen.zoom() end, { desc = "Toggle Zoom" })
---
--- vim.keymap.set("n", "<leader>.", function() Snacks.scratch() end, { desc = "Toggle Scratch Buffer" })
--- vim.keymap.set("n", "<leader>S", function() Snacks.scratch.select() end, { desc = "Select Scratch Buffer" })
--- vim.keymap.set("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification History" })
--- vim.keymap.set("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
--- vim.keymap.set("n", "<leader>cR", function() Snacks.rename.rename_file() end, { desc = "Rename File" })
--- vim.keymap.set("n", "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse" })
--- vim.keymap.set("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Git Blame Line" })
--- vim.keymap.set("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit Current File History" })
-vim.keymap.set("n", "<leader>gg", ":FloatermNew lazygit", { desc = "Lazygit" })
--- vim.keymap.set("n", "<leader>gl", function() Snacks.lazygit.log() end, { desc = "Lazygit Log (cwd )" })
--- vim.keymap.set("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "Dismiss All Notifications" })
--- vim.keymap.set("n", "<c-/>", function() Snacks.terminal() end, { desc = "Toggle Terminal" })
--- vim.keymap.set("n", "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference" })
--- vim.keymap.set("n", "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference" })
 
 -- vim.keymap.set(
 --   "n",
