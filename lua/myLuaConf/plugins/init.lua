@@ -129,8 +129,8 @@ require('gitsigns').setup({
     map('n', '<leader>gD', function() gs.diffthis '~' end, { desc = 'git diff against last commit' })
 
     -- Toggles
-    map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-    map('n', '<leader>td', gs.toggle_deleted, { desc = 'toggle git show deleted' })
+    map('n', '<leader>gb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
+    map('n', '<leader>gd', gs.toggle_deleted, { desc = 'toggle git show deleted' })
 
     -- Text object
     map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
@@ -165,7 +165,7 @@ require('which-key').add {
   { "<leader>m", group = "[m]arkdown" },
   { "<leader>r", group = "[r]ename" },
   { "<leader>s", group = "[s]earch" },
-  { "<leader>t", group = "[t]oggles" },
+  { "<leader>t", group = "[t]erminals" },
   { "<leader>W", group = "[W]orkspace" },
   { "<leader>z", group = "[z]ettelkasten" },
   { "<leader>x", group = "debug" },
