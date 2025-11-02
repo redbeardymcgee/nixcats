@@ -19,7 +19,8 @@
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
+local telescope = require("telescope")
+telescope.setup {
   -- You can put your default mappings / updates / etc. in here
   --  All the info you're looking for is in `:help telescope.setup()`
   --
@@ -40,12 +41,12 @@ require('telescope').setup {
 }
 
 -- Enable telescope extensions, if they are installed
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('ui-select')
-require('telescope').load_extension('dap')
-require('telescope').load_extension('heading')
-require("telescope").load_extension("yank_history")
-require("telescope").load_extension("manix")
+telescope.load_extension('fzf')
+telescope.load_extension('ui-select')
+telescope.load_extension('dap')
+telescope.load_extension('heading')
+telescope.load_extension("yank_history")
+-- telescope.load_extension("manix")
 
 -- See `:help telescope.builtin`
 local builtin = require 'telescope.builtin'
