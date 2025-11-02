@@ -123,4 +123,4 @@ vim.keymap.set('n', '<leader>xb', dap.list_breakpoints {}, { desc = 'Search debu
 vim.keymap.set('n', '<leader>xv', dap.variables {}, { desc = 'Search debug variables' })
 vim.keymap.set('n', '<leader>xf', dap.frames {}, { desc = 'Search debug frames' })
 
-vim.keymap.set('n', '<leader>sn', '<cmd>Telescope manix<cr>', { desc = 'Search Nix docs' })
+-- vim.keymap.set('n', '<leader>sn', '<cmd>Telescope manix<cr>', { desc = 'Search Nix docs' })

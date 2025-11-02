@@ -262,7 +262,7 @@
             tmux-navigate
             telescope-dap
             telescope-heading
-            telescope-manix
+            # telescope-manix
             telescope-cheatsheet
             toggleterm
             toggleterm-manager
