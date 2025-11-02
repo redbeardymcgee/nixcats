@@ -34,18 +34,18 @@ telescope.setup {
     ['ui-select'] = {
       require('telescope.themes').get_dropdown(),
     },
-    heading = {
-      treesitter = true
-    },
+    -- heading = {
+    --   treesitter = true
+    -- },
   },
 }
 
 -- Enable telescope extensions, if they are installed
 telescope.load_extension('fzf')
 telescope.load_extension('ui-select')
-telescope.load_extension('dap')
-telescope.load_extension('heading')
-telescope.load_extension("yank_history")
+-- telescope.load_extension('dap')
+-- telescope.load_extension('heading')
+-- telescope.load_extension("yank_history")
 -- telescope.load_extension("manix")
 
 -- See `:help telescope.builtin`
@@ -116,11 +116,11 @@ end
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 vim.keymap.set('n', '<leader>sp', live_grep_git_root, { desc = '[S]earch git [P]roject root' })
 
-local dap = require 'telescope'.extensions.dap
-vim.keymap.set('n', '<leader>xc', dap.commands {}, { desc = 'Search debug commands' })
-vim.keymap.set('n', '<leader>xC', dap.configurations {}, { desc = 'Search debug configs' })
-vim.keymap.set('n', '<leader>xb', dap.list_breakpoints {}, { desc = 'Search debug breakpoints' })
-vim.keymap.set('n', '<leader>xv', dap.variables {}, { desc = 'Search debug variables' })
-vim.keymap.set('n', '<leader>xf', dap.frames {}, { desc = 'Search debug frames' })
+-- local dap = require 'telescope'.extensions.dap
+-- vim.keymap.set('n', '<leader>xc', dap.commands {}, { desc = 'Search debug commands' })
+-- vim.keymap.set('n', '<leader>xC', dap.configurations {}, { desc = 'Search debug configs' })
+-- vim.keymap.set('n', '<leader>xb', dap.list_breakpoints {}, { desc = 'Search debug breakpoints' })
+-- vim.keymap.set('n', '<leader>xv', dap.variables {}, { desc = 'Search debug variables' })
+-- vim.keymap.set('n', '<leader>xf', dap.frames {}, { desc = 'Search debug frames' })
 
 -- vim.keymap.set('n', '<leader>sn', '<cmd>Telescope manix<cr>', { desc = 'Search Nix docs' })

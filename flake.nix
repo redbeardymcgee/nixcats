@@ -70,35 +70,35 @@
       flake = false;
     };
 
-    "plugins-toggleterm-manager" = {
-      url = "github:ryanmsnyder/toggleterm-manager.nvim";
-      flake = false;
-    };
+    # "plugins-toggleterm-manager" = {
+    #   url = "github:ryanmsnyder/toggleterm-manager.nvim";
+    #   flake = false;
+    # };
 
-    "plugins-telescope-dap" = {
-      url = "github:nvim-telescope/telescope-dap.nvim";
-      flake = false;
-    };
+    # "plugins-telescope-dap" = {
+    #   url = "github:nvim-telescope/telescope-dap.nvim";
+    #   flake = false;
+    # };
 
-    "plugins-telescope-heading" = {
-      url = "github:crispgm/telescope-heading.nvim";
-      flake = false;
-    };
+    # "plugins-telescope-heading" = {
+    #   url = "github:crispgm/telescope-heading.nvim";
+    #   flake = false;
+    # };
 
-    "plugins-telescope-cheatsheet" = {
-      url = "github:doctorfree/cheatsheet.nvim";
-      flake = false;
-    };
+    # "plugins-telescope-cheatsheet" = {
+    #   url = "github:doctorfree/cheatsheet.nvim";
+    #   flake = false;
+    # };
 
-    "plugins-telescope-manix" = {
-      url = "github:MrcJkb/telescope-manix";
-      flake = false;
-    };
+    # "plugins-telescope-manix" = {
+    #   url = "github:MrcJkb/telescope-manix";
+    #   flake = false;
+    # };
 
-    "plugins-telescope-nvim" = {
-      url = "github:nvim-telescope/telescope.nvim";
-      flake = false;
-    };
+    # "plugins-telescope-nvim" = {
+    #   url = "github:nvim-telescope/telescope.nvim";
+    #   flake = false;
+    # };
 
     "plugins-dashboard-nvim" = {
       url = "github:nvimdev/dashboard-nvim";
@@ -265,13 +265,13 @@
             mini-pairs
             mini-surround
             tmux-navigate
-            telescope-dap
-            telescope-heading
+            # telescope-dap
+            # telescope-heading
             # telescope-manix
             # telescope-cheatsheet
-            telescope-nvim
+            # telescope-nvim
             toggleterm
-            toggleterm-manager
+            # toggleterm-manager
           ];
           vimPlugins = {
             # you can make a subcategory
@@ -317,7 +317,7 @@
               plenary-nvim
               rainbow-delimiters-nvim
               telescope-fzf-native-nvim
-              # telescope-nvim
+              telescope-nvim
               telescope-ui-select-nvim
               todo-comments-nvim
               trouble-nvim

@@ -91,6 +91,6 @@ end
 
 vim.keymap.set("n", "<leader>gg", "<cmd>lua LazygitToggle()<CR>", { noremap = true, silent = true })
 
-require("toggleterm-manager").setup()
+-- require("toggleterm-manager").setup()
 
-vim.keymap.set("n", "<leader>ts", "<cmd>Telescope toggleterm_manager<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>ts", "<cmd>Telescope toggleterm_manager<CR>", { noremap = true, silent = true })
