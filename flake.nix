@@ -70,6 +70,11 @@
       flake = false;
     };
 
+
+    "plugins-telescope-cheatsheet" = {
+      url = "github:doctorfree/cheatsheet.nvim";
+      flake = false;
+    };
     "plugins-dashboard-nvim" = {
       url = "github:nvimdev/dashboard-nvim";
       flake = false;
@@ -235,6 +240,7 @@
             mini-pairs
             mini-surround
             tmux-navigate
+            telescope-cheatsheet
             toggleterm
           ];
           vimPlugins = {

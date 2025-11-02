@@ -6,6 +6,7 @@ if not require('nixCatsUtils').isNixCats then
 end
 vim.cmd.colorscheme(colorschemeName)
 
+require('myLuaConf.plugins.cheatsheet')
 require('myLuaConf.plugins.completion')
 require('myLuaConf.plugins.dashboard')
 require('myLuaConf.plugins.lualine')
