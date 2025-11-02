@@ -84,6 +84,12 @@
       url = "github:doctorfree/cheatsheet.nvim";
       flake = false;
     };
+
+    "plugins-telescope-manix" = {
+      url = "github:MrcJkb/telescope-manix";
+      flake = false;
+    };
+
     "plugins-dashboard-nvim" = {
       url = "github:nvimdev/dashboard-nvim";
       flake = false;
@@ -250,6 +256,7 @@
             mini-surround
             tmux-navigate
             telescope-heading
+            telescope-manix
             telescope-cheatsheet
             toggleterm
             toggleterm-manager
