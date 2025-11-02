@@ -95,10 +95,15 @@
     #   flake = false;
     # };
 
-    # "plugins-telescope-nvim" = {
-    #   url = "github:nvim-telescope/telescope.nvim";
-    #   flake = false;
-    # };
+    "plugins-telescope-nvim" = {
+      url = "github:nvim-telescope/telescope.nvim";
+      flake = false;
+    };
+
+    "plugins-plenary-nvim" = {
+      url = "github:nvim-lua/plenary.nvim";
+      flake = false;
+    };
 
     "plugins-dashboard-nvim" = {
       url = "github:nvimdev/dashboard-nvim";
@@ -264,12 +269,13 @@
             mini-animate
             mini-pairs
             mini-surround
+            plenary-nvim
             tmux-navigate
             # telescope-dap
             # telescope-heading
             # telescope-manix
             # telescope-cheatsheet
-            # telescope-nvim
+            telescope-nvim
             toggleterm
             # toggleterm-manager
           ];
@@ -314,10 +320,10 @@
               # other
               nvim-ts-context-commentstring
               nvim-web-devicons
-              plenary-nvim
+              # plenary-nvim
               rainbow-delimiters-nvim
               telescope-fzf-native-nvim
-              telescope-nvim
+              # telescope-nvim
               telescope-ui-select-nvim
               todo-comments-nvim
               trouble-nvim
