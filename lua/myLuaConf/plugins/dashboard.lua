@@ -15,13 +15,6 @@ require("dashboard").setup({
         action = 'Telescope find_files',
         key = 'f',
       },
-      {
-        icon = ' ',
-        desc = 'Apps',
-        group = 'DiagnosticHint',
-        action = 'Telescope app',
-        key = 'a',
-      },
     },
   },
 })
