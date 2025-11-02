@@ -42,6 +42,7 @@ require('telescope').setup {
 -- Enable telescope extensions, if they are installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'ui-select')
+require('telescope').load_extension('dap')
 require('telescope').load_extension('heading')
 require("telescope").load_extension("yank_history")
 require("telescope").load_extension("manix")
@@ -114,15 +115,11 @@ end
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 vim.keymap.set('n', '<leader>sp', live_grep_git_root, { desc = '[S]earch git [P]roject root' })
 
-<<<<<<< HEAD
 local dap = require 'telescope'.extensions.dap
 vim.keymap.set('n', '<leader>xc', dap.commands {}, { desc = 'Search debug commands' })
 vim.keymap.set('n', '<leader>xC', dap.configurations {}, { desc = 'Search debug configs' })
 vim.keymap.set('n', '<leader>xb', dap.list_breakpoints {}, { desc = 'Search debug breakpoints' })
 vim.keymap.set('n', '<leader>xv', dap.variables {}, { desc = 'Search debug variables' })
 vim.keymap.set('n', '<leader>xf', dap.frames {}, { desc = 'Search debug frames' })
-||||||| parent of 0809882 (add manix telescope plugin)
-=======
->>>>>>> 0809882 (add manix telescope plugin)
 
 vim.keymap.set('n', '<leader>sn', '<cmd>Telescope manix<cr>', { desc = 'Search Nix docs' })

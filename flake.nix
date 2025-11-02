@@ -75,6 +75,11 @@
       flake = false;
     };
 
+    "plugins-telescope-dap" = {
+      url = "github:nvim-telescope/telescope-dap.nvim";
+      flake = false;
+    };
+
     "plugins-telescope-heading" = {
       url = "github:crispgm/telescope-heading.nvim";
       flake = false;
@@ -255,6 +260,7 @@
             mini-pairs
             mini-surround
             tmux-navigate
+            telescope-dap
             telescope-heading
             telescope-manix
             telescope-cheatsheet
