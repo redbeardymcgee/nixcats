@@ -263,7 +263,7 @@
             telescope-dap
             telescope-heading
             # telescope-manix
-            telescope-cheatsheet
+            # telescope-cheatsheet
             toggleterm
             toggleterm-manager
           ];
