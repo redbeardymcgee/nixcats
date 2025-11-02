@@ -75,6 +75,11 @@
       flake = false;
     };
 
+    "plugins-telescope-heading" = {
+      url = "github:crispgm/telescope-heading.nvim";
+      flake = false;
+    };
+
     "plugins-telescope-cheatsheet" = {
       url = "github:doctorfree/cheatsheet.nvim";
       flake = false;
@@ -244,6 +249,7 @@
             mini-pairs
             mini-surround
             tmux-navigate
+            telescope-heading
             telescope-cheatsheet
             toggleterm
             toggleterm-manager

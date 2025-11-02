@@ -33,16 +33,20 @@ require('telescope').setup {
     ['ui-select'] = {
       require('telescope.themes').get_dropdown(),
     },
+    heading = {
+      treesitter = true
+    },
   },
 }
 
 -- Enable telescope extensions, if they are installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'ui-select')
+require('telescope').load_extension('heading')
 
 -- See `:help telescope.builtin`
 local builtin = require 'telescope.builtin'
-vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sH', builtin.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
 vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
@@ -107,3 +111,12 @@ end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 vim.keymap.set('n', '<leader>sp', live_grep_git_root, { desc = '[S]earch git [P]roject root' })
+
+local dap = require 'telescope'.extensions.dap
+vim.keymap.set('n', '<leader>xc', dap.commands {}, { desc = 'Search debug commands' })
+vim.keymap.set('n', '<leader>xC', dap.configurations {}, { desc = 'Search debug configs' })
+vim.keymap.set('n', '<leader>xb', dap.list_breakpoints {}, { desc = 'Search debug breakpoints' })
+vim.keymap.set('n', '<leader>xv', dap.variables {}, { desc = 'Search debug variables' })
+vim.keymap.set('n', '<leader>xf', dap.frames {}, { desc = 'Search debug frames' })
+
+vim.keymap.set('n', '<leader>sn', '<cmd>Telescope manix<cr>', { desc = 'Search Nix docs' })
