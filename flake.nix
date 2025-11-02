@@ -70,6 +70,10 @@
       flake = false;
     };
 
+    "plugins-toggleterm-manager" = {
+      url = "github:ryanmsnyder/toggleterm-manager.nvim";
+      flake = false;
+    };
 
     "plugins-telescope-cheatsheet" = {
       url = "github:doctorfree/cheatsheet.nvim";
@@ -242,6 +246,7 @@
             tmux-navigate
             telescope-cheatsheet
             toggleterm
+            toggleterm-manager
           ];
           vimPlugins = {
             # you can make a subcategory
