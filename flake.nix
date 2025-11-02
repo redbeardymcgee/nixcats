@@ -95,6 +95,11 @@
       flake = false;
     };
 
+    "plugins-telescope-nvim" = {
+      url = "github:nvim-telescope/telescope.nvim";
+      flake = false;
+    };
+
     "plugins-dashboard-nvim" = {
       url = "github:nvimdev/dashboard-nvim";
       flake = false;
@@ -264,6 +269,7 @@
             telescope-heading
             # telescope-manix
             # telescope-cheatsheet
+            telescope-nvim
             toggleterm
             toggleterm-manager
           ];
@@ -311,7 +317,7 @@
               plenary-nvim
               rainbow-delimiters-nvim
               telescope-fzf-native-nvim
-              telescope-nvim
+              # telescope-nvim
               telescope-ui-select-nvim
               todo-comments-nvim
               trouble-nvim
