@@ -1,117 +1,140 @@
--- [[ Configure nvim-cmp ]]
--- See `:help cmp`
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
-local lspkind = require('lspkind')
+local load_w_after = function(name)
+  vim.cmd.packadd(name)
+  vim.cmd.packadd(name .. '/after')
+end
 
-cmp.setup {
-  formatting = {
-    format = lspkind.cmp_format {
-      mode = 'text',
-      with_text = true,
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-
-      menu = {
-        buffer = '[BUF]',
-        nvim_lsp = '[LSP]',
-        nvim_lsp_signature_help = '[LSP]',
-        nvim_lsp_document_symbol = '[LSP]',
-        nvim_lua = '[API]',
-        path = '[PATH]',
-        luasnip = '[SNIP]',
-      },
-    },
+return {
+  {
+    "cmp-cmdline",
+    for_cat = "general.blink",
+    on_plugin = { "blink.cmp" },
+    load = load_w_after,
   },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
+  {
+    "blink.compat",
+    for_cat = "general.blink",
+    dep_of = { "cmp-cmdline" },
+  },
+  {
+    "luasnip",
+    for_cat = "general.blink",
+    dep_of = { "blink.cmp" },
+    after = function (_)
+      local luasnip = require 'luasnip'
+      require('luasnip.loaders.from_vscode').lazy_load()
+      luasnip.config.setup {}
+
+      local ls = require('luasnip')
+
+      vim.keymap.set({ "i", "s" }, "<M-n>", function()
+          if ls.choice_active() then
+              ls.change_choice(1)
+          end
+      end)
     end,
   },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-k>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-j>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<C-y>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<C-n>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<C-p>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+  {
+    "colorful-menu.nvim",
+    for_cat = "general.blink",
+    on_plugin = { "blink.cmp" },
   },
-
-  sources = cmp.config.sources {
-    -- The insertion order influences the priority of the sources
-    { name = 'nvim_lsp'--[[ , keyword_length = 3 ]] },
-    { name = 'nvim_lsp_signature_help'--[[ , keyword_length = 3  ]]},
-    { name = 'path' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-  },
-  enabled = function()
-    return vim.bo[0].buftype ~= 'prompt'
-  end,
-  experimental = {
-    native_menu = false,
-    ghost_text = false,
+  {
+    "blink.cmp",
+    for_cat = "general.blink",
+    event = "DeferredUIEnter",
+    after = function (_)
+      require("blink.cmp").setup({
+        -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+        -- See :h blink-cmp-config-keymap for configuring keymaps
+        keymap =  {
+          preset = 'default',
+        },
+        cmdline = {
+          enabled = true,
+          completion = {
+            menu = {
+              auto_show = true,
+            },
+          },
+          sources = function()
+            local type = vim.fn.getcmdtype()
+            -- Search forward and backward
+            if type == '/' or type == '?' then return { 'buffer' } end
+            -- Commands
+            if type == ':' or type == '@' then return { 'cmdline', 'cmp_cmdline' } end
+            return {}
+          end,
+        },
+        fuzzy = {
+          sorts = {
+            'exact',
+            -- defaults
+            'score',
+            'sort_text',
+          },
+        },
+        signature = {
+          enabled = true,
+          window = {
+            show_documentation = true,
+          },
+        },
+        completion = {
+          menu = {
+            draw = {
+              treesitter = { 'lsp' },
+              components = {
+                label = {
+                  text = function(ctx)
+                    return require("colorful-menu").blink_components_text(ctx)
+                  end,
+                  highlight = function(ctx)
+                    return require("colorful-menu").blink_components_highlight(ctx)
+                  end,
+                },
+              },
+            },
+          },
+          documentation = {
+            auto_show = true,
+          },
+        },
+        snippets = {
+          preset = 'luasnip',
+          active = function(filter)
+            local snippet = require "luasnip"
+            local blink = require "blink.cmp"
+            if snippet.in_snippet() and not blink.is_visible() then
+              return true
+            else
+              if not snippet.in_snippet() and vim.fn.mode() == "n" then snippet.unlink_current() end
+              return false
+            end
+          end,
+        },
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer', 'omni' },
+          providers = {
+            path = {
+              score_offset = 50,
+            },
+            lsp = {
+              score_offset = 40,
+            },
+            snippets = {
+              score_offset = 40,
+            },
+            cmp_cmdline = {
+              name = 'cmp_cmdline',
+              module = 'blink.compat.source',
+              score_offset = -100,
+              opts = {
+                cmp_name = 'cmdline',
+              },
+            },
+          },
+        },
+      })
+    end,
   },
 }
-
-cmp.setup.filetype('lua', {
-  sources = cmp.config.sources {
-    { name = 'nvim_lua' },
-    { name = 'nvim_lsp'--[[ , keyword_length = 3  ]]},
-    { name = 'nvim_lsp_signature_help'--[[ , keyword_length = 3  ]]},
-    { name = 'path' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-  },{
-    {
-      name = 'cmdline',
-      option = {
-        ignore_cmds = { 'Man', '!' },
-      },
-    },
-  },
-})
-
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'nvim_lsp_document_symbol'--[[ , keyword_length = 3  ]]},
-    { name = 'buffer' },
-    { name = 'cmdline_history' },
-  },
-  view = {
-    entries = { name = 'wildmenu', separator = '|' },
-  },
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources {
-    { name = 'cmdline' },
-    -- { name = 'cmdline_history' },
-    { name = 'path' },
-  },
-})

@@ -1,155 +1,166 @@
-local servers = {}
-if nixCats('neonixdev') then
-  -- NOTE: Lazydev will make your lua lsp stronger for neovim config
-  -- NOTE: we are also using this as an opportunity to show you how to lazy load plugins!
-  -- This plugin was added to the optionalPlugins section of the main flake.nix of this repo.
-  -- Thus, it is not loaded and must be packadded.
-  vim.api.nvim_create_autocmd('FileType', {
-    group = vim.api.nvim_create_augroup('nixCats-lazydev', { clear = true }),
-    pattern = { 'lua' },
-    callback = function(event)
-      -- NOTE: Use `:NixCats pawsible` to see the names of all plugins downloaded via nix for packadd
-      vim.cmd.packadd('lazydev.nvim')
-      require('lazydev').setup({
-        library = {
-        --   -- See the configuration section for more details
-        --   -- Load luvit types when the `vim.uv` word is found
-        --   -- { path = "luvit-meta/library", words = { "vim%.uv" } },
-          -- adds type hints for nixCats global
-          { path = require('nixCats').nixCatsPath .. '/lua', words = { "nixCats" } },
-        },
-      })
-    end
-  })
-  -- NOTE: use BirdeeHub/lze to manage the autocommands for you if the above seems tedious.
-  -- Or, use the wrapper for lazy.nvim included in the luaUtils template.
-  -- NOTE: AFTER DIRECTORIES WILL NOT BE SOURCED BY PACKADD!!!!!
-  -- this must be done by you manually if,
-  -- for example, you wanted to lazy load nvim-cmp sources
-
-  servers.lua_ls = {
-    Lua = {
-      formatters = {
-        ignoreComments = true,
-      },
-      signatureHelp = { enabled = true },
-      diagnostics = {
-        globals = { 'nixCats' },
-        disable = { 'missing-fields' },
-      },
-    },
-    telemetry = { enabled = false },
-    filetypes = { 'lua' },
-  }
-  if require('nixCatsUtils').isNixCats then
-    servers.nixd = {
-      nixd = {
-        nixpkgs = {
-          -- nixd requires some configuration in flake based configs.
-          -- luckily, the nixCats plugin is here to pass whatever we need!
-          expr = [[import (builtins.getFlake "]] .. nixCats("nixdExtras.nixpkgs") .. [[") { }   ]],
-        },
-        formatting = {
-          command = { "alejandra -qq" }
-        },
-        diagnostic = {
-          suppress = {
-            "sema-escaping-with"
-          }
-        }
-      }
-    }
-    -- If you integrated with your system flake,
-    -- you should pass inputs.self.outPath as nixdExtras.flake-path
-    -- that way it will ALWAYS work, regardless
-    -- of where your config actually was.
-    -- otherwise flake-path could be an absolute path to your system flake, or nil or false
-    if nixCats("nixdExtras.flake-path") and nixCats("nixdExtras.systemCFGname") and nixCats("nixdExtras.homeCFGname") then
-      servers.nixd.nixd.options = {
-        -- (builtins.getFlake "<path_to_system_flake>").nixosConfigurations."<name>".options
-        nixos = {
-          expr = [[(builtins.getFlake "]] ..
-            nixCats("nixdExtras.flake-path") ..  [[").nixosConfigurations."]] ..
-            nixCats("nixdExtras.systemCFGname") .. [[".options]]
-        },
-        -- (builtins.getFlake "<path_to_system_flake>").homeConfigurations."<name>".options
-        ["home-manager"] = {
-          expr = [[(builtins.getFlake "]] ..
-            nixCats("nixdExtras.flake-path") .. [[").homeConfigurations."]] ..
-            nixCats("nixdExtras.homeCFGname") .. [[".options]]
-        }
-      }
-    end
-  else
-    servers.rnix = {}
-    servers.nil_ls = {}
-  end
-
-end
-
--- This is this flake's version of what kickstarter has set up for mason handlers.
--- This is a convenience function that calls lspconfig on the lsps we downloaded via nix
--- This will not download your lsp. Nix does that.
-
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
---  All of them are listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
---
---  If you want to override the default filetypes that your language server will attach to you can
---  define the property 'filetypes' to the map in question.
---  You may do the same thing with cmd
-
--- servers.clangd = {}
--- servers.gopls = {}
-servers.marksman = {}
-servers.pyright = {}
-servers.ruff = {}
-servers.tailwindcss = {}
--- servers.rust_analyzer = {}
--- servers.tsserver = {}
--- servers.html = { filetypes = { 'html', 'twig', 'hbs'} }
-
-
-if not require('nixCatsUtils').isNixCats and nixCats('lspDebugMode') then
+local catUtils = require('nixCatsUtils')
+if (catUtils.isNixCats and nixCats('lspDebugMode')) then
   vim.lsp.set_log_level("debug")
 end
--- If you were to comment out this autocommand
--- and instead pass the on attach function directly to
--- nvim-lspconfig, it would do the same thing.
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('nixCats-lsp-attach', { clear = true }),
-  callback = function(event)
-    require('myLuaConf.LSPs.caps-on_attach').on_attach(vim.lsp.get_client_by_id(event.data.client_id), event.buf)
-  end
-})
 
-if require('nixCatsUtils').isNixCats then
-  for server_name, cfg in pairs(servers) do
-    require('lspconfig')[server_name].setup({
-      capabilities = require('myLuaConf.LSPs.caps-on_attach').get_capabilities(server_name),
-      -- this line is interchangeable with the above LspAttach autocommand
-      -- on_attach = require('myLuaConf.LSPs.caps-on_attach').on_attach,
-      settings = cfg,
-      filetypes = (cfg or {}).filetypes,
-      cmd = (cfg or {}).cmd,
-      root_pattern = (cfg or {}).root_pattern,
-    })
+-- NOTE: This file uses lzextras.lsp handler https://github.com/BirdeeHub/lzextras?tab=readme-ov-file#lsp-handler
+-- This is a slightly more performant fallback function
+-- for when you don't provide a filetype to trigger on yourself.
+-- nixCats gives us the paths, which is faster than searching the rtp!
+local old_ft_fallback = require('lze').h.lsp.get_ft_fallback()
+require('lze').h.lsp.set_ft_fallback(function(name)
+  local lspcfg = nixCats.pawsible({ "allPlugins", "opt", "nvim-lspconfig" }) or nixCats.pawsible({ "allPlugins", "start", "nvim-lspconfig" })
+  if lspcfg then
+    local ok, cfg = pcall(dofile, lspcfg .. "/lsp/" .. name .. ".lua")
+    if not ok then
+      ok, cfg = pcall(dofile, lspcfg .. "/lua/lspconfig/configs/" .. name .. ".lua")
+    end
+    return (ok and cfg or {}).filetypes or {}
+  else
+    return old_ft_fallback(name)
   end
-else
-  require('mason').setup()
-  local mason_lspconfig = require 'mason-lspconfig'
-  mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(servers),
-  }
-  mason_lspconfig.setup_handlers {
-    function(server_name)
-      require('lspconfig')[server_name].setup {
-        capabilities = require('myLuaConf.LSPs.caps-on_attach').get_capabilities(server_name),
-        -- this line is interchangeable with the above LspAttach autocommand
-        -- on_attach = require('myLuaConf.LSPs.caps-on_attach').on_attach,
-        settings = servers[server_name],
-        filetypes = (servers[server_name] or {}).filetypes,
-      }
+end)
+require('lze').load {
+  {
+    "nvim-lspconfig",
+    for_cat = "general.always",
+    on_require = { "lspconfig" },
+    -- NOTE: define a function for lsp,
+    -- and it will run for all specs with type(plugin.lsp) == table
+    -- when their filetype trigger loads them
+    lsp = function(plugin)
+      vim.lsp.config(plugin.name, plugin.lsp or {})
+      vim.lsp.enable(plugin.name)
     end,
-  }
-end
+    before = function(_)
+      vim.lsp.config('*', {
+        on_attach = require('myLuaConf.LSPs.on_attach'),
+      })
+    end,
+  },
+  {
+    "mason.nvim",
+    -- only run it when not on nix
+    enabled = not catUtils.isNixCats,
+    on_plugin = { "nvim-lspconfig" },
+    load = function(name)
+      vim.cmd.packadd(name)
+      vim.cmd.packadd("mason-lspconfig.nvim")
+      require('mason').setup()
+      -- auto install will make it install servers when lspconfig is called on them.
+      require('mason-lspconfig').setup { automatic_installation = true, }
+    end,
+  },
+  {
+    -- lazydev makes your lsp way better in your config without needing extra lsp configuration.
+    "lazydev.nvim",
+    for_cat = "neonixdev",
+    cmd = { "LazyDev" },
+    ft = "lua",
+    after = function(_)
+      require('lazydev').setup({
+        library = {
+          { words = { "nixCats" }, path = (nixCats.nixCatsPath or "") .. '/lua' },
+        },
+      })
+    end,
+  },
+  {
+    -- name of the lsp
+    "lua_ls",
+    enabled = nixCats('lua') or nixCats('neonixdev') or false,
+    -- provide a table containing filetypes,
+    -- and then whatever your functions defined in the function type specs expect.
+    -- in our case, it just expects the normal lspconfig setup options,
+    -- but with a default on_attach and capabilities
+    lsp = {
+      -- if you provide the filetypes it doesn't ask lspconfig for the filetypes
+      filetypes = { 'lua' },
+      settings = {
+        Lua = {
+          runtime = { version = 'LuaJIT' },
+          formatters = {
+            ignoreComments = true,
+          },
+          signatureHelp = { enabled = true },
+          diagnostics = {
+            globals = { "nixCats", "vim", },
+            disable = { 'missing-fields' },
+          },
+          telemetry = { enabled = false },
+        },
+      },
+    },
+    -- also these are regular specs and you can use before and after and all the other normal fields
+  },
+  {
+    "gopls",
+    for_cat = "go",
+    -- if you don't provide the filetypes it asks lspconfig for them
+    lsp = {
+      filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    },
+  },
+  {
+    "rnix",
+    -- mason doesn't have nixd
+    enabled = not catUtils.isNixCats,
+    lsp = {
+      filetypes = { "nix" },
+    },
+  },
+  {
+    "nil_ls",
+    -- mason doesn't have nixd
+    enabled = not catUtils.isNixCats,
+    lsp = {
+      filetypes = { "nix" },
+    },
+  },
+  {
+    "nixd",
+    enabled = catUtils.isNixCats and (nixCats('nix') or nixCats('neonixdev')) or false,
+    lsp = {
+      filetypes = { "nix" },
+      settings = {
+        nixd = {
+          -- nixd requires some configuration.
+          -- luckily, the nixCats plugin is here to pass whatever we need!
+          -- we passed this in via the `extra` table in our packageDefinitions
+          -- for additional configuration options, refer to:
+          -- https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
+          nixpkgs = {
+            -- in the extras set of your package definition:
+            -- nixdExtras.nixpkgs = ''import ${pkgs.path} {}''
+            expr = nixCats.extra("nixdExtras.nixpkgs") or [[import <nixpkgs> {}]],
+          },
+          options = {
+            -- If you integrated with your system flake,
+            -- you should use inputs.self as the path to your system flake
+            -- that way it will ALWAYS work, regardless
+            -- of where your config actually was.
+            nixos = {
+              -- nixdExtras.nixos_options = ''(builtins.getFlake "path:${builtins.toString inputs.self.outPath}").nixosConfigurations.configname.options''
+              expr = nixCats.extra("nixdExtras.nixos_options")
+            },
+            -- If you have your config as a separate flake, inputs.self would be referring to the wrong flake.
+            -- You can override the correct one into your package definition on import in your main configuration,
+            -- or just put an absolute path to where it usually is and accept the impurity.
+            ["home-manager"] = {
+              -- nixdExtras.home_manager_options = ''(builtins.getFlake "path:${builtins.toString inputs.self.outPath}").homeConfigurations.configname.options''
+              expr = nixCats.extra("nixdExtras.home_manager_options")
+            }
+          },
+          formatting = {
+            command = { "nixfmt" }
+          },
+          diagnostic = {
+            suppress = {
+              "sema-escaping-with"
+            }
+          }
+        }
+      },
+    },
+  },
+}

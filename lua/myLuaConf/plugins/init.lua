@@ -1,464 +1,363 @@
-local km = vim.keymap
-
 local colorschemeName = nixCats('colorscheme')
 if not require('nixCatsUtils').isNixCats then
   colorschemeName = 'onedark'
 end
+-- Could I lazy load on colorscheme with lze?
+-- sure. But I was going to call vim.cmd.colorscheme() during startup anyway
+-- this is just an example, feel free to do a better job!
 vim.cmd.colorscheme(colorschemeName)
 
--- require('myLuaConf.plugins.cheatsheet')
-require('myLuaConf.plugins.completion')
-require('myLuaConf.plugins.dashboard')
-require('myLuaConf.plugins.lualine')
-require('myLuaConf.plugins.telescope')
-require('myLuaConf.plugins.toggleterm')
-require('myLuaConf.plugins.treesitter')
-require('myLuaConf.plugins.yanky')
-require('myLuaConf.plugins.yazi')
+local ok, notify = pcall(require, "notify")
+if ok then
+  notify.setup({
+    on_open = function(win)
+      vim.api.nvim_win_set_config(win, { focusable = false })
+    end,
+  })
+  vim.notify = notify
+  vim.keymap.set("n", "<Esc>", function()
+    notify.dismiss({ silent = true, })
+  end, { desc = "dismiss notify popup and clear hlsearch" })
+end
 
-require('zk').setup()
-km.set("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
-  { noremap = true, silent = false, desc = "New note (input title)", })
+-- NOTE: you can check if you included the category with the thing wherever you want.
+if nixCats('general.extra') then
+  -- I didnt want to bother with lazy loading this.
+  -- I could put it in opt and put it in a spec anyway
+  -- and then not set any handlers and it would load at startup,
+  -- but why... I guess I could make it load
+  -- after the other lze definitions in the next call using priority value?
+  -- didnt seem necessary.
+  vim.g.loaded_netrwPlugin = 1
+  require("oil").setup({
+    default_file_explorer = true,
+    view_options = {
+      show_hidden = true
+    },
+    columns = {
+      "icon",
+      "permissions",
+      "size",
+      -- "mtime",
+    },
+    keymaps = {
+      ["g?"] = "actions.show_help",
+      ["<CR>"] = "actions.select",
+      ["<C-s>"] = "actions.select_vsplit",
+      ["<C-h>"] = "actions.select_split",
+      ["<C-t>"] = "actions.select_tab",
+      ["<C-p>"] = "actions.preview",
+      ["<C-c>"] = "actions.close",
+      ["<C-l>"] = "actions.refresh",
+      ["-"] = "actions.parent",
+      ["_"] = "actions.open_cwd",
+      ["`"] = "actions.cd",
+      ["~"] = "actions.tcd",
+      ["gs"] = "actions.change_sort",
+      ["gx"] = "actions.open_external",
+      ["g."] = "actions.toggle_hidden",
+      ["g\\"] = "actions.toggle_trash",
+    },
+  })
+  vim.keymap.set("n", "-", "<cmd>Oil<CR>", { noremap = true, desc = 'Open Parent Directory' })
+  vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = 'Open nvim root directory' })
+end
 
-vim.g.undotree_WindowLayout = 1
-vim.g.undotree_SplitWidth = 40
-km.set('n', '<leader>U', vim.cmd.UndotreeToggle, { desc = "Undo Tree" })
-
-require('hlargs').setup {
-  color = '#32a88f',
-}
-vim.cmd([[hi clear @lsp.type.parameter]])
-vim.cmd([[hi link @lsp.type.parameter Hlargs]])
-
-require('fidget').setup({})
-
--- indent-blank-line
-local highlight = {
-  "CursorColumn",
-  "Whitespace",
-}
-require("ibl").setup({
-
-  indent = { highlight = highlight, char = "" },
-  whitespace = {
-    highlight = highlight,
-    remove_blankline_trail = false,
-  },
-  scope = { enabled = true },
-})
-
-require('gitsigns').setup({
-  -- See `:help gitsigns.txt`
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-  },
-  on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
-
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      km.set(mode, l, r, opts)
-    end
-
-    -- Navigation
-    map({ 'n', 'v' }, ']c', function()
-      if vim.wo.diff then
-        return ']c'
-      end
-      vim.schedule(function()
-        gs.next_hunk()
-      end)
-      return '<Ignore>'
-    end, { expr = true, desc = 'Jump to next hunk' })
-
-    map({ 'n', 'v' }, '[c', function()
-      if vim.wo.diff then
-        return '[c'
-      end
-      vim.schedule(function()
-        gs.prev_hunk()
-      end)
-      return '<Ignore>'
-    end, { expr = true, desc = 'Jump to previous hunk' })
-
-    -- Actions
-    -- visual mode
-    map('v', '<leader>hs', function()
-      gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-    end, { desc = 'stage git hunk' })
-    map('v', '<leader>hr', function()
-      gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-    end, { desc = 'reset git hunk' })
-    -- normal mode
-    map('n', '<leader>gs', gs.stage_hunk, { desc = 'git stage hunk' })
-    map('n', '<leader>gr', gs.reset_hunk, { desc = 'git reset hunk' })
-    map('n', '<leader>gS', gs.stage_buffer, { desc = 'git Stage buffer' })
-    map('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
-    map('n', '<leader>gR', gs.reset_buffer, { desc = 'git Reset buffer' })
-    map('n', '<leader>gp', gs.preview_hunk, { desc = 'preview git hunk' })
-    map('n', '<leader>gb', function() gs.blame_line { full = false } end, { desc = 'git blame line' })
-    map('n', '<leader>gd', gs.diffthis, { desc = 'git diff against index' })
-    map('n', '<leader>gD', function() gs.diffthis '~' end, { desc = 'git diff against last commit' })
-
-    -- Toggles
-    map('n', '<leader>gb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-    map('n', '<leader>gd', gs.toggle_deleted, { desc = 'toggle git show deleted' })
-
-    -- Text object
-    map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
-  end,
-})
-vim.cmd([[hi GitSignsAdd guifg=#04de21]])
-vim.cmd([[hi GitSignsChange guifg=#83fce6]])
-vim.cmd([[hi GitSignsDelete guifg=#fa2525]])
-
-require('which-key').setup({
-})
-require('which-key').add {
+require('lze').load {
+  { import = "myLuaConf.plugins.telescope", },
+  { import = "myLuaConf.plugins.treesitter", },
+  { import = "myLuaConf.plugins.completion", },
   {
-    "<leader>b",
-    group = "[b]uffer",
-    proxy = "<leader><leader>",
-    expand = function()
-      return require("which-key.extras").expand.buf()
+    "markdown-preview.nvim",
+    -- NOTE: for_cat is a custom handler that just sets enabled value for us,
+    -- based on result of nixCats('cat.name') and allows us to set a different default if we wish
+    -- it is defined in luaUtils template in lua/nixCatsUtils/lzUtils.lua
+    -- you could replace this with enabled = nixCats('cat.name') == true
+    -- if you didnt care to set a different default for when not using nix than the default you already set
+    for_cat = 'markdown',
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle", },
+    ft = "markdown",
+    keys = {
+      { "<leader>mp", "<cmd>MarkdownPreview <CR>",       mode = { "n" }, noremap = true, desc = "markdown preview" },
+      { "<leader>ms", "<cmd>MarkdownPreviewStop <CR>",   mode = { "n" }, noremap = true, desc = "markdown preview stop" },
+      { "<leader>mt", "<cmd>MarkdownPreviewToggle <CR>", mode = { "n" }, noremap = true, desc = "markdown preview toggle" },
+    },
+    before = function(plugin)
+      vim.g.mkdp_auto_close = 0
+    end,
+  },
+  -- {
+  --   "image-nvim",
+  --   for_cat = 'markdown',
+  --   ft = "markdown",
+  --   after = function(plugin)
+  --     require('image').setup({
+  --       processor = "magick_rock",
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "render-markdown-nvim",
+  --   for_cat = 'markdown',
+  --   ft = "markdown",
+  --   after = function(plugin)
+  --     require('render-markdown').setup({})
+  --   end,
+  -- },
+  -- {
+  --   "toggleterm",
+  --   for_cat = 'general.extra',
+  --   after = function(plugin)
+  --     require('toggleterm').setup({
+  --       size = function(term)
+  --         if term.direction == "horizontal" then
+  --           return math.floor(vim.o.rows * 0.4)
+  --         elseif term.direction == "vertical" then
+  --           return math.floor(vim.o.columns * 0.4)
+  --         end
+  --       end,
+  --       direction = "vertical",
+  --       float_opts = {
+  --         border = "curved",
+  --         width = math.floor(vim.o.columns * 0.8),
+  --         height = math.floor(vim.o.rows * 0.8),
+  --         title_pos = "center",
+  --       },
+  --     })
+  --   end,
+  -- },
+  {
+    "undotree",
+    for_cat = 'general.extra',
+    cmd = { "UndotreeToggle", "UndotreeHide", "UndotreeShow", "UndotreeFocus", "UndotreePersistUndo", },
+    keys = { { "<leader>U", "<cmd>UndotreeToggle<CR>", mode = { "n" }, desc = "Undo Tree" }, },
+    before = function(_)
+      vim.g.undotree_WindowLayout = 1
+      vim.g.undotree_SplitWidth = 40
     end,
   },
   {
-    "<leader>w",
-    group = "[w]indows",
-    proxy = "<c-w>",
-    expand = function()
-      return require("which-key.extras").expand.win()
+    "comment.nvim",
+    for_cat = 'general.extra',
+    event = "DeferredUIEnter",
+    after = function(plugin)
+      require('Comment').setup()
     end,
   },
-  { "<leader>c", group = "[c]ode" },
-  { "<leader>d", group = "[d]ocument" },
-  { "<leader>g", group = "[g]it" },
-  { "<leader>m", group = "[m]arkdown" },
-  { "<leader>r", group = "[r]ename" },
-  { "<leader>s", group = "[s]earch" },
-  { "<leader>t", group = "[t]erminals" },
-  { "<leader>W", group = "[W]orkspace" },
-  { "<leader>z", group = "[z]ettelkasten" },
-  { "<leader>x", group = "debug" },
-  { "[",         group = "prev" },
-  { "]",         group = "next" },
-  { "g",         group = "[g]oto" },
-  { "gx",        desc = "Open with system app" },
-  { "z",         group = "fold" },
-  { "gs",        group = "surround" },
-  { 'gsa',       desc = "Add surrounding in Normal and Visual modes" },
-  { 'gsd',       desc = "Delete surrounding" },
-  { 'gsf',       desc = "Find surrounding (to the right)" },
-  { 'gsF',       desc = "Find surrounding (to the left)" },
-  { 'gsh',       desc = "Highlight surrounding" },
-  { 'gsr',       desc = "Replace surrounding" },
-  { 'gsn',       desc = "Update `n_lines`" },
-}
-
-require('grug-far').setup()
-
-local augend = require("dial.augend")
-require("dial.config").augends:register_group {
-  default = {
-    augend.integer.alias.decimal,
-    augend.integer.alias.decimal_int,
-    augend.integer.alias.hex,
-    augend.integer.alias.octal,
-    augend.integer.alias.binary,
-    augend.date.alias["%Y/%m/%d"],
-    augend.date.alias["%m/%d/%Y"],
-    augend.date.alias["%d/%m/%Y"],
-    augend.date.alias["%m/%d/%y"],
-    augend.date.alias["%d/%m/%y"],
-    augend.date.alias["%m/%d"],
-    augend.date.alias["%-m/%-d"],
-    augend.date.alias["%Y-%m-%d"],
-    augend.date.alias["%d.%m.%Y"],
-    augend.date.alias["%d.%m.%y"],
-    augend.date.alias["%d.%m."],
-    augend.date.alias["%-d.%-m."],
-    augend.date.alias["%H:%M:%S"],
-    augend.date.alias["%H:%M"],
-    augend.constant.alias.bool,
-    augend.constant.alias.alpha,
-    augend.constant.alias.Alpha,
-    augend.semver.alias.semver,
+  {
+    "indent-blankline.nvim",
+    for_cat = 'general.extra',
+    event = "DeferredUIEnter",
+    after = function(plugin)
+      require("ibl").setup()
+    end,
   },
-  typescript = {
-    augend.constant.new { elements = { "let", "const" } },
+  {
+    "nvim-surround",
+    for_cat = 'general.always',
+    event = "DeferredUIEnter",
+    -- keys = "",
+    after = function(plugin)
+      require('nvim-surround').setup()
+    end,
   },
-}
-km.set("n", "<C-a>", function()
-  require("dial.map").manipulate("increment", "normal")
-end)
-km.set("n", "<C-x>", function()
-  require("dial.map").manipulate("decrement", "normal")
-end)
-km.set("n", "g<C-a>", function()
-  require("dial.map").manipulate("increment", "gnormal")
-end)
-km.set("n", "g<C-x>", function()
-  require("dial.map").manipulate("decrement", "gnormal")
-end)
-km.set("v", "<C-a>", function()
-  require("dial.map").manipulate("increment", "visual")
-end)
-km.set("v", "<C-x>", function()
-  require("dial.map").manipulate("decrement", "visual")
-end)
-km.set("v", "g<C-a>", function()
-  require("dial.map").manipulate("increment", "gvisual")
-end)
-km.set("v", "g<C-x>", function()
-  require("dial.map").manipulate("decrement", "gvisual")
-end)
-
-require("mini.surround").setup({
-  mappings = {
-    add = 'gsa',            -- Add surrounding in Normal and Visual modes
-    delete = 'gsd',         -- Delete surrounding
-    find = 'gsf',           -- Find surrounding (to the right)
-    find_left = 'gsF',      -- Find surrounding (to the left)
-    highlight = 'gsh',      -- Highlight surrounding
-    replace = 'gsr',        -- Replace surrounding
-    update_n_lines = 'gsn', -- Update `n_lines`
+  {
+    "vim-startuptime",
+    for_cat = 'general.extra',
+    cmd = { "StartupTime" },
+    before = function(_)
+      vim.g.startuptime_event_width = 0
+      vim.g.startuptime_tries = 10
+      vim.g.startuptime_exe_path = nixCats.packageBinPath
+    end,
   },
-})
-require("mini.pairs").setup({
-  modes = { insert = true, command = true, terminal = false },
-  -- skip autopair when next character is one of these
-  skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-  -- skip autopair when the cursor is inside these treesitter nodes
-  skip_ts = { "string" },
-  -- skip autopair when next character is closing pair
-  -- and there are more closing pairs than opening pairs
-  skip_unbalanced = true,
-  -- better deal with markdown code blocks
-  markdown = true,
-})
-
-require("todo-comments").setup()
-km.set("n", "]t", function() require("todo-comments").jump_next() end,
-  { noremap = true, silent = false, desc = "Next todo comment" })
-km.set("n", "[t", function() require("todo-comments").jump_prev() end,
-  { noremap = true, silent = false, desc = "Previous todo comment" })
-km.set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>",
-  { noremap = true, silent = false, desc = "Todo (Trouble)" })
-km.set("n", "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
-  { noremap = true, silent = false, desc = "Todo/Fix/Fixme (Trouble)" })
-km.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { noremap = true, silent = false, desc = "Todo" })
-km.set("n", "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
-  { noremap = true, silent = false, desc = "Todo/Fix/Fixme" })
-
-require("trouble").setup()
-km.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",
-  { noremap = true, silent = false, desc = "Diagnostics (Trouble)" })
-km.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-  { noremap = true, silent = false, desc = "Buffer Diagnostics (Trouble)" })
-km.set("n", "<leader>cs", "<cmd>Trouble symbols toggle<cr>",
-  { noremap = true, silent = false, desc = "Symbols (Trouble)" })
-km.set("n", "<leader>cS", "<cmd>Trouble lsp toggle<cr>",
-  { noremap = true, silent = false, desc = "LSP references/definitions/... (Trouble)" })
-km.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>",
-  { noremap = true, silent = false, desc = "Location List (Trouble)" })
-km.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",
-  { noremap = true, silent = false, desc = "Quickfix List (Trouble)" })
-
-require("typescript-tools").setup {
-  -- on_attach = function() ... end,
-  -- handlers = { ... },
-  -- ...
-  settings = {
-    -- spawn additional tsserver instance to calculate diagnostics on it
-    separate_diagnostic_server = true,
-    -- "change"|"insert_leave" determine when the client asks the server about diagnostic
-    publish_diagnostic_on = "insert_leave",
-    -- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
-    -- "remove_unused_imports"|"organize_imports") -- or string "all"
-    -- to include all supported code actions
-    -- specify commands exposed as code_actions
-    expose_as_code_action = { "all" },
-    -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
-    -- not exists then standard path resolution strategy is applied
-    tsserver_path = nil,
-    -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
-    -- (see 💅 `styled-components` support section)
-    tsserver_plugins = {},
-    -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
-    -- memory limit in megabytes or "auto"(basically no limit)
-    tsserver_max_memory = "auto",
-    -- described below
-    tsserver_file_preferences = {
-      includeInlayParameterNameHints = "all",
-      includeCompletionsForModuleExports = true,
-      quotePreference = "auto",
-    },
-    tsserver_format_options = {
-      allowIncompleteCompletions = false,
-      allowRenameOfImportPath = false,
-    },
-    -- locale of all tsserver messages, supported locales you can find here:
-    -- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
-    tsserver_locale = "en",
-    -- mirror of VSCode's `typescript.suggest.completeFunctionCalls`
-    complete_function_calls = true,
-    include_completions_with_insert_text = true,
-    -- CodeLens
-    -- WARNING: Experimental feature also in VSCode, because it might hit performance of server.
-    -- possible values: ("off"|"all"|"implementations_only"|"references_only")
-    code_lens = "all",
-    -- by default code lenses are displayed on all referencable values and for some of you it can
-    -- be too much this option reduce count of them by removing member references from lenses
-    disable_member_code_lens = true,
-    -- JSXCloseTag
-    -- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-ts-autotag,
-    -- that maybe have a conflict if enable this feature. )
-    jsx_close_tag = {
-      enable = true,
-      filetypes = { "javascriptreact", "typescriptreact" },
-    }
+  {
+    "fidget.nvim",
+    for_cat = 'general.extra',
+    event = "DeferredUIEnter",
+    -- keys = "",
+    after = function(plugin)
+      require('fidget').setup({})
+    end,
   },
-}
-
--- require("tailwind-tools").setup({
---   server = {
---     override = true,                           -- setup the server from the plugin if true
---     settings = {},                             -- shortcut for `settings.tailwindCSS`
---     on_attach = function(client, bufnr) end,   -- callback triggered when the server attaches to a buffer
---   },
---   document_color = {
---     enabled = true, -- can be toggled by commands
---     kind = "inline", -- "inline" | "foreground" | "background"
---     inline_symbol = "󰝤 ", -- only used in inline mode
---     debounce = 200, -- in milliseconds, only applied in insert mode
---   },
---   conceal = {
---     enabled = false, -- can be toggled by commands
---     min_length = nil, -- only conceal classes exceeding the provided length
---     symbol = "󱏿", -- only a single character is allowed
---     highlight = { -- extmark highlight options, see :h 'highlight'
---       fg = "#38BDF8",
---     },
---   },
---   cmp = {
---     highlight = "foreground",   -- color preview style, "foreground" | "background"
---   },
---   telescope = {
---     utilities = {
---       callback = function(name, class) end,   -- callback used when selecting an utility class in telescope
---     },
---   },
---   -- see the extension section to learn more
---   extension = {
---     queries = {},   -- a list of filetypes having custom `class` queries
---     patterns = {    -- a map of filetypes to Lua pattern lists
---       -- example:
---       -- rust = { "class=[\"']([^\"']+)[\"']" },
---       -- javascript = { "clsx%(([^)]+)%)" },
---     },
---   },
--- })
-
-require("flash").setup({
-  modes = {
-    char = {
-      jump_labels = true
-    }
-  }
-})
-km.set({ "n", "x", "o" }, "<C-f>", function() require("flash").treesitter() end, { desc = "Flash Treesitter", })
-km.set("c", "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
-
--- require("snacks").setup({
---   bigfile = { enabled = true },
---   dashboard = { enabled = true },
---   indent = { enabled = true },
---   input = { enabled = true },
---   notifier = {
---     enabled = true,
---     timeout = 3000,
---   },
---   quickfile = { enabled = true },
---   scroll = { enabled = true },
---   statuscolumn = { enabled = true },
---   words = { enabled = true },
---   styles = {
---     notification = {
---       wo = { wrap = true } -- Wrap notifications
---     }
---   }
--- })
-
-require('multicursors').setup {
-  hint_config = {
-    float_opts = {
-      border = 'rounded',
-    },
-    position = 'bottom-right',
+  {
+    "mini-animate",
+    for_cat = 'general.extra',
+    event = "DeferredUIEnter",
+    -- keys = "",
+    after = function(plugin)
+      require('mini.animate').setup({})
+    end,
   },
-  generate_hints = {
-    normal = true,
-    insert = true,
-    extend = true,
-    config = {
-      column_count = 1,
-    },
+  {
+    "hlargs",
+    for_cat = 'general.extra',
+    event = "DeferredUIEnter",
+    -- keys = "",
+    dep_of = { "nvim-lspconfig" },
+    after = function(plugin)
+      require('hlargs').setup {
+        color = '#32a88f',
+      }
+      vim.cmd([[hi clear @lsp.type.parameter]])
+      vim.cmd([[hi link @lsp.type.parameter Hlargs]])
+    end,
+  },
+  {
+    "lualine.nvim",
+    for_cat = 'general.always',
+    -- cmd = { "" },
+    event = "DeferredUIEnter",
+    -- ft = "",
+    -- keys = "",
+    -- colorscheme = "",
+    after = function(plugin)
+      require('lualine').setup({
+        options = {
+          icons_enabled = false,
+          theme = colorschemeName,
+          component_separators = '|',
+          section_separators = '',
+        },
+        sections = {
+          lualine_c = {
+            {
+              'filename', path = 1, status = true,
+            },
+          },
+        },
+        inactive_sections = {
+          lualine_b = {
+            {
+              'filename', path = 3, status = true,
+            },
+          },
+          lualine_x = { 'filetype' },
+        },
+        tabline = {
+          lualine_a = { 'buffers' },
+          -- if you use lualine-lsp-progress, I have mine here instead of fidget
+          -- lualine_b = { 'lsp_progress', },
+          lualine_z = { 'tabs' }
+        },
+      })
+    end,
+  },
+  {
+    "gitsigns.nvim",
+    for_cat = 'general.always',
+    event = "DeferredUIEnter",
+    -- cmd = { "" },
+    -- ft = "",
+    -- keys = "",
+    -- colorscheme = "",
+    after = function(plugin)
+      require('gitsigns').setup({
+        -- See `:help gitsigns.txt`
+        signs = {
+          add = { text = '+' },
+          change = { text = '~' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
+        },
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
+
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          -- Navigation
+          map({ 'n', 'v' }, ']c', function()
+            if vim.wo.diff then
+              return ']c'
+            end
+            vim.schedule(function()
+              gs.next_hunk()
+            end)
+            return '<Ignore>'
+          end, { expr = true, desc = 'Jump to next hunk' })
+
+          map({ 'n', 'v' }, '[c', function()
+            if vim.wo.diff then
+              return '[c'
+            end
+            vim.schedule(function()
+              gs.prev_hunk()
+            end)
+            return '<Ignore>'
+          end, { expr = true, desc = 'Jump to previous hunk' })
+
+          -- Actions
+          -- visual mode
+          map('v', '<leader>hs', function()
+            gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          end, { desc = 'stage git hunk' })
+          map('v', '<leader>hr', function()
+            gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          end, { desc = 'reset git hunk' })
+          -- normal mode
+          map('n', '<leader>gs', gs.stage_hunk, { desc = 'git stage hunk' })
+          map('n', '<leader>gr', gs.reset_hunk, { desc = 'git reset hunk' })
+          map('n', '<leader>gS', gs.stage_buffer, { desc = 'git Stage buffer' })
+          map('n', '<leader>gu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
+          map('n', '<leader>gR', gs.reset_buffer, { desc = 'git Reset buffer' })
+          map('n', '<leader>gp', gs.preview_hunk, { desc = 'preview git hunk' })
+          map('n', '<leader>gb', function()
+            gs.blame_line { full = false }
+          end, { desc = 'git blame line' })
+          map('n', '<leader>gd', gs.diffthis, { desc = 'git diff against index' })
+          map('n', '<leader>gD', function()
+            gs.diffthis '~'
+          end, { desc = 'git diff against last commit' })
+
+          -- Toggles
+          map('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
+          map('n', '<leader>gtd', gs.toggle_deleted, { desc = 'toggle git show deleted' })
+
+          -- Text object
+          map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
+        end,
+      })
+      vim.cmd([[hi GitSignsAdd guifg=#04de21]])
+      vim.cmd([[hi GitSignsChange guifg=#83fce6]])
+      vim.cmd([[hi GitSignsDelete guifg=#fa2525]])
+    end,
+  },
+  {
+    "which-key.nvim",
+    for_cat = 'general.extra',
+    -- cmd = { "" },
+    event = "DeferredUIEnter",
+    -- ft = "",
+    -- keys = "",
+    -- colorscheme = "",
+    after = function(plugin)
+      require('which-key').setup({
+      })
+      require('which-key').add {
+        { "<leader><leader>",  group = "buffer commands" },
+        { "<leader><leader>_", hidden = true },
+        { "<leader>c",         group = "[c]ode" },
+        { "<leader>c_",        hidden = true },
+        { "<leader>d",         group = "[d]ocument" },
+        { "<leader>d_",        hidden = true },
+        { "<leader>g",         group = "[g]it" },
+        { "<leader>g_",        hidden = true },
+        { "<leader>m",         group = "[m]arkdown" },
+        { "<leader>m_",        hidden = true },
+        { "<leader>r",         group = "[r]ename" },
+        { "<leader>r_",        hidden = true },
+        { "<leader>s",         group = "[s]earch" },
+        { "<leader>s_",        hidden = true },
+        { "<leader>t",         group = "[t]oggles" },
+        { "<leader>t_",        hidden = true },
+        { "<leader>w",         group = "[w]orkspace" },
+        { "<leader>w_",        hidden = true },
+      }
+    end,
   },
 }
-km.set("n", "<leader>mc", "<cmd>MCstart<cr>", { desc = "Multicursor" })
-km.set("n", "<leader>mC", "<cmd>MCpattern<cr>", { desc = "Multicursor pattern" })
-km.set("v", "<leader>mc", "<cmd>MCvisual<cr>", { desc = "Multicursor" })
-km.set("v", "<leader>mC", "<cmd>MCvisualPattern<cr>", { desc = "Multicursor pattern" })
-
-require("guess-indent").setup({})
-
-local rainbow_delimiters = require 'rainbow-delimiters'
-require('rainbow-delimiters.setup').setup {
-  strategy = {
-    [''] = rainbow_delimiters.strategy['local'],
-    -- vim = rainbow_delimiters.strategy['local'],
-  },
-  query = {
-    [''] = 'rainbow-delimiters',
-    lua = 'rainbow-blocks',
-
-    query = function(bufnr)
-      -- Use blocks for read-only buffers like in `:InspectTree`
-      local is_nofile = vim.bo[bufnr].buftype == 'nofile'
-      return is_nofile and 'rainbow-blocks' or 'rainbow-delimiters'
-    end
-
-  },
-  priority = {
-    [''] = 110,
-    lua = 210,
-  },
-  highlight = {
-    'RainbowDelimiterRed',
-    'RainbowDelimiterYellow',
-    'RainbowDelimiterBlue',
-    'RainbowDelimiterOrange',
-    'RainbowDelimiterGreen',
-    'RainbowDelimiterViolet',
-    'RainbowDelimiterCyan',
-  },
-
-}
-
-require('ts_context_commentstring').setup {
-  enable_autocmd = false,
-}
-require('Comment').setup {
-  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-}
-
--- require('mini-animate').setup()
--- require('mini-align').setup()
-
--- require('image').setup()

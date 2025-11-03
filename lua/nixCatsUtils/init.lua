@@ -1,7 +1,22 @@
+--[[
+  This directory is the luaUtils template.
+  You can choose what things from it that you would like to use.
+  And then delete the rest.
+  Everything in this directory is optional.
+--]]
+
 local M = {}
 
--- these 3 files are intended to be independent. You will likely want at least something in this one,
--- but unless you use lazy.nvm or want to use pckr or rocks when not on nix, you wont need the other 2
+--[[
+  This file is for making your config still work WITHOUT nixCats.
+  When you don't use nixCats to load your config,
+  you wont have the nixCats plugin.
+
+  The setup function defined here defines a mock nixCats plugin when nixCats wasnt used to load the config.
+  This will help avoid indexing errors when the nixCats plugin doesnt exist.
+
+  NOTE: If you only ever use nixCats to load your config, you don't need this file.
+--]]
 
 ---@type boolean
 M.isNixCats = vim.g[ [[nixCats-special-rtp-entry-nixCats]] ] ~= nil
@@ -9,7 +24,10 @@ M.isNixCats = vim.g[ [[nixCats-special-rtp-entry-nixCats]] ] ~= nil
 ---@class nixCatsSetupOpts
 ---@field non_nix_value boolean|nil
 
----defaults to true if non_nix_value is not provided or is not a boolean.
+---This function will setup a mock nixCats plugin when not using nix
+---It will help prevent you from running into indexing errors without a nixCats plugin from nix.
+---If you loaded the config via nix, it does nothing
+---non_nix_value defaults to true if not provided or is not a boolean.
 ---@param v nixCatsSetupOpts
 function M.setup(v)
   if not M.isNixCats then
@@ -19,30 +37,50 @@ function M.setup(v)
     else
       nixCats_default_value = true
     end
-    -- if not in nix, just make it return a boolean
-    require('_G').nixCats = function(_) return nixCats_default_value end
-    -- and define some stuff for the nixCats plugin
-    -- to prevent indexing errors and provide some values
+    local mk_with_meta = function (tbl)
+      return setmetatable(tbl, {
+        __call = function(_, attrpath)
+          local strtable = {}
+          if type(attrpath) == "table" then
+              strtable = attrpath
+          elseif type(attrpath) == "string" then
+              for key in attrpath:gmatch("([^%.]+)") do
+                  table.insert(strtable, key)
+              end
+          else
+              print("function requires a table of strings or a dot separated string")
+              return
+          end
+          return vim.tbl_get(tbl, unpack(strtable));
+        end
+      })
+    end
     package.preload['nixCats'] = function ()
-      return {
-        cats = {},
-        pawsible = {
-          allPlugins = {
-            start = {},
-            opt = {},
-            treesitter_grammars = {},
-            ts_grammar_path = nil,
-          },
-        },
-        settings = {
+      local ncsub = {
+        get = function(_) return nixCats_default_value end,
+        cats = mk_with_meta({
+          nixCats_config_location = vim.fn.stdpath('config'),
+          wrapRc = false,
+        }),
+        settings = mk_with_meta({
           nixCats_config_location = vim.fn.stdpath('config'),
           configDirName = os.getenv("NVIM_APPNAME") or "nvim",
           wrapRc = false,
-        },
+        }),
+        petShop = mk_with_meta({}),
+        extra = mk_with_meta({}),
+        pawsible = mk_with_meta({
+          allPlugins = {
+            start = {},
+            opt = {},
+          },
+        }),
         configDir = vim.fn.stdpath('config'),
         packageBinPath = os.getenv('NVIM_WRAPPER_PATH_NIX') or vim.v.progpath
       }
+      return setmetatable(ncsub, {__call = function(_, cat) return ncsub.get(cat) end})
     end
+    _G.nixCats = require('nixCats')
   end
 end
 
@@ -87,10 +125,5 @@ function M.lazyAdd(v, o)
     return v
   end
 end
-
----Useful for things such as vim-startuptime which must reference the wrapper's actual path
----If not using nix, this will simply return vim.v.progpath
----@type string
-M.packageBinPath = os.getenv('NVIM_WRAPPER_PATH_NIX') or vim.v.progpath
 
 return M

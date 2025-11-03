@@ -19,65 +19,6 @@
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-local telescope = require("telescope")
-telescope.setup {
-  -- You can put your default mappings / updates / etc. in here
-  --  All the info you're looking for is in `:help telescope.setup()`
-  --
-  defaults = {
-    mappings = {
-      i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-    },
-  },
-  -- pickers = {}
-  extensions = {
-    ['ui-select'] = {
-      require('telescope.themes').get_dropdown(),
-    },
-    -- heading = {
-    --   treesitter = true
-    -- },
-  },
-}
-
--- Enable telescope extensions, if they are installed
-telescope.load_extension('fzf')
-telescope.load_extension('ui-select')
--- telescope.load_extension('dap')
--- telescope.load_extension('heading')
--- telescope.load_extension("yank_history")
--- telescope.load_extension("manix")
-
--- See `:help telescope.builtin`
-local builtin = require 'telescope.builtin'
-vim.keymap.set('n', '<leader>sH', builtin.help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files' })
-vim.keymap.set('n', '<leader><leader>s', builtin.buffers, { desc = '[ ] [S]earch buffers' })
-
--- Slightly advanced example of overriding default behavior and theme
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer' })
-
--- Also possible to pass additional configuration options.
---  See `:help telescope.builtin.live_grep()` for information about particular keys
-vim.keymap.set('n', '<leader>s/', function()
-  builtin.live_grep {
-    grep_open_files = true,
-    prompt_title = 'Live Grep in Open Files',
-  }
-end, { desc = '[S]earch [/] in Open Files' })
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
@@ -113,14 +54,73 @@ local function live_grep_git_root()
   end
 end
 
-vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
-vim.keymap.set('n', '<leader>sp', live_grep_git_root, { desc = '[S]earch git [P]roject root' })
+return {
+  {
+    "telescope.nvim",
+    for_cat = 'general.telescope',
+    cmd = { "Telescope", "LiveGrepGitRoot" },
+    -- NOTE: our on attach function defines keybinds that call telescope.
+    -- so, the on_require handler will load telescope when we use those.
+    on_require = { "telescope", },
+    -- event = "",
+    -- ft = "",
+    keys = {
+      { "<leader>sM", '<cmd>Telescope notify<CR>', mode = {"n"}, desc = '[S]earch [M]essage', },
+      { "<leader>sp",live_grep_git_root, mode = {"n"}, desc = '[S]earch git [P]roject root', },
+      { "<leader>/", function()
+        -- Slightly advanced example of overriding default behavior and theme
+        -- You can pass additional configuration to telescope to change theme, layout, etc.
+        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        })
+      end, mode = {"n"}, desc = '[/] Fuzzily search in current buffer', },
+      { "<leader>s/", function()
+        require('telescope.builtin').live_grep {
+          grep_open_files = true,
+          prompt_title = 'Live Grep in Open Files',
+        }
+      end, mode = {"n"}, desc = '[S]earch [/] in Open Files' },
+      { "<leader><leader>s", function() return require('telescope.builtin').buffers() end, mode = {"n"}, desc = '[ ] Find existing buffers', },
+      { "<leader>s.", function() return require('telescope.builtin').oldfiles() end, mode = {"n"}, desc = '[S]earch Recent Files ("." for repeat)', },
+      { "<leader>sr", function() return require('telescope.builtin').resume() end, mode = {"n"}, desc = '[S]earch [R]esume', },
+      { "<leader>sd", function() return require('telescope.builtin').diagnostics() end, mode = {"n"}, desc = '[S]earch [D]iagnostics', },
+      { "<leader>sg", function() return require('telescope.builtin').live_grep() end, mode = {"n"}, desc = '[S]earch by [G]rep', },
+      { "<leader>sw", function() return require('telescope.builtin').grep_string() end, mode = {"n"}, desc = '[S]earch current [W]ord', },
+      { "<leader>ss", function() return require('telescope.builtin').builtin() end, mode = {"n"}, desc = '[S]earch [S]elect Telescope', },
+      { "<leader>sf", function() return require('telescope.builtin').find_files() end, mode = {"n"}, desc = '[S]earch [F]iles', },
+      { "<leader>sk", function() return require('telescope.builtin').keymaps() end, mode = {"n"}, desc = '[S]earch [K]eymaps', },
+      { "<leader>sh", function() return require('telescope.builtin').help_tags() end, mode = {"n"}, desc = '[S]earch [H]elp', },
+    },
+    -- colorscheme = "",
+    load = function (name)
+        vim.cmd.packadd(name)
+        vim.cmd.packadd("telescope-fzf-native.nvim")
+        vim.cmd.packadd("telescope-ui-select.nvim")
+    end,
+    after = function (plugin)
+      require('telescope').setup {
+        -- You can put your default mappings / updates / etc. in here
+        --  All the info you're looking for is in `:help telescope.setup()`
+        --
+        defaults = {
+          mappings = {
+            i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          },
+        },
+        -- pickers = {}
+        extensions = {
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown(),
+          },
+        },
+      }
 
--- local dap = require 'telescope'.extensions.dap
--- vim.keymap.set('n', '<leader>xc', dap.commands {}, { desc = 'Search debug commands' })
--- vim.keymap.set('n', '<leader>xC', dap.configurations {}, { desc = 'Search debug configs' })
--- vim.keymap.set('n', '<leader>xb', dap.list_breakpoints {}, { desc = 'Search debug breakpoints' })
--- vim.keymap.set('n', '<leader>xv', dap.variables {}, { desc = 'Search debug variables' })
--- vim.keymap.set('n', '<leader>xf', dap.frames {}, { desc = 'Search debug frames' })
+      -- Enable telescope extensions, if they are installed
+      pcall(require('telescope').load_extension, 'fzf')
+      pcall(require('telescope').load_extension, 'ui-select')
 
--- vim.keymap.set('n', '<leader>sn', '<cmd>Telescope manix<cr>', { desc = 'Search Nix docs' })
+      vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
+    end,
+  },
+}
