@@ -74,11 +74,6 @@
     #   flake = false;
     # };
 
-    # "plugins-telescope-manix" = {
-    #   url = "github:MrcJkb/telescope-manix";
-    #   flake = false;
-    # };
-
     # "plugins-dashboard-nvim" = {
     #   url = "github:nvimdev/dashboard-nvim";
     #   flake = false;
@@ -171,6 +166,7 @@
           lazygit
           luajitPackages.magick
           marksman
+          manix
           nixd
           ripgrep
           tailwindcss-language-server
@@ -302,6 +298,7 @@
             telescope-fzf-native-nvim
             telescope-ui-select-nvim
             telescope-nvim
+            telescope-manix
           ];
           always = with pkgs.vimPlugins; [
             nvim-lspconfig
