@@ -104,26 +104,24 @@ require("lze").load({
             vim.g.mkdp_auto_close = 0
         end,
     },
-    -- {
-    --   "image-nvim",
-    --   for_cat = 'markdown',
-    --   event = "DeferredUIEnter",
-    --   ft = "markdown",
-    --   after = function(plugin)
-    --     require('image').setup({
-    --       processor = "magick_rock",
-    --     })
-    --   end,
-    -- },
-    -- {
-    --   "render-markdown-nvim",
-    --   for_cat = 'markdown',
-    --   event = "DeferredUIEnter",
-    --   ft = "markdown",
-    --   after = function(plugin)
-    --     require('render-markdown').setup({})
-    --   end,
-    -- },
+    {
+      "image.nvim",
+      for_cat = 'markdown',
+      ft = "markdown",
+      after = function(plugin)
+        require('image').setup({
+          processor = "magick_rock",
+        })
+      end,
+    },
+    {
+      "render-markdown.nvim",
+      for_cat = 'markdown',
+      ft = "markdown",
+      after = function(plugin)
+        require('render-markdown').setup({})
+      end,
+    },
     {
         "toggleterm",
         for_cat = "general.extra",
