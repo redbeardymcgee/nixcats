@@ -120,7 +120,9 @@ require("lze").load({
       for_cat = 'markdown',
       ft = "markdown",
       after = function(plugin)
-        require('render-markdown').setup({})
+        require('render-markdown').setup({
+          completions = { lsp = { enabled = true } },
+        })
       end,
     },
     {
