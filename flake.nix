@@ -322,6 +322,7 @@
             pkgs.neovimPlugins.hlargs
             pkgs.neovimPlugins.mini-animate
             pkgs.neovimPlugins.toggleterm
+            pkgs.neovimPlugins.tmux-navigate
           ];
         };
       };
