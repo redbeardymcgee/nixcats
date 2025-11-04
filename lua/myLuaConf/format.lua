@@ -13,7 +13,7 @@ require("lze").load({
             local conform = require("conform")
 
             conform.setup({
-                format_on_save = {
+                format_after_save = {
                     async = true,
                     lsp_format = "fallback",
                 },
