@@ -414,6 +414,15 @@ require("lze").load({
                 { "<leader>t", group = "[t]oggles" },
                 { "<leader>t_", hidden = true },
                 { "<leader>w", group = "[w]orkspace" },
+                {
+                  "<leader>w",
+                  require("which-key").show({
+                    keys = "<c-w>",
+                    loop = true,
+                  }),
+                  desc = "Window hydra",
+                  hidden = true
+                },
                 { "<leader>w_", hidden = true },
             })
         end,
