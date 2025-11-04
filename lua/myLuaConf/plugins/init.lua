@@ -399,6 +399,14 @@ require("lze").load({
             require("which-key").add({
                 { "<leader><leader>", group = "buffer commands" },
                 { "<leader><leader>_", hidden = true },
+                {
+                    "<leader>b",
+                    group = "[b]uffers",
+                    expand = function()
+                        return require("which-key.extras").expand.buf()
+                    end,
+                },
+                { "<leader>b_", hidden = true },
                 { "<leader>c", group = "[c]ode" },
                 { "<leader>c_", hidden = true },
                 { "<leader>d", group = "[d]ocument" },
@@ -417,14 +425,16 @@ require("lze").load({
                 { "<leader>W_", hidden = true },
                 { "<leader>x", group = "Debug" },
                 { "<leader>x_", hidden = true },
-                -- {
-                --     "<leader>w",
-                --     require("which-key").show({
-                --         keys = "<c-w>",
-                --         loop = true,
-                --     }),
-                --     group = "[w]indows",
-                -- },
+                {
+                    "<leader>w",
+                    function()
+                        return require("which-key").show({
+                            keys = "<c-w>",
+                            loop = true,
+                        })
+                    end,
+                    group = "[w]indows",
+                },
                 { "<leader>w_", hidden = true },
             })
         end,
