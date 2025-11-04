@@ -23,6 +23,7 @@ require("lze").load({
                     -- python = { "isort", "black" },
                     -- Use a sub-list to run only the first available formatter
                     javascript = { "prettierd", "prettier", stop_after_first = true },
+                    nix = { "alejandra", "nixfmt", stop_after_first = true },
                 },
             })
 

@@ -161,6 +161,7 @@
       lspsAndRuntimeDeps = {
         # some categories of stuff.
         general = with pkgs; [
+          alejandra
           fd
           imagemagick
           lazygit
