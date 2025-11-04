@@ -214,7 +214,9 @@
             (nvim-notify.overrideAttrs {doCheck = false;}) # TODO: remove overrideAttrs after check is fixed
             plenary-nvim
             vim-repeat
-          ];
+          ] ++ (with pkgs.neovimPlugins; [
+            tmux-navigate
+          ]);
           extra = [
             oil-nvim
             nvim-web-devicons
@@ -318,13 +320,13 @@
             undotree
             indent-blankline-nvim
             vim-startuptime
+          ] ++ (with pkgs.neovimPlugins; [
             # If it was included in your flake inputs as plugins-hlargs,
             # this would be how to add that plugin in your config.
-            pkgs.neovimPlugins.hlargs
-            pkgs.neovimPlugins.mini-animate
-            pkgs.neovimPlugins.toggleterm
-            pkgs.neovimPlugins.tmux-navigate
-          ];
+            hlargs
+            mini-animate
+            toggleterm
+          ]);
         };
       };
 
