@@ -413,16 +413,18 @@ require("lze").load({
                 { "<leader>s_", hidden = true },
                 { "<leader>t", group = "[t]oggles" },
                 { "<leader>t_", hidden = true },
-                { "<leader>w", group = "[w]orkspace" },
-                {
-                  "<leader>w",
-                  require("which-key").show({
-                    keys = "<c-w>",
-                    loop = true,
-                  }),
-                  desc = "Window hydra",
-                  hidden = true
-                },
+                { "<leader>W", group = "[W]orkspace" },
+                { "<leader>W_", hidden = true },
+                { "<leader>x", group = "Debug" },
+                { "<leader>x_", hidden = true },
+                -- {
+                --     "<leader>w",
+                --     require("which-key").show({
+                --         keys = "<c-w>",
+                --         loop = true,
+                --     }),
+                --     group = "[w]indows",
+                -- },
                 { "<leader>w_", hidden = true },
             })
         end,
