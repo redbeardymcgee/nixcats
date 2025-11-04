@@ -54,10 +54,10 @@
       flake = false;
     };
 
-    # "plugins-toggleterm-manager" = {
-    #   url = "github:ryanmsnyder/toggleterm-manager.nvim";
-    #   flake = false;
-    # };
+    "plugins-toggleterm-manager" = {
+      url = "github:ryanmsnyder/toggleterm-manager.nvim";
+      flake = false;
+    };
 
     # "plugins-telescope-dap" = {
     #   url = "github:nvim-telescope/telescope-dap.nvim";
@@ -302,6 +302,7 @@
             telescope-ui-select-nvim
             telescope-nvim
             telescope-manix
+            pkgs.neovimPlugins.toggleterm-manager
           ];
           always = with pkgs.vimPlugins; [
             nvim-lspconfig
