@@ -182,7 +182,7 @@ return {
         },
         -- colorscheme = "",
         load = function(name)
-            -- vim.cmd.packadd(name)
+            vim.cmd.packadd(name)
             vim.cmd.packadd("telescope-fzf-native.nvim")
             vim.cmd.packadd("telescope-ui-select.nvim")
             vim.cmd.packadd("telescope-manix")
