@@ -106,24 +106,24 @@ require("lze").load({
         end,
     },
     {
-      "image.nvim",
-      for_cat = 'markdown',
-      ft = "markdown",
-      after = function(plugin)
-        require('image').setup({
-          processor = "magick_rock",
-        })
-      end,
+        "image.nvim",
+        for_cat = "markdown",
+        ft = "markdown",
+        after = function(plugin)
+            require("image").setup({
+                processor = "magick_rock",
+            })
+        end,
     },
     {
-      "render-markdown.nvim",
-      for_cat = 'markdown',
-      ft = "markdown",
-      after = function(plugin)
-        require('render-markdown').setup({
-          completions = { lsp = { enabled = true } },
-        })
-      end,
+        "render-markdown.nvim",
+        for_cat = "markdown",
+        ft = "markdown",
+        after = function(plugin)
+            require("render-markdown").setup({
+                completions = { lsp = { enabled = true } },
+            })
+        end,
     },
     {
         "toggleterm",
