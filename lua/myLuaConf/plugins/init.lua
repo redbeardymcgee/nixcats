@@ -266,15 +266,15 @@ require("lze").load({
             require("fidget").setup({})
         end,
     },
-    {
-        "mini-animate.nvim",
-        for_cat = "general.extra",
-        event = "DeferredUIEnter",
-        -- keys = "",
-        after = function(plugin)
-            require("mini.animate").setup({})
-        end,
-    },
+    -- {
+    --     "mini-animate.nvim",
+    --     for_cat = "general.extra",
+    --     event = "DeferredUIEnter",
+    --     -- keys = "",
+    --     after = function(plugin)
+    --         require("mini.animate").setup({})
+    --     end,
+    -- },
     -- {
     --     "mini-align.nvim",
     --     for_cat = "general.extra",
@@ -289,106 +289,106 @@ require("lze").load({
     --         })
     --     end,
     -- },
-    {
-        "dial.nvim",
-        for_cat = "general.extra",
-        event = "BufEnter",
-        keys = {
-            {
-                "<C-a>",
-                function()
-                    require("dial.map").manipulate("increment", "normal")
-                end,
-                mode = { "n" },
-                noremap = true,
-            },
-            {
-                "<C-x>",
-                function()
-                    require("dial.map").manipulate("decrement", "normal")
-                end,
-                mode = { "n" },
-                noremap = true,
-            },
-            {
-                "g<C-a>",
-                function()
-                    require("dial.map").manipulate("increment", "gnormal")
-                end,
-                mode = { "n" },
-                noremap = true,
-            },
-            {
-                "g<C-x>",
-                function()
-                    require("dial.map").manipulate("decrement", "gnormal")
-                end,
-                mode = { "n" },
-                noremap = true,
-            },
-            {
-                "<C-a>",
-                function()
-                    require("dial.map").manipulate("increment", "visual")
-                end,
-                mode = { "x" },
-                noremap = true,
-            },
-            {
-                "<C-x>",
-                function()
-                    require("dial.map").manipulate("decrement", "visual")
-                end,
-                mode = { "x" },
-                noremap = true,
-            },
-            {
-                "g<C-a>",
-                function()
-                    require("dial.map").manipulate("increment", "gvisual")
-                end,
-                mode = { "x" },
-                noremap = true,
-            },
-            {
-                "g<C-x>",
-                function()
-                    require("dial.map").manipulate("decrement", "gvisual")
-                end,
-                mode = { "x" },
-                noremap = true,
-            },
-        },
-        after = function(plugin)
-            local augend = require("dial.augend")
-            return require("dial.config").augends:register_group({
-                default = {
-                    augend.constant.alias.Alpha,
-                    augend.constant.alias.alpha,
-                    augend.constant.alias.bool,
-                    augend.constant.alias.semver,
-                    augend.integer.alias.binary,
-                    augend.integer.alias.decimal_int,
-                    augend.integer.alias.hex,
-                    augend.integer.alias.octal,
-                    augend.date.alias["%-d.%-m."],
-                    augend.date.alias["%-m/%-d"],
-                    augend.date.alias["%H:%M"],
-                    augend.date.alias["%H:%M:%S"],
-                    augend.date.alias["%Y-%m-%d"],
-                    augend.date.alias["%Y/%m/%d"],
-                    augend.date.alias["%d.%m."],
-                    augend.date.alias["%d.%m.%Y"],
-                    augend.date.alias["%d.%m.%y"],
-                    augend.date.alias["%d/%m/%Y"],
-                    augend.date.alias["%d/%m/%y"],
-                    augend.date.alias["%m/%d"],
-                    augend.date.alias["%m/%d/%Y"],
-                    augend.date.alias["%m/%d/%y"],
-                },
-            })
-        end,
-    },
+    -- {
+    --     "dial.nvim",
+    --     for_cat = "general.extra",
+    --     event = "BufEnter",
+    --     keys = {
+    --         {
+    --             "<C-a>",
+    --             function()
+    --                 require("dial.map").manipulate("increment", "normal")
+    --             end,
+    --             mode = { "n" },
+    --             noremap = true,
+    --         },
+    --         {
+    --             "<C-x>",
+    --             function()
+    --                 require("dial.map").manipulate("decrement", "normal")
+    --             end,
+    --             mode = { "n" },
+    --             noremap = true,
+    --         },
+    --         {
+    --             "g<C-a>",
+    --             function()
+    --                 require("dial.map").manipulate("increment", "gnormal")
+    --             end,
+    --             mode = { "n" },
+    --             noremap = true,
+    --         },
+    --         {
+    --             "g<C-x>",
+    --             function()
+    --                 require("dial.map").manipulate("decrement", "gnormal")
+    --             end,
+    --             mode = { "n" },
+    --             noremap = true,
+    --         },
+    --         {
+    --             "<C-a>",
+    --             function()
+    --                 require("dial.map").manipulate("increment", "visual")
+    --             end,
+    --             mode = { "x" },
+    --             noremap = true,
+    --         },
+    --         {
+    --             "<C-x>",
+    --             function()
+    --                 require("dial.map").manipulate("decrement", "visual")
+    --             end,
+    --             mode = { "x" },
+    --             noremap = true,
+    --         },
+    --         {
+    --             "g<C-a>",
+    --             function()
+    --                 require("dial.map").manipulate("increment", "gvisual")
+    --             end,
+    --             mode = { "x" },
+    --             noremap = true,
+    --         },
+    --         {
+    --             "g<C-x>",
+    --             function()
+    --                 require("dial.map").manipulate("decrement", "gvisual")
+    --             end,
+    --             mode = { "x" },
+    --             noremap = true,
+    --         },
+    --     },
+    --     after = function(plugin)
+    --         local augend = require("dial.augend")
+    --         return require("dial.config").augends:register_group({
+    --             default = {
+    --                 augend.constant.alias.Alpha,
+    --                 augend.constant.alias.alpha,
+    --                 augend.constant.alias.bool,
+    --                 augend.constant.alias.semver,
+    --                 augend.integer.alias.binary,
+    --                 augend.integer.alias.decimal_int,
+    --                 augend.integer.alias.hex,
+    --                 augend.integer.alias.octal,
+    --                 augend.date.alias["%-d.%-m."],
+    --                 augend.date.alias["%-m/%-d"],
+    --                 augend.date.alias["%H:%M"],
+    --                 augend.date.alias["%H:%M:%S"],
+    --                 augend.date.alias["%Y-%m-%d"],
+    --                 augend.date.alias["%Y/%m/%d"],
+    --                 augend.date.alias["%d.%m."],
+    --                 augend.date.alias["%d.%m.%Y"],
+    --                 augend.date.alias["%d.%m.%y"],
+    --                 augend.date.alias["%d/%m/%Y"],
+    --                 augend.date.alias["%d/%m/%y"],
+    --                 augend.date.alias["%m/%d"],
+    --                 augend.date.alias["%m/%d/%Y"],
+    --                 augend.date.alias["%m/%d/%y"],
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "hlargs",
         for_cat = "general.extra",
