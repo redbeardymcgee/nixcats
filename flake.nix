@@ -177,16 +177,18 @@
         general = with pkgs.vimPlugins; {
           # you can make subcategories!!!
           # (always isnt a special name, just the one I chose for this subcategory)
-          always = [
-            dashboard-nvim
-            lze
-            lzextras
-            (nvim-notify.overrideAttrs {doCheck = false;}) # TODO: remove overrideAttrs after check is fixed
-            plenary-nvim
-            # vim-repeat
-          ] ++ (with pkgs.neovimPlugins; [
-            tmux-navigate
-          ]);
+          always =
+            [
+              dashboard-nvim
+              lze
+              lzextras
+              (nvim-notify.overrideAttrs {doCheck = false;}) # TODO: remove overrideAttrs after check is fixed
+              plenary-nvim
+              # vim-repeat
+            ]
+            ++ (with pkgs.neovimPlugins; [
+              tmux-navigate
+            ]);
           extra = [
             oil-nvim
             nvim-web-devicons
@@ -284,22 +286,24 @@
             nvim-ts-autotag
             rainbow-delimiters-nvim
           ];
-          extra = with pkgs.vimPlugins; [
-            fidget-nvim
-            # lualine-lsp-progress
-            which-key-nvim
-            comment-nvim
-            mini-animate
-            mini-align
-            undotree
-            indent-blankline-nvim
-            vim-startuptime
-            toggleterm
-          ] ++ (with pkgs.neovimPlugins; [
-            # If it was included in your flake inputs as plugins-hlargs,
-            # this would be how to add that plugin in your config.
-            hlargs
-          ]);
+          extra = with pkgs.vimPlugins;
+            [
+              fidget-nvim
+              # lualine-lsp-progress
+              which-key-nvim
+              comment-nvim
+              mini-animate
+              mini-align
+              undotree
+              indent-blankline-nvim
+              vim-startuptime
+              toggleterm
+            ]
+            ++ (with pkgs.neovimPlugins; [
+              # If it was included in your flake inputs as plugins-hlargs,
+              # this would be how to add that plugin in your config.
+              hlargs
+            ]);
         };
       };
 
