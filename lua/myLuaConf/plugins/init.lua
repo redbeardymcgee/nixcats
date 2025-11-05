@@ -267,7 +267,7 @@ require("lze").load({
         end,
     },
     {
-        "mini-animate",
+        "mini-animate.nvim",
         for_cat = "general.extra",
         event = "DeferredUIEnter",
         -- keys = "",
