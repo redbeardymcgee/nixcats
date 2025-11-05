@@ -282,10 +282,13 @@ require("lze").load({
         -- keys = "",
         after = function(plugin)
             require("mini.align").setup({
-              mappings = {
-                start = 'gA',
-                start_with_preview = 'ga',
-              },
+                mappings = {
+                    start = "gA",
+                    start_with_preview = "ga",
+                },
+            })
+        end,
+    },
     {
         "dial.nvim",
         for_cat = "general.extra",
