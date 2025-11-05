@@ -74,11 +74,6 @@
     #   flake = false;
     # };
 
-    # "plugins-dashboard-nvim" = {
-    #   url = "github:nvimdev/dashboard-nvim";
-    #   flake = false;
-    # };
-
     # "quadlet-lsp" = {
     #   url = "github:onlyati/quadlet-lsp.nvim";
     #   flake = false;
