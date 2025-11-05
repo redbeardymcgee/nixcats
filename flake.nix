@@ -298,7 +298,7 @@
               undotree
               indent-blankline-nvim
               vim-startuptime
-              toggleterm
+              toggleterm-nvim
             ]
             ++ (with pkgs.neovimPlugins; [
               # If it was included in your flake inputs as plugins-hlargs,
