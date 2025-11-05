@@ -24,16 +24,6 @@
       flake = false;
     };
 
-    "plugins-mini-animate" = {
-      url = "github:echasnovski/mini.animate";
-      flake = false;
-    };
-
-    # "plugins-mini-align" = {
-    #   url = "github:echasnovski/mini.align";
-    #   flake = false;
-    # };
-
     "plugins-tmux-navigate" = {
       url = "github:sunaku/tmux-navigate";
       flake = false;
@@ -304,6 +294,8 @@
             # lualine-lsp-progress
             which-key-nvim
             comment-nvim
+            mini-animate
+            mini-align
             undotree
             indent-blankline-nvim
             vim-startuptime
@@ -311,7 +303,6 @@
             # If it was included in your flake inputs as plugins-hlargs,
             # this would be how to add that plugin in your config.
             hlargs
-            mini-animate
             toggleterm
           ]);
         };

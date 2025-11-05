@@ -276,9 +276,23 @@ require("lze").load({
         end,
     },
     {
+        "mini-align",
+        for_cat = "general.extra",
+        event = "BufEnter",
+        -- keys = "",
+        after = function(plugin)
+            require("mini.align").setup({
+              mappings = {
+                start = 'gA',
+                start_with_preview = 'ga',
+              },
+            })
+        end,
+    },
+    {
         "hlargs",
         for_cat = "general.extra",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         -- keys = "",
         dep_of = { "nvim-lspconfig" },
         after = function(plugin)
