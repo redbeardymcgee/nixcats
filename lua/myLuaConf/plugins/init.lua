@@ -194,7 +194,7 @@ require("lze").load({
     {
         "comment.nvim",
         for_cat = "general.extra",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         after = function(plugin)
             require("Comment").setup()
         end,
@@ -202,7 +202,7 @@ require("lze").load({
     {
         "indent-blankline.nvim",
         for_cat = "general.extra",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         after = function(plugin)
             require("ibl").setup()
         end,
@@ -210,7 +210,7 @@ require("lze").load({
     {
         "nvim-surround",
         for_cat = "general.always",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         after = function(plugin)
             require("nvim-surround").setup()
         end,
@@ -218,7 +218,7 @@ require("lze").load({
     {
         "nvim-autopairs",
         for_cat = "general.always",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         after = function(plugin)
             require("nvim-autopairs").setup()
         end,
@@ -226,7 +226,7 @@ require("lze").load({
     {
         "nvim-ts-autotag",
         for_cat = "general.always",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         after = function(plugin)
             require("nvim-ts-autotag").setup()
         end,
@@ -234,7 +234,7 @@ require("lze").load({
     {
         "nvim-treesitter-endwise",
         for_cat = "general.always",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         -- after = function(plugin)
         --     require("nvim-treesitter-endwise").setup()
         -- end,
@@ -242,7 +242,7 @@ require("lze").load({
     {
         "rainbow-delimiters.nvim",
         for_cat = "general.always",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         after = function(plugin)
             require("rainbow-delimiters.setup").setup()
         end,
@@ -447,7 +447,7 @@ require("lze").load({
     {
         "gitsigns.nvim",
         for_cat = "general.always",
-        event = "DeferredUIEnter",
+        event = "BufEnter",
         -- cmd = { "" },
         -- ft = "",
         -- keys = "",
