@@ -244,7 +244,7 @@ require("lze").load({
         for_cat = "general.always",
         event = "BufEnter",
         after = function(plugin)
-            require("rainbow-delimiters.setup").setup()
+            require("rainbow-delimiters.setup").setup({})
         end,
     },
     {
