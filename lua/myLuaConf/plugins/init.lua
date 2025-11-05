@@ -275,20 +275,20 @@ require("lze").load({
             require("mini.animate").setup({})
         end,
     },
-    {
-        "mini-align",
-        for_cat = "general.extra",
-        event = "BufEnter",
-        -- keys = "",
-        after = function(plugin)
-            require("mini.align").setup({
-                mappings = {
-                    start = "gA",
-                    start_with_preview = "ga",
-                },
-            })
-        end,
-    },
+    -- {
+    --     "mini-align.nvim",
+    --     for_cat = "general.extra",
+    --     event = "BufEnter",
+    --     -- keys = "",
+    --     after = function(plugin)
+    --         require("mini.align").setup({
+    --             mappings = {
+    --                 start = "gA",
+    --                 start_with_preview = "ga",
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "dial.nvim",
         for_cat = "general.extra",
