@@ -294,6 +294,10 @@
             lualine-nvim
             gitsigns-nvim
             nvim-surround
+            nvim-autopairs
+            nvim-treesitter-endwise
+            nvim-ts-autotag
+            rainbow-delimiters-nvim
           ];
           extra = with pkgs.vimPlugins; [
             fidget-nvim

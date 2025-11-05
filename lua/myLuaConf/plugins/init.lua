@@ -211,9 +211,40 @@ require("lze").load({
         "nvim-surround",
         for_cat = "general.always",
         event = "DeferredUIEnter",
-        -- keys = "",
         after = function(plugin)
             require("nvim-surround").setup()
+        end,
+    },
+    {
+        "nvim-autopairs",
+        for_cat = "general.always",
+        event = "DeferredUIEnter",
+        after = function(plugin)
+            require("nvim-autopairs").setup()
+        end,
+    },
+    {
+        "nvim-ts-autotag",
+        for_cat = "general.always",
+        event = "DeferredUIEnter",
+        after = function(plugin)
+            require("nvim-ts-autotag").setup()
+        end,
+    },
+    {
+        "nvim-treesitter-endwise",
+        for_cat = "general.always",
+        event = "DeferredUIEnter",
+        -- after = function(plugin)
+        --     require("nvim-treesitter-endwise").setup()
+        -- end,
+    },
+    {
+        "rainbow-delimiters.nvim",
+        for_cat = "general.always",
+        event = "DeferredUIEnter",
+        after = function(plugin)
+            require("rainbow-delimiters.setup").setup()
         end,
     },
     {
