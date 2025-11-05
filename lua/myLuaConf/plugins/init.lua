@@ -126,7 +126,7 @@ require("lze").load({
         end,
     },
     {
-        "toggleterm",
+        "toggleterm.nvim",
         for_cat = "general.extra",
         event = "DeferredUIEnter",
         keys = {
