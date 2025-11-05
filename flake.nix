@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
     # see :help nixCats.flake.inputs
@@ -26,6 +27,16 @@
 
     "plugins-tmux-navigate" = {
       url = "github:sunaku/tmux-navigate";
+      flake = false;
+    };
+
+    "plugins-mini-animate" = {
+      url = "github:nvim-mini/mini.animate";
+      flake = false;
+    };
+
+    "plugins-mini-align" = {
+      url = "github:nvim-mini/mini.align";
       flake = false;
     };
 
@@ -293,8 +304,8 @@
               # lualine-lsp-progress
               which-key-nvim
               comment-nvim
-              mini-animate
-              mini-align
+              # mini-align
+              # mini-animate
               undotree
               indent-blankline-nvim
               vim-startuptime
@@ -304,6 +315,8 @@
               # If it was included in your flake inputs as plugins-hlargs,
               # this would be how to add that plugin in your config.
               hlargs
+              mini-align
+              mini-animate
             ]);
         };
       };
