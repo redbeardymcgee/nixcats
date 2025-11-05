@@ -361,7 +361,7 @@ require("lze").load({
         },
         after = function(plugin)
             local augend = require("dial.augend")
-            require("dial.config").augends:register_group({
+            return require("dial.config").augends:register_group({
                 default = {
                     augend.constant.alias.Alpha,
                     augend.constant.alias.alpha,
