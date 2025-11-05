@@ -288,6 +288,7 @@
           ];
           extra = with pkgs.vimPlugins;
             [
+              dial-nvim
               fidget-nvim
               # lualine-lsp-progress
               which-key-nvim
