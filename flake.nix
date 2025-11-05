@@ -29,11 +29,6 @@
       flake = false;
     };
 
-    "plugins-toggleterm" = {
-      url = "github:akinsho/toggleterm.nvim";
-      flake = false;
-    };
-
     "plugins-toggleterm-manager" = {
       url = "github:ryanmsnyder/toggleterm-manager.nvim";
       flake = false;
@@ -299,11 +294,11 @@
             undotree
             indent-blankline-nvim
             vim-startuptime
+            toggleterm
           ] ++ (with pkgs.neovimPlugins; [
             # If it was included in your flake inputs as plugins-hlargs,
             # this would be how to add that plugin in your config.
             hlargs
-            toggleterm
           ]);
         };
       };
