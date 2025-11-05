@@ -24,11 +24,6 @@
       flake = false;
     };
 
-    # "plugins-mini-surround" = {
-    #   url = "github:echasnovski/mini.surround";
-    #   flake = false;
-    # };
-
     "plugins-mini-animate" = {
       url = "github:echasnovski/mini.animate";
       flake = false;
@@ -36,11 +31,6 @@
 
     # "plugins-mini-align" = {
     #   url = "github:echasnovski/mini.align";
-    #   flake = false;
-    # };
-
-    # "plugins-mini-pairs" = {
-    #   url = "github:echasnovski/mini.pairs";
     #   flake = false;
     # };
 
@@ -208,7 +198,7 @@
             lzextras
             (nvim-notify.overrideAttrs {doCheck = false;}) # TODO: remove overrideAttrs after check is fixed
             plenary-nvim
-            vim-repeat
+            # vim-repeat
           ] ++ (with pkgs.neovimPlugins; [
             tmux-navigate
           ]);
@@ -303,9 +293,6 @@
             nvim-lspconfig
             lualine-nvim
             gitsigns-nvim
-            vim-sleuth
-            vim-fugitive
-            vim-rhubarb
             nvim-surround
           ];
           extra = with pkgs.vimPlugins; [
@@ -488,15 +475,15 @@
           # Probably add the cache stuff they recommend too.
         };
         categories = {
-          markdown = true;
-          general = true;
-          neonixdev = true;
-          lint = true;
-          format = true;
-          # go = true; # <- disabled but you could enable it with override or module on install
-          lspDebugMode = false;
-          themer = true;
           colorscheme = "catppuccin";
+          format = true;
+          general = true;
+          # go = true; # <- disabled but you could enable it with override or module on install
+          lint = true;
+          lspDebugMode = false;
+          markdown = true;
+          neonixdev = true;
+          themer = true;
         };
         extra = {
           # nixCats.extra("path.to.val") will perform vim.tbl_get(nixCats.extra, "path" "to" "val")
