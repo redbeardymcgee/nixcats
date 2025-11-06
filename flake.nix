@@ -45,6 +45,11 @@
       flake = false;
     };
 
+    "plugins-neotab" = {
+      url = "github:kawre/neotab.nvim";
+      flake = false;
+    };
+
     # "plugins-telescope-dap" = {
     #   url = "github:nvim-telescope/telescope-dap.nvim";
     #   flake = false;
@@ -317,6 +322,7 @@
               hlargs
               mini-align
               mini-animate
+              neotab
             ]);
         };
       };

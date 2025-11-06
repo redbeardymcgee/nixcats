@@ -271,6 +271,14 @@ require("lze").load({
     end,
   },
   {
+    "neotab",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    after = function()
+      require("neotab").setup()
+    end,
+  },
+  {
     "vim-startuptime",
     for_cat = "general.extra",
     cmd = { "StartupTime" },
