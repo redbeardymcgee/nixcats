@@ -1,13 +1,13 @@
-require('lze').load {
+require("lze").load({
   {
     "nvim-lint",
-    for_cat = 'lint',
+    for_cat = "lint",
     -- cmd = { "" },
     event = "FileType",
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
-    after = function (plugin)
+    after = function(plugin)
       local lint = require("lint")
       lint.linters_by_ft = {
         -- NOTE: download some linters in lspsAndRuntimeDeps
@@ -24,4 +24,4 @@ require('lze').load {
       })
     end,
   },
-}
+})

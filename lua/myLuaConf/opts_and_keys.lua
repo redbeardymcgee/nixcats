@@ -14,7 +14,12 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Set highlight on search
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", vim.cmd("nohlsearch"), { desc = "Clear search highlight" })
+vim.keymap.set(
+  "n",
+  "<Esc>",
+  vim.cmd("nohlsearch"),
+  { desc = "Clear search highlight" }
+)
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -65,21 +70,22 @@ vim.o.termguicolors = true
 -- [[ Disable auto comment on enter ]]
 -- See :help formatoptions
 vim.api.nvim_create_autocmd("FileType", {
-    desc = "remove formatoptions",
-    callback = function()
-        vim.opt.formatoptions:remove({ "c", "r", "o" })
-    end,
+  desc = "remove formatoptions",
+  callback = function()
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
+  end,
 })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+local highlight_group =
+  vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.hl.on_yank()
-    end,
-    group = highlight_group,
-    pattern = "*",
+  callback = function()
+    vim.hl.on_yank()
+  end,
+  group = highlight_group,
+  pattern = "*",
 })
 
 vim.g.netrw_liststyle = 0
@@ -91,33 +97,53 @@ vim.g.netrw_banner = 0
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Moves Line Down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Moves Line Up" })
 vim.keymap.set(
-    "n",
-    "<C-d>",
-    "<cmd>lua vim.cmd('normal! <C-d>'); MiniAnimate.execute_after('scroll', 'normal! zz')<cr>",
-    { desc = "Scroll Down" }
+  "n",
+  "<C-d>",
+  "<cmd>lua vim.cmd('normal! <C-d>'); MiniAnimate.execute_after('scroll', 'normal! zz')<cr>",
+  { desc = "Scroll Down" }
 )
 vim.keymap.set(
-    "n",
-    "<C-u>",
-    "<cmd>lua vim.cmd('normal! <C-u>'); MiniAnimate.execute_after('scroll', 'normal! zz')<cr>",
-    { desc = "Scroll Up" }
+  "n",
+  "<C-u>",
+  "<cmd>lua vim.cmd('normal! <C-u>'); MiniAnimate.execute_after('scroll', 'normal! zz')<cr>",
+  { desc = "Scroll Up" }
 )
 vim.keymap.set(
-    "n",
-    "n",
-    "<cmd>lua vim.cmd('normal! n'); MiniAnimate.execute_after('scroll', 'normal! zzzv')<cr>",
-    { desc = "Next Search Result" }
+  "n",
+  "n",
+  "<cmd>lua vim.cmd('normal! n'); MiniAnimate.execute_after('scroll', 'normal! zzzv')<cr>",
+  { desc = "Next Search Result" }
 )
 vim.keymap.set(
-    "n",
-    "N",
-    "<cmd>lua vim.cmd('normal! N'); MiniAnimate.execute_after('scroll', 'normal! zzzv')<cr>",
-    { desc = "Previous Search Result" }
+  "n",
+  "N",
+  "<cmd>lua vim.cmd('normal! N'); MiniAnimate.execute_after('scroll', 'normal! zzzv')<cr>",
+  { desc = "Previous Search Result" }
 )
-vim.keymap.set("n", "<leader><leader>[", vim.cmd("bprev"), { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader><leader>]", vim.cmd("bnext"), { desc = "Next buffer" })
-vim.keymap.set("n", "<leader><leader>l", vim.cmd("b#"), { desc = "Last buffer" })
-vim.keymap.set("n", "<leader><leader>d", vim.cmd("bdelete"), { desc = "delete buffer" })
+vim.keymap.set(
+  "n",
+  "<leader><leader>[",
+  vim.cmd("bprev"),
+  { desc = "Previous buffer" }
+)
+vim.keymap.set(
+  "n",
+  "<leader><leader>]",
+  vim.cmd("bnext"),
+  { desc = "Next buffer" }
+)
+vim.keymap.set(
+  "n",
+  "<leader><leader>l",
+  vim.cmd("b#"),
+  { desc = "Last buffer" }
+)
+vim.keymap.set(
+  "n",
+  "<leader><leader>d",
+  vim.cmd("bdelete"),
+  { desc = "delete buffer" }
+)
 
 -- see help sticky keys on windows
 vim.cmd([[command! W w]])
@@ -126,13 +152,33 @@ vim.cmd([[command! WQ wq]])
 vim.cmd([[command! Q q]])
 
 -- Remap for dealing with word wrap
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set(
+  "n",
+  "k",
+  "v:count == 0 ? 'gk' : 'k'",
+  { expr = true, silent = true }
+)
+vim.keymap.set(
+  "n",
+  "j",
+  "v:count == 0 ? 'gj' : 'j'",
+  { expr = true, silent = true }
+)
 
 -- Diagnostic keymaps
 vim.diagnostic.config({ jump = { float = true } })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set(
+  "n",
+  "<leader>e",
+  vim.diagnostic.open_float,
+  { desc = "Open floating diagnostic message" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>q",
+  vim.diagnostic.setloclist,
+  { desc = "Open diagnostics list" }
+)
 
 -- kickstart.nvim starts you with this.
 -- But it constantly clobbers your system clipboard whenever you delete anything.
@@ -143,23 +189,41 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- vim.o.clipboard = 'unnamedplus'
 
 -- You should instead use these keybindings so that they are still easy to use, but dont conflict
-vim.keymap.set({ "v", "x", "n" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 vim.keymap.set(
-    { "n", "v", "x" },
-    "<leader>Y",
-    '"+yy',
-    { noremap = true, silent = true, desc = "Yank line to clipboard" }
-)
-vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
-vim.keymap.set(
-    "i",
-    "<C-p>",
-    "<C-r><C-p>+",
-    { noremap = true, silent = true, desc = "Paste from clipboard from within insert mode" }
+  { "v", "x", "n" },
+  "<leader>y",
+  '"+y',
+  { noremap = true, silent = true, desc = "Yank to clipboard" }
 )
 vim.keymap.set(
-    "x",
-    "<leader>P",
-    '"_dP',
-    { noremap = true, silent = true, desc = "Paste over selection without erasing unnamed register" }
+  { "n", "v", "x" },
+  "<leader>Y",
+  '"+yy',
+  { noremap = true, silent = true, desc = "Yank line to clipboard" }
+)
+vim.keymap.set(
+  { "n", "v", "x" },
+  "<leader>p",
+  '"+p',
+  { noremap = true, silent = true, desc = "Paste from clipboard" }
+)
+vim.keymap.set(
+  "i",
+  "<C-p>",
+  "<C-r><C-p>+",
+  {
+    noremap = true,
+    silent = true,
+    desc = "Paste from clipboard from within insert mode",
+  }
+)
+vim.keymap.set(
+  "x",
+  "<leader>P",
+  '"_dP',
+  {
+    noremap = true,
+    silent = true,
+    desc = "Paste over selection without erasing unnamed register",
+  }
 )
