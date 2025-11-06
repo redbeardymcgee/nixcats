@@ -206,6 +206,7 @@
               tmux-navigate
             ]);
           extra = [
+            leap-nvim
             oil-nvim
             nvim-web-devicons
           ];
