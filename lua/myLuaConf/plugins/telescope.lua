@@ -236,12 +236,12 @@ return {
     for_cat = "general.telescope",
     keys = {
       {
-        "<leader>st",
+        "<leader>s\\",
         function()
           return require("toggleterm-manager").open({})
         end,
         mode = { "n" },
-        desc = "[S]earch [T]erminals",
+        desc = "[S]earch terminals",
       },
     },
   },
