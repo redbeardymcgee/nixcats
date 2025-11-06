@@ -90,23 +90,30 @@ vim.g.netrw_banner = 0
 -- See `:help vim.keymap.set()`
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Moves Line Down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Moves Line Up" })
-vim.keymap.set("n", "<C-d>", function()
-    vim.cmd("normal! <C-d>")
-    vim.cmd('MiniAnimate.execute_after("scroll", "normal! zz")')
-end, { desc = "Scroll Down" })
-vim.keymap.set("n", "<C-u>", function()
-    vim.cmd("normal! <C-u>")
-    vim.cmd('MiniAnimate.execute_after("scroll", "normal! zz")')
-end, { desc = "Scroll Up" })
-vim.keymap.set("n", "n", function()
-    vim.cmd("normal! n")
-    vim.cmd('MiniAnimate.execute_after("scroll", "normal! zzzv")')
-end, { desc = "Next Search Result" })
-vim.keymap.set("n", "N", function()
-    vim.cmd("normal! N")
-    vim.cmd('MiniAnimate.execute_after("scroll", "normal! zzzv")')
-end, { desc = "Previous Search Result" })
-
+vim.keymap.set(
+    "n",
+    "<C-d>",
+    "<cmd>lua vim.cmd('normal! <C-d>'); MiniAnimate.execute_after('scroll', 'normal! zz')<cr>",
+    { desc = "Scroll Down" }
+)
+vim.keymap.set(
+    "n",
+    "<C-u>",
+    "<cmd>lua vim.cmd('normal! <C-u>'); MiniAnimate.execute_after('scroll', 'normal! zz')<cr>",
+    { desc = "Scroll Up" }
+)
+vim.keymap.set(
+    "n",
+    "n",
+    "<cmd>lua vim.cmd('normal! n'); MiniAnimate.execute_after('scroll', 'normal! zzzv')<cr>",
+    { desc = "Next Search Result" }
+)
+vim.keymap.set(
+    "n",
+    "N",
+    "<cmd>lua vim.cmd('normal! N'); MiniAnimate.execute_after('scroll', 'normal! zzzv')<cr>",
+    { desc = "Previous Search Result" }
+)
 vim.keymap.set("n", "<leader><leader>[", vim.cmd("bprev"), { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader><leader>]", vim.cmd("bnext"), { desc = "Next buffer" })
 vim.keymap.set("n", "<leader><leader>l", vim.cmd("b#"), { desc = "Last buffer" })
