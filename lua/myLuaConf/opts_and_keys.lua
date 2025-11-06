@@ -123,25 +123,25 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "<leader><leader>[",
-  vim.cmd("bprev"),
+  "<cmd>bprev<cr>",
   { desc = "Previous buffer" }
 )
 vim.keymap.set(
   "n",
   "<leader><leader>]",
-  vim.cmd("bnext"),
+  "<cmd>bnext<cr>",
   { desc = "Next buffer" }
 )
 vim.keymap.set(
   "n",
   "<leader><leader>l",
-  vim.cmd("b#"),
+  "<cmd>b#<cr>",
   { desc = "Last buffer" }
 )
 vim.keymap.set(
   "n",
   "<leader><leader>d",
-  vim.cmd("bdelete"),
+  "<cmd>bdelete<cr>",
   { desc = "delete buffer" }
 )
 
@@ -207,23 +207,13 @@ vim.keymap.set(
   '"+p',
   { noremap = true, silent = true, desc = "Paste from clipboard" }
 )
-vim.keymap.set(
-  "i",
-  "<C-p>",
-  "<C-r><C-p>+",
-  {
-    noremap = true,
-    silent = true,
-    desc = "Paste from clipboard from within insert mode",
-  }
-)
-vim.keymap.set(
-  "x",
-  "<leader>P",
-  '"_dP',
-  {
-    noremap = true,
-    silent = true,
-    desc = "Paste over selection without erasing unnamed register",
-  }
-)
+vim.keymap.set("i", "<C-p>", "<C-r><C-p>+", {
+  noremap = true,
+  silent = true,
+  desc = "Paste from clipboard from within insert mode",
+})
+vim.keymap.set("x", "<leader>P", '"_dP', {
+  noremap = true,
+  silent = true,
+  desc = "Paste over selection without erasing unnamed register",
+})
