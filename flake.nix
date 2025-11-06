@@ -194,6 +194,7 @@
             leap-nvim
             oil-nvim
             nvim-web-devicons
+            vim-tridactyl
           ];
         };
         # You can retreive information from the
