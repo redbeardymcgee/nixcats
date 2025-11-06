@@ -14,7 +14,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Set highlight on search
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", vim.cmd("nohlsearch"), { desc = "Clear search highlight" })
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"

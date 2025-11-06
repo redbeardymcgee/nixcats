@@ -303,13 +303,13 @@
               fidget-nvim
               # lualine-lsp-progress
               which-key-nvim
-              comment-nvim
               # mini-align
               # mini-animate
               undotree
               indent-blankline-nvim
               vim-startuptime
               toggleterm-nvim
+              ts-comments-nvim
             ]
             ++ (with pkgs.neovimPlugins; [
               # If it was included in your flake inputs as plugins-hlargs,

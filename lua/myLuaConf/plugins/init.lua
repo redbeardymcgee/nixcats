@@ -192,11 +192,11 @@ require("lze").load({
         end,
     },
     {
-        "comment.nvim",
+        "ts-comments.nvim",
         for_cat = "general.extra",
         event = "BufEnter",
         after = function(plugin)
-            require("Comment").setup()
+            require("ts-comments").setup()
         end,
     },
     {
