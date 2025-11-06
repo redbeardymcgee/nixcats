@@ -358,106 +358,243 @@ require("lze").load({
       })
     end,
   },
-  -- {
-  --     "dial.nvim",
-  --     for_cat = "general.extra",
-  --     event = "BufEnter",
-  --     keys = {
-  --         {
-  --             "<C-a>",
-  --             function()
-  --                 require("dial.map").manipulate("increment", "normal")
-  --             end,
-  --             mode = { "n" },
-  --             noremap = true,
-  --         },
-  --         {
-  --             "<C-x>",
-  --             function()
-  --                 require("dial.map").manipulate("decrement", "normal")
-  --             end,
-  --             mode = { "n" },
-  --             noremap = true,
-  --         },
-  --         {
-  --             "g<C-a>",
-  --             function()
-  --                 require("dial.map").manipulate("increment", "gnormal")
-  --             end,
-  --             mode = { "n" },
-  --             noremap = true,
-  --         },
-  --         {
-  --             "g<C-x>",
-  --             function()
-  --                 require("dial.map").manipulate("decrement", "gnormal")
-  --             end,
-  --             mode = { "n" },
-  --             noremap = true,
-  --         },
-  --         {
-  --             "<C-a>",
-  --             function()
-  --                 require("dial.map").manipulate("increment", "visual")
-  --             end,
-  --             mode = { "x" },
-  --             noremap = true,
-  --         },
-  --         {
-  --             "<C-x>",
-  --             function()
-  --                 require("dial.map").manipulate("decrement", "visual")
-  --             end,
-  --             mode = { "x" },
-  --             noremap = true,
-  --         },
-  --         {
-  --             "g<C-a>",
-  --             function()
-  --                 require("dial.map").manipulate("increment", "gvisual")
-  --             end,
-  --             mode = { "x" },
-  --             noremap = true,
-  --         },
-  --         {
-  --             "g<C-x>",
-  --             function()
-  --                 require("dial.map").manipulate("decrement", "gvisual")
-  --             end,
-  --             mode = { "x" },
-  --             noremap = true,
-  --         },
-  --     },
-  --     after = function(plugin)
-  --         local augend = require("dial.augend")
-  --         return require("dial.config").augends:register_group({
-  --             default = {
-  --                 augend.constant.alias.Alpha,
-  --                 augend.constant.alias.alpha,
-  --                 augend.constant.alias.bool,
-  --                 augend.constant.alias.semver,
-  --                 augend.integer.alias.binary,
-  --                 augend.integer.alias.decimal_int,
-  --                 augend.integer.alias.hex,
-  --                 augend.integer.alias.octal,
-  --                 augend.date.alias["%-d.%-m."],
-  --                 augend.date.alias["%-m/%-d"],
-  --                 augend.date.alias["%H:%M"],
-  --                 augend.date.alias["%H:%M:%S"],
-  --                 augend.date.alias["%Y-%m-%d"],
-  --                 augend.date.alias["%Y/%m/%d"],
-  --                 augend.date.alias["%d.%m."],
-  --                 augend.date.alias["%d.%m.%Y"],
-  --                 augend.date.alias["%d.%m.%y"],
-  --                 augend.date.alias["%d/%m/%Y"],
-  --                 augend.date.alias["%d/%m/%y"],
-  --                 augend.date.alias["%m/%d"],
-  --                 augend.date.alias["%m/%d/%Y"],
-  --                 augend.date.alias["%m/%d/%y"],
-  --             },
-  --         })
-  --     end,
-  -- },
+  {
+    "dial.nvim",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    keys = {
+      {
+        "<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "normal")
+        end,
+        mode = { "n" },
+        noremap = true,
+      },
+      {
+        "<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "normal")
+        end,
+        mode = { "n" },
+        noremap = true,
+      },
+      {
+        "g<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "gnormal")
+        end,
+        mode = { "n" },
+        noremap = true,
+      },
+      {
+        "g<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "gnormal")
+        end,
+        mode = { "n" },
+        noremap = true,
+      },
+      {
+        "<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "visual")
+        end,
+        mode = { "x" },
+        noremap = true,
+      },
+      {
+        "<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "visual")
+        end,
+        mode = { "x" },
+        noremap = true,
+      },
+      {
+        "g<C-a>",
+        function()
+          require("dial.map").manipulate("increment", "gvisual")
+        end,
+        mode = { "x" },
+        noremap = true,
+      },
+      {
+        "g<C-x>",
+        function()
+          require("dial.map").manipulate("decrement", "gvisual")
+        end,
+        mode = { "x" },
+        noremap = true,
+      },
+    },
+    after = function(plugin)
+      local optsSetup = function()
+        local augend = require("dial.augend")
+
+        local logical_alias = augend.constant.new({
+          elements = { "&&", "||" },
+          word = false,
+          cyclic = true,
+        })
+
+        local ordinal_numbers = augend.constant.new({
+          -- elements through which we cycle. When we increment, we go down
+          -- On decrement we go up
+          elements = {
+            "first",
+            "second",
+            "third",
+            "fourth",
+            "fifth",
+            "sixth",
+            "seventh",
+            "eighth",
+            "ninth",
+            "tenth",
+          },
+          -- if true, it only matches strings with word boundary. firstDate wouldn't work for example
+          word = false,
+          -- do we cycle back and forth (tenth to first on increment, first to tenth on decrement).
+          -- Otherwise nothing will happen when there are no further values
+          cyclic = true,
+        })
+
+        local weekdays = augend.constant.new({
+          elements = {
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          },
+          word = true,
+          cyclic = true,
+        })
+
+        local months = augend.constant.new({
+          elements = {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          },
+          word = true,
+          cyclic = true,
+        })
+
+        local capitalized_boolean = augend.constant.new({
+          elements = {
+            "True",
+            "False",
+          },
+          word = true,
+          cyclic = true,
+        })
+
+        return {
+          groups = {
+            default = {
+              augend.constant.alias.Alpha,
+              augend.constant.alias.alpha,
+              augend.constant.alias.bool,
+              augend.date.alias["%-d.%-m."],
+              augend.date.alias["%-m/%-d"],
+              augend.date.alias["%H:%M"],
+              augend.date.alias["%H:%M:%S"],
+              augend.date.alias["%Y-%m-%d"],
+              augend.date.alias["%Y/%m/%d"],
+              augend.date.alias["%d.%m."],
+              augend.date.alias["%d.%m.%Y"],
+              augend.date.alias["%d.%m.%y"],
+              augend.date.alias["%d/%m/%Y"],
+              augend.date.alias["%d/%m/%y"],
+              augend.date.alias["%m/%d"],
+              augend.date.alias["%m/%d/%Y"],
+              augend.date.alias["%m/%d/%y"],
+              augend.integer.alias.binary,
+              augend.integer.alias.decimal,
+              augend.integer.alias.decimal_int,
+              augend.integer.alias.hex,
+              augend.integer.alias.octal,
+              capitalized_boolean,
+              logical_alias,
+              months,
+              ordinal_numbers,
+              weekdays,
+            },
+            vue = {
+              augend.constant.new({ elements = { "let", "const" } }),
+              augend.hexcolor.new({ case = "lower" }),
+              augend.hexcolor.new({ case = "upper" }),
+            },
+            typescript = {
+              augend.constant.new({ elements = { "let", "const" } }),
+            },
+            typescriptreact = {
+              augend.constant.new({ elements = { "let", "const" } }),
+            },
+            javascript = {
+              augend.constant.new({ elements = { "let", "const" } }),
+            },
+            javascriptreact = {
+              augend.constant.new({ elements = { "let", "const" } }),
+            },
+            css = {
+              augend.hexcolor.new({
+                case = "lower",
+              }),
+              augend.hexcolor.new({
+                case = "upper",
+              }),
+            },
+            markdown = {
+              augend.constant.new({
+                elements = { "[ ]", "[x]" },
+                word = false,
+                cyclic = true,
+              }),
+              augend.misc.alias.markdown_header,
+            },
+            json = {
+              augend.semver.alias.semver,
+            },
+            lua = {
+              augend.constant.new({
+                elements = { "and", "or" },
+                word = true,
+                cyclic = true,
+              }),
+            },
+            python = {
+              augend.constant.new({
+                elements = { "and", "or" },
+              }),
+            },
+          },
+        }
+      end
+
+      -- copy defaults to each group
+      local opts = optsSetup()
+      for name, group in pairs(opts.groups) do
+        if name ~= "default" then
+          vim.list_extend(group, opts.groups.default)
+        end
+      end
+      require("dial.config").augends:register_group(opts.groups)
+    end,
+  },
   {
     "hlargs",
     for_cat = "general.extra",
