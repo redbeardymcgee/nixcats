@@ -50,21 +50,6 @@
       flake = false;
     };
 
-    # "plugins-telescope-dap" = {
-    #   url = "github:nvim-telescope/telescope-dap.nvim";
-    #   flake = false;
-    # };
-
-    # "plugins-telescope-heading" = {
-    #   url = "github:crispgm/telescope-heading.nvim";
-    #   flake = false;
-    # };
-
-    # "plugins-telescope-cheatsheet" = {
-    #   url = "github:doctorfree/cheatsheet.nvim";
-    #   flake = false;
-    # };
-
     # "quadlet-lsp" = {
     #   url = "github:onlyati/quadlet-lsp.nvim";
     #   flake = false;
