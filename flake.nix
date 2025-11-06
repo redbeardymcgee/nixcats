@@ -313,6 +313,7 @@
               undotree
               indent-blankline-nvim
               vim-startuptime
+              todo-comments-nvim
               toggleterm-nvim
               ts-comments-nvim
             ]
