@@ -104,6 +104,42 @@ if nixCats("general.extra") then
   -- Use the traversal keys to repeat the previous motion without
   -- explicitly invoking Leap:
   require("leap.user").set_repeat_keys("<enter>", "<backspace>")
+
+  -- Firenvim
+  vim.g.firenvim_config = {
+    globalSettings = {
+      alt = "all",
+      cmdlineTimeout = 3000,
+    },
+    localSettings = {
+      [".*"] = {
+        cmdline = "firenvim",
+        content = "text",
+        priority = 0,
+        selector = "textarea",
+        takeover = "never", -- TODO: fix lounge regex, set this back to always
+      },
+      -- FIXME: This regex doesn't seem to match
+      ["https?://[^/]+lounge.mcgee.red/"] = {
+        takeover = "never",
+        priority = 1,
+      },
+    },
+  }
+
+  vim.api.nvim_create_autocmd({ "UIEnter" }, {
+    callback = function(event)
+      local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
+      if client ~= nil and client.name == "Firenvim" then
+        vim.o.laststatus = 0
+      end
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = "github.com_*.txt",
+    command = "set filetype=markdown",
+  })
 end
 
 require("lze").load({

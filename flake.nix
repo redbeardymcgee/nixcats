@@ -195,6 +195,7 @@
             oil-nvim
             nvim-web-devicons
             vim-tridactyl
+            firenvim
           ];
         };
         # You can retreive information from the
