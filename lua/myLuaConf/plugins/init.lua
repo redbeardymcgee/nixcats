@@ -204,6 +204,91 @@ require("lze").load({
     end,
   },
   {
+    "noice.nvim",
+    for_cat = "general.extra",
+    -- FIXME: This just about works, but fails on first trigger
+    -- Copied idea from telescope.lua so not sure why it's broken
+    -- on_require = { "noice" },
+    event = "DeferredUIEnter",
+    keys = {
+      {
+        "<leader>ns",
+        function()
+          require("noice").cmd("telescope")
+        end,
+        mode = { "n" },
+        desc = "[N]otification [S]earch",
+      },
+      {
+        "<leader>nh",
+        function()
+          require("noice").cmd("history")
+        end,
+        mode = { "n" },
+        desc = "[N]otification [H]istory",
+      },
+      {
+        "<leader>nl",
+        function()
+          require("noice").cmd("last")
+        end,
+        mode = { "n" },
+        desc = "[N]otification [L]ast",
+      },
+      {
+        "<leader>nd",
+        function()
+          require("noice").cmd("dismiss")
+        end,
+        mode = { "n" },
+        desc = "[N]otification [D]ismiss",
+      },
+      -- TODO: Is this even important?
+      -- {
+      --   "<c-f>",
+      --   function()
+      --     if not require("noice.lsp").scroll(4) then
+      --       return "<c-f>"
+      --     end
+      --   end,
+      --   mode = { "n", "i", "s" },
+      --   silent = true,
+      --   expr = true,
+      -- },
+      -- {
+      --   "<c-b>",
+      --   function()
+      --     if not require("noice.lsp").scroll(-4) then
+      --       return "<c-b>"
+      --     end
+      --   end,
+      --   mode = { "n", "i", "s" },
+      --   silent = true,
+      --   expr = true,
+      -- },
+    },
+    after = function(plugin)
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = false, -- use a classic bottom cmdline for search
+          command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = true, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = true, -- add a border to hover docs and signature help
+        },
+      })
+    end,
+  },
+  {
     "toggleterm.nvim",
     for_cat = "general.extra",
     event = "DeferredUIEnter",

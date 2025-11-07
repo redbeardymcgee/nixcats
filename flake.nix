@@ -185,7 +185,6 @@
               lzextras
               (nvim-notify.overrideAttrs {doCheck = false;}) # TODO: remove overrideAttrs after check is fixed
               plenary-nvim
-              # vim-repeat
             ]
             ++ (with pkgs.neovimPlugins; [
               tmux-navigate
@@ -193,6 +192,7 @@
           extra = [
             leap-nvim
             oil-nvim
+            nui-nvim
             nvim-web-devicons
             vim-tridactyl
             firenvim
@@ -294,20 +294,19 @@
             [
               dial-nvim
               fidget-nvim
-              # lualine-lsp-progress
-              which-key-nvim
+              indent-blankline-nvim
+              # TODO: Both of these break from nixpkgs-25.05 but work from git
               # mini-align
               # mini-animate
-              undotree
-              indent-blankline-nvim
-              vim-startuptime
+              noice-nvim
               todo-comments-nvim
               toggleterm-nvim
               ts-comments-nvim
+              undotree
+              vim-startuptime
+              which-key-nvim
             ]
             ++ (with pkgs.neovimPlugins; [
-              # If it was included in your flake inputs as plugins-hlargs,
-              # this would be how to add that plugin in your config.
               hlargs
               mini-align
               mini-animate
