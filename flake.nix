@@ -162,6 +162,8 @@
         format = with pkgs; [
           alejandra
           stylua
+          prettierd
+          nodePackages.prettier
         ];
         neonixdev = {
           # also you can do this.
