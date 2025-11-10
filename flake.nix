@@ -192,6 +192,7 @@
           extra = [
             leap-nvim
             oil-nvim
+            nerdy-nvim
             nui-nvim
             nvim-web-devicons
             vim-tridactyl

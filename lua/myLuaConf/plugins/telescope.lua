@@ -193,6 +193,22 @@ return {
         mode = { "n" },
         desc = "[S]earch [N]ix",
       },
+      {
+        "<leader>si",
+        function()
+          return require("telescope").extensions.nerdy.nerdy()
+        end,
+        mode = { "n" },
+        desc = "[S]earch [I]cons",
+      },
+      {
+        "<leader>sI",
+        function()
+          return require("telescope").extensions.nerdy.nerdy_recents()
+        end,
+        mode = { "n" },
+        desc = "[S]earch [I]cons",
+      },
     },
     -- colorscheme = "",
     load = function(name)
@@ -223,6 +239,7 @@ return {
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
       pcall(require("telescope").load_extension, "manix")
+      pcall(require("telescope").load_extension, "nerdy")
 
       vim.api.nvim_create_user_command(
         "LiveGrepGitRoot",
@@ -244,5 +261,14 @@ return {
         desc = "[S]earch terminals",
       },
     },
+  },
+  {
+    "nerdy.nvim",
+    for_cat = "general.extra",
+    cmd = "Nerdy",
+    -- event = "BufEnter",
+    after = function(plugin)
+      require("nerdy").setup()
+    end,
   },
 }
