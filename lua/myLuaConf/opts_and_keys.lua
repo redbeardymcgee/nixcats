@@ -217,3 +217,17 @@ vim.keymap.set("x", "<leader>P", '"_dP', {
   silent = true,
   desc = "Paste over selection without erasing unnamed register",
 })
+
+-- File operations
+vim.keymap.set(
+  "n",
+  "<leader>fs",
+  ":write<cr>",
+  { noremap = true, silent = true, desc = "[F]ile [S]ave" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>fS",
+  ":wall<cr>",
+  { noremap = true, silent = true, desc = "[F]ile [S]ave all" }
+)
