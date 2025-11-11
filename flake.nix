@@ -194,7 +194,6 @@
           extra = [
             leap-nvim
             oil-nvim
-            nerdy-nvim
             nui-nvim
             nvim-web-devicons
             vim-tridactyl
@@ -301,6 +300,7 @@
               # TODO: Both of these break from nixpkgs-25.05 but work from git
               # mini-align
               # mini-animate
+              nerdy-nvim
               noice-nvim
               todo-comments-nvim
               toggleterm-nvim
