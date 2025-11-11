@@ -259,21 +259,20 @@
           ];
           treesitter = with pkgs.vimPlugins; [
             nvim-treesitter-textobjects
-            nvim-treesitter.withAllGrammars
+            # nvim-treesitter.withAllGrammars
             # This is for if you only want some of the grammars
-            # (nvim-treesitter.withPlugins (
-            #   plugins: with plugins; [
-            #     nix
-            #     lua
-            #     python
-            #     rust
-            #     go
-            #     javascript
-            #     shell
-            #     bash
-            #     fish
-            #   ]
-            # ))
+            (nvim-treesitter.withPlugins (
+              plugins:
+                with plugins; [
+                  nix
+                  lua
+                  rust
+                  javascript
+                  shell
+                  bash
+                  fish
+                ]
+            ))
           ];
           telescope = with pkgs.vimPlugins; [
             telescope-fzf-native-nvim
