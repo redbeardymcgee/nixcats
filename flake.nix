@@ -142,7 +142,6 @@
           nixd
           ripgrep
           tailwindcss-language-server
-          universal-ctags
         ];
         # these names are arbitrary.
         lint = with pkgs; [
