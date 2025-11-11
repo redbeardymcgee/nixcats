@@ -140,6 +140,12 @@ if nixCats("general.extra") then
     pattern = "github.com_*.txt",
     command = "set filetype=markdown",
   })
+
+  require("helpview.nvim").setup({
+    preview = {
+      icon_provider = "devicons",
+    },
+  })
 end
 
 require("lze").load({

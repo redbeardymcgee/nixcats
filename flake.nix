@@ -191,6 +191,7 @@
               tmux-navigate
             ]);
           extra = [
+            helpview-nvim
             leap-nvim
             oil-nvim
             nui-nvim
@@ -263,13 +264,14 @@
             (nvim-treesitter.withPlugins (
               plugins:
                 with plugins; [
-                  nix
-                  lua
-                  rust
-                  javascript
-                  shell
                   bash
                   fish
+                  javascript
+                  lua
+                  nix
+                  rust
+                  shell
+                  vimdoc
                 ]
             ))
           ];
