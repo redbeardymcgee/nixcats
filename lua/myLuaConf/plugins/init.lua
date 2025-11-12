@@ -496,6 +496,14 @@ require("lze").load({
     end,
   },
   {
+    "mini.ai",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    after = function()
+      require("mini.ai").setup()
+    end,
+  },
+  {
     "vim-startuptime",
     for_cat = "general.extra",
     cmd = { "StartupTime" },

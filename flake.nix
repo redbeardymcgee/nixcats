@@ -303,6 +303,7 @@
               # TODO: Both of these break from nixpkgs-25.05 but work from git
               # mini-align
               # mini-animate
+              mini-ai
               nerdy-nvim
               noice-nvim
               todo-comments-nvim
