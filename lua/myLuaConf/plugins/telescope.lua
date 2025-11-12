@@ -197,7 +197,7 @@ return {
     -- colorscheme = "",
     load = function(name)
       vim.cmd.packadd(name)
-      vim.cmd.packadd("telescope-fzf-native.nvim")
+      vim.cmd.packadd("telescope-zf-native.nvim")
       vim.cmd.packadd("telescope-ui-select.nvim")
       vim.cmd.packadd("telescope-manix")
       vim.cmd.packadd("nerdy")
@@ -217,11 +217,48 @@ return {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
           },
+          ["zf-native"] = {
+            -- options for sorting file-like items
+            file = {
+              -- override default telescope file sorter
+              enable = true,
+
+              -- highlight matching text in results
+              highlight_results = true,
+
+              -- enable zf filename match priority
+              match_filename = true,
+
+              -- optional function to define a sort order when the query is empty
+              initial_sort = nil,
+
+              -- set to false to enable case sensitive matching
+              smart_case = true,
+            },
+
+            -- options for sorting all other items
+            generic = {
+              -- override default telescope generic item sorter
+              enable = true,
+
+              -- highlight matching text in results
+              highlight_results = true,
+
+              -- disable zf filename match priority
+              match_filename = false,
+
+              -- optional function to define a sort order when the query is empty
+              initial_sort = nil,
+
+              -- set to false to enable case sensitive matching
+              smart_case = true,
+            },
+          },
         },
       })
 
       -- Enable telescope extensions, if they are installed
-      pcall(require("telescope").load_extension, "fzf")
+      pcall(require("telescope").load_extension, "zf-native")
       pcall(require("telescope").load_extension, "ui-select")
       pcall(require("telescope").load_extension, "manix")
       pcall(require("telescope").load_extension, "nerdy")

@@ -148,6 +148,7 @@
           nixd
           ripgrep
           tailwindcss-language-server
+          zf
         ];
         # these names are arbitrary.
         lint = with pkgs; [
@@ -288,8 +289,8 @@
             ts-comments-nvim
           ];
           telescope = with pkgs.vimPlugins; [
-            telescope-fzf-native-nvim
             nerdy-nvim
+            telescope-zf-native-nvim
             telescope-ui-select-nvim
             telescope-nvim
             telescope-manix
