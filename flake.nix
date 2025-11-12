@@ -315,6 +315,7 @@
             ]
             ++ (with pkgs.neovimPlugins; [
               hlargs
+              # TODO: See above
               mini-align
               mini-animate
               neotab
