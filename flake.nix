@@ -315,6 +315,7 @@
               # mini-animate
               mini-ai
               noice-nvim
+              substitute-nvim
               tiny-glimmer-nvim
               todo-comments-nvim
               toggleterm-nvim

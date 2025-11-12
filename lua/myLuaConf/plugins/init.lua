@@ -211,6 +211,66 @@ require("lze").load({
       })
     end,
   },
+  -- {
+  --   "substitute",
+  --   for_cat = "general.extra",
+  --   event = "BufEnter",
+  --   keys = {
+  --     {
+  --       "<leader>cso",
+  --       require("substitute").operator,
+  --       noremap = true,
+  --       desc = "[S]ubstitute [O]perator",
+  --     },
+  --     {
+  --       "<leader>csl",
+  --       require("substitute").line,
+  --       noremap = true,
+  --       desc = "[S]ubstitute [L]ine",
+  --     },
+  --     {
+  --       "<leader>cse",
+  --       require("substitute").eol,
+  --       noremap = true,
+  --       desc = "[S]ubstitute [E]OL",
+  --     },
+  --     {
+  --       "<leader>cs",
+  --       require("substitute").visual,
+  --       mode = { "x" },
+  --       noremap = true,
+  --       desc = "[S]ubstitute Visual",
+  --     },
+  --     {
+  --       "<leader>cxo",
+  --       require("substitute.exchange").operator,
+  --       noremap = true,
+  --       desc = "e[X]change [O]perator",
+  --     },
+  --     {
+  --       "<leader>cxl",
+  --       require("substitute.exchange").line,
+  --       mode = { "x" },
+  --       noremap = true,
+  --       desc = "e[X]change [L]ine",
+  --     },
+  --     {
+  --       "<leader>cx",
+  --       require("substitute.exchange").visual,
+  --       mode = { "x" },
+  --       noremap = true,
+  --       desc = "e[X]change Visual",
+  --     },
+  --   },
+  --   after = function()
+  --   require("substitute").setup({
+  --     on_substitute = require("tiny-glimmer.support.substitute").substitute_cb,
+  --     highlight_substituted_text = {
+  --       enabled = false,
+  --     },
+  --   })
+  --   end,
+  -- },
   {
     "markdown-preview.nvim",
     -- NOTE: for_cat is a custom handler that just sets enabled value for us,
@@ -270,7 +330,7 @@ require("lze").load({
     for_cat = "general.treesitter",
     keys = {
       {
-        "<leader>cs",
+        "<leader>cS",
         function()
           require("treesj").toggle()
         end,
