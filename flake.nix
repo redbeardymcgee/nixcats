@@ -267,10 +267,10 @@
                   bash
                   fish
                   javascript
+                  typescript
                   lua
                   nix
                   rust
-                  shell
                   vimdoc
                 ]
             ))
