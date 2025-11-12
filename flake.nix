@@ -289,6 +289,7 @@
           ];
           telescope = with pkgs.vimPlugins; [
             telescope-fzf-native-nvim
+            nerdy-nvim
             telescope-ui-select-nvim
             telescope-nvim
             telescope-manix
@@ -312,7 +313,6 @@
               # mini-align
               # mini-animate
               mini-ai
-              nerdy-nvim
               noice-nvim
               tiny-glimmer-nvim
               todo-comments-nvim

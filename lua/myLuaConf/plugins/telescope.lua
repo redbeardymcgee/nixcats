@@ -200,6 +200,7 @@ return {
       vim.cmd.packadd("telescope-fzf-native.nvim")
       vim.cmd.packadd("telescope-ui-select.nvim")
       vim.cmd.packadd("telescope-manix")
+      vim.cmd.packadd("nerdy")
     end,
     after = function(plugin)
       require("telescope").setup({
@@ -248,7 +249,7 @@ return {
   },
   {
     "nerdy.nvim",
-    for_cat = "general.extra",
+    for_cat = "general.telescope",
     cmd = "Nerdy",
     keys = {
       {
