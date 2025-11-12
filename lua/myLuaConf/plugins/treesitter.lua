@@ -5,7 +5,7 @@ return {
     "nvim-treesitter",
     for_cat = "general.treesitter",
     -- cmd = { "" },
-    event = "DeferredUIEnter",
+    event = "BufEnter",
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
@@ -40,6 +40,8 @@ return {
               ["if"] = "@function.inner",
               ["ac"] = "@class.outer",
               ["ic"] = "@class.inner",
+              ["iq"] = "@string.inner",
+              ["aq"] = "@string.outer",
             },
           },
           move = {

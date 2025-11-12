@@ -260,6 +260,8 @@
           ];
           treesitter = with pkgs.vimPlugins; [
             nvim-treesitter-textobjects
+            nvim-treesitter-endwise
+            nvim-ts-autotag
             # nvim-treesitter.withAllGrammars
             # This is for if you only want some of the grammars
             (nvim-treesitter.withPlugins (
@@ -276,6 +278,7 @@
                 ]
             ))
             treesj
+            ts-comments-nvim
           ];
           telescope = with pkgs.vimPlugins; [
             telescope-fzf-native-nvim
@@ -290,8 +293,6 @@
             gitsigns-nvim
             nvim-surround
             nvim-autopairs
-            nvim-treesitter-endwise
-            nvim-ts-autotag
             rainbow-delimiters-nvim
           ];
           extra = with pkgs.vimPlugins;
@@ -306,7 +307,6 @@
               noice-nvim
               todo-comments-nvim
               toggleterm-nvim
-              ts-comments-nvim
               undotree
               vim-startuptime
               which-key-nvim

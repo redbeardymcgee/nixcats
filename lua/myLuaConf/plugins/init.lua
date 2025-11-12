@@ -465,7 +465,7 @@ require("lze").load({
   },
   {
     "nvim-ts-autotag",
-    for_cat = "general.always",
+    for_cat = "general.treesitter",
     event = "BufEnter",
     after = function(plugin)
       require("nvim-ts-autotag").setup()
@@ -473,7 +473,7 @@ require("lze").load({
   },
   {
     "nvim-treesitter-endwise",
-    for_cat = "general.always",
+    for_cat = "general.treesitter",
     event = "BufEnter",
     -- after = function(plugin)
     --     require("nvim-treesitter-endwise").setup()
