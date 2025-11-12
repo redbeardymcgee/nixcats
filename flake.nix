@@ -271,9 +271,10 @@
                   fish
                   javascript
                   typescript
+                  markdown
+                  markdown_inline
                   lua
                   nix
-                  rust
                   vimdoc
                 ]
             ))
