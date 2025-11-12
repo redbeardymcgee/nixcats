@@ -199,13 +199,15 @@
               tmux-navigate
             ]);
           extra = [
+            firenvim
             helpview-nvim
             leap-nvim
-            oil-nvim
             nui-nvim
             nvim-web-devicons
+            oil-nvim
+            twilight-nvim
             vim-tridactyl
-            firenvim
+            zen-mode-nvim
           ];
         };
         # You can retreive information from the
