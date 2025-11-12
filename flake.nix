@@ -205,6 +205,7 @@
             nui-nvim
             nvim-web-devicons
             oil-nvim
+            overseer-nvim
             twilight-nvim
             vim-tridactyl
             zen-mode-nvim
