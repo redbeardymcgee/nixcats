@@ -53,9 +53,16 @@ require("dashboard").setup({
     },
     shortcut = {
       {
-        action = "Leet",
         key = "L",
+        group = "DiagnosticHint",
+        action = "Leet",
         desc = "Leetcode",
+      },
+      {
+        key = "S",
+        group = "@property",
+        action = "AutoSession search",
+        desc = "Sessions",
       },
     },
   },
