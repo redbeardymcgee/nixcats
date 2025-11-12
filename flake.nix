@@ -252,7 +252,6 @@
           conform-nvim
         ];
         markdown = with pkgs.vimPlugins; [
-          image-nvim
           markdown-nvim
           markdown-preview-nvim
           render-markdown-nvim
@@ -313,6 +312,7 @@
               dial-nvim
               fidget-nvim
               grug-far-nvim
+              image-nvim
               indent-blankline-nvim
               leetcode-nvim
               # TODO: Both of these break from nixpkgs-25.05 but work from git

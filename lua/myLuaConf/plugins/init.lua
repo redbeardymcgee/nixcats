@@ -473,8 +473,7 @@ require("lze").load({
   },
   {
     "image.nvim",
-    for_cat = "markdown",
-    ft = "markdown",
+    for_cat = "general.extra",
     after = function(plugin)
       require("image").setup({
         processor = "magick_rock",
