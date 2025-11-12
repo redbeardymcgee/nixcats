@@ -50,6 +50,11 @@
       flake = false;
     };
 
+    "plugins-tiny-glimmer-nvim" = {
+      url = "github:rachartier/tiny-glimmer.nvim";
+      flake = false;
+    };
+
     # "quadlet-lsp" = {
     #   url = "github:onlyati/quadlet-lsp.nvim";
     #   flake = false;
@@ -308,6 +313,7 @@
               mini-ai
               nerdy-nvim
               noice-nvim
+              tiny-glimmer-nvim
               todo-comments-nvim
               toggleterm-nvim
               undotree

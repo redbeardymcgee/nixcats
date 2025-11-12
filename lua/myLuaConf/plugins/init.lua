@@ -164,6 +164,20 @@ require("lze").load({
   { import = "myLuaConf.plugins.treesitter" },
   { import = "myLuaConf.plugins.completion" },
   {
+    "tiny-glimmer.nvim",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    after = function()
+      require("tiny-glimmer").setup({
+        overwrite = {
+          search = {
+            enabled = true,
+          },
+        },
+      })
+    end,
+  },
+  {
     "markdown-preview.nvim",
     -- NOTE: for_cat is a custom handler that just sets enabled value for us,
     -- based on result of nixCats('cat.name') and allows us to set a different default if we wish
