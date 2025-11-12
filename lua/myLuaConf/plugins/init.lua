@@ -68,6 +68,8 @@ if nixCats("general.extra") then
         desc = "oil: Search in directory",
       },
     },
+    skip_confirm_for_simple_edits = true,
+    delete_to_trash = true,
   })
   vim.keymap.set(
     "n",
