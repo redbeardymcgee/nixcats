@@ -187,6 +187,7 @@
           # (always isnt a special name, just the one I chose for this subcategory)
           always =
             [
+              auto-session
               dashboard-nvim
               lze
               lzextras

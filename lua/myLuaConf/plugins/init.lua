@@ -21,6 +21,29 @@ if ok then
   end, { desc = "dismiss notify popup and clear hlsearch" })
 end
 
+-- auto-session
+vim.o.sessionoptions =
+  "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+require("auto-session").setup({
+  allowed_dirs = {
+    "~/src/redbeardymcgee/*",
+    "~/src/forks/*",
+  },
+  bypass_save_filetypes = { "dashboard" },
+})
+vim.keymap.set(
+  "n",
+  "<leader>Ss",
+  "<cmd>AutoSession search<CR>",
+  { desc = "Session search" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>SS",
+  "<cmd>AutoSession save<CR>",
+  { desc = "Save session" }
+)
+
 -- NOTE: you can check if you included the category with the thing wherever you want.
 if nixCats("general.extra") then
   -- I didnt want to bother with lazy loading this.
@@ -143,6 +166,7 @@ if nixCats("general.extra") then
       local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
       if client ~= nil and client.name == "Firenvim" then
         vim.o.laststatus = 0
+        vim.g.auto_session_enabled = false
       end
     end,
   })
