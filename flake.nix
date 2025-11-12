@@ -139,6 +139,7 @@
           luajitPackages.magick
           marksman
           manix
+          mdx-language-server
           nixd
           ripgrep
           tailwindcss-language-server
