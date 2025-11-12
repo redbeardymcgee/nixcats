@@ -141,7 +141,7 @@ if nixCats("general.extra") then
     command = "set filetype=markdown",
   })
 
-  require("helpview.nvim").setup({
+  require("helpview").setup({
     preview = {
       icon_provider = "devicons",
     },
