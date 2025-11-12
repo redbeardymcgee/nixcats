@@ -492,7 +492,7 @@ require("lze").load({
     for_cat = "general.extra",
     event = "BufEnter",
     after = function()
-      require("neotab").setup()
+      require("neotab").setup({})
     end,
   },
   {
