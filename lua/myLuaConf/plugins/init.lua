@@ -44,6 +44,16 @@ vim.keymap.set(
   { desc = "Save session" }
 )
 
+-- Dashboard
+require("dashboard").setup({
+  theme = "hyper",
+  config = {
+    week_header = {
+      enable = true,
+    },
+  },
+})
+
 -- NOTE: you can check if you included the category with the thing wherever you want.
 if nixCats("general.extra") then
   -- I didnt want to bother with lazy loading this.
