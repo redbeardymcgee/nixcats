@@ -51,6 +51,13 @@ require("dashboard").setup({
     week_header = {
       enable = true,
     },
+    shortcut = {
+      {
+        action = "Leet",
+        key = "L",
+        desc = "Leetcode",
+      },
+    },
   },
 })
 
@@ -245,6 +252,17 @@ require("lze").load({
             enabled = false, -- fails to restore statusline
           },
         },
+      })
+    end,
+  },
+  {
+    "leetcode.nvim",
+    for_cat = "general.extra",
+    cmd = { "Leet" },
+    after = function()
+      require("leetcode").setup({
+        lang = "typescript",
+        image_support = false, -- breaks soft-wrapping problem descriptions
       })
     end,
   },

@@ -279,12 +279,13 @@
                 with plugins; [
                   bash
                   fish
+                  html
                   javascript
-                  typescript
+                  lua
                   markdown
                   markdown_inline
-                  lua
                   nix
+                  typescript
                   vimdoc
                 ]
             ))
@@ -313,6 +314,7 @@
               fidget-nvim
               grug-far-nvim
               indent-blankline-nvim
+              leetcode-nvim
               # TODO: Both of these break from nixpkgs-25.05 but work from git
               # mini-align
               # mini-animate
