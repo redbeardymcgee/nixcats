@@ -190,6 +190,26 @@ require("lze").load({
     end,
   },
   {
+    "treesj",
+    for_cat = "general.treesitter",
+    keys = {
+      {
+        "<leader>cs",
+        function()
+          require("treesj").toggle()
+        end,
+        mode = { "n" },
+        noremap = true,
+        desc = "Split/Join node",
+      },
+    },
+    after = function(plugin)
+      require("treesj").setup({
+        use_default_keymaps = false,
+      })
+    end,
+  },
+  {
     "image.nvim",
     for_cat = "markdown",
     ft = "markdown",

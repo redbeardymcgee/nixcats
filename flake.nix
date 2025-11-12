@@ -275,6 +275,7 @@
                   vimdoc
                 ]
             ))
+            treesj
           ];
           telescope = with pkgs.vimPlugins; [
             telescope-fzf-native-nvim
