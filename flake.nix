@@ -299,6 +299,7 @@
             [
               dial-nvim
               fidget-nvim
+              grug-far-nvim
               indent-blankline-nvim
               # TODO: Both of these break from nixpkgs-25.05 but work from git
               # mini-align

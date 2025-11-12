@@ -30,7 +30,8 @@ if nixCats("general.extra") then
   -- after the other lze definitions in the next call using priority value?
   -- didnt seem necessary.
   vim.g.loaded_netrwPlugin = 1
-  require("oil").setup({
+  local oil = require("oil")
+  oil.setup({
     default_file_explorer = true,
     view_options = {
       show_hidden = true,
@@ -42,22 +43,30 @@ if nixCats("general.extra") then
       -- "mtime",
     },
     keymaps = {
-      ["g?"] = "actions.show_help",
-      ["<CR>"] = "actions.select",
-      ["<C-s>"] = "actions.select_vsplit",
-      ["<C-h>"] = "actions.select_split",
-      ["<C-t>"] = "actions.select_tab",
-      ["<C-p>"] = "actions.preview",
-      ["<C-c>"] = "actions.close",
-      ["<C-l>"] = "actions.refresh",
-      ["-"] = "actions.parent",
-      ["_"] = "actions.open_cwd",
-      ["`"] = "actions.cd",
-      ["~"] = "actions.tcd",
-      ["gs"] = "actions.change_sort",
-      ["gx"] = "actions.open_external",
-      ["g."] = "actions.toggle_hidden",
-      ["g\\"] = "actions.toggle_trash",
+      ["gS"] = {
+        -- FIXME: Breaks until lze.load() below is triggered
+        callback = function()
+          -- get the current directory
+          local prefills = { paths = oil.get_current_dir() }
+
+          local grug_far = require("grug-far")
+          -- instance check
+          if not grug_far.has_instance("explorer") then
+            grug_far.open({
+              instanceName = "explorer",
+              prefills = prefills,
+              staticTitle = "Find and Replace from Explorer",
+            })
+          else
+            grug_far.get_instance("explorer"):open()
+            -- updating the prefills without clearing the search and other fields
+            grug_far
+              .get_instance("explorer")
+              :update_input_values(prefills, false)
+          end
+        end,
+        desc = "oil: Search in directory",
+      },
     },
   })
   vim.keymap.set(
@@ -187,6 +196,23 @@ require("lze").load({
     },
     before = function(plugin)
       vim.g.mkdp_auto_close = 0
+    end,
+  },
+  {
+    "grug-far.nvim",
+    for_cat = "general.extra",
+    keys = {
+      {
+        "<leader>sR",
+        function()
+          require("grug-far").open()
+        end,
+        mode = { "n", "x" },
+        desc = "[S]earch within [R]ange",
+      },
+    },
+    after = function()
+      require("grug-far").setup()
     end,
   },
   {
