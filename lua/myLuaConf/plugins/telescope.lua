@@ -193,22 +193,6 @@ return {
         mode = { "n" },
         desc = "[S]earch [N]ix",
       },
-      {
-        "<leader>si",
-        function()
-          return require("telescope").extensions.nerdy.nerdy()
-        end,
-        mode = { "n" },
-        desc = "[S]earch [I]cons",
-      },
-      {
-        "<leader>sI",
-        function()
-          return require("telescope").extensions.nerdy.nerdy_recents()
-        end,
-        mode = { "n" },
-        desc = "[S]earch [I]cons",
-      },
     },
     -- colorscheme = "",
     load = function(name)
@@ -266,7 +250,24 @@ return {
     "nerdy.nvim",
     for_cat = "general.extra",
     cmd = "Nerdy",
-    -- event = "BufEnter",
+    keys = {
+      {
+        "<leader>si",
+        function()
+          return require("telescope").extensions.nerdy.nerdy()
+        end,
+        mode = { "n" },
+        desc = "[S]earch [I]cons",
+      },
+      {
+        "<leader>sI",
+        function()
+          return require("telescope").extensions.nerdy.nerdy_recents()
+        end,
+        mode = { "n" },
+        desc = "[S]earch recent [I]cons",
+      },
+    },
     after = function(plugin)
       require("nerdy").setup()
     end,
