@@ -29,6 +29,9 @@ require("auto-session").setup({
     "~/src/redbeardymcgee/*",
     "~/src/forks/*",
   },
+  suppressed_dirs = {
+    "~/src/redbeardymcgee/leetcode",
+  },
   bypass_save_filetypes = { "dashboard" },
 })
 vim.keymap.set(
