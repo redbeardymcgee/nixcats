@@ -20,6 +20,11 @@
     # How to import it into your config is shown farther down in the startupPlugins set.
     # You put it here like this, and then below you would use it with `pkgs.neovimPlugins.hlargs`
 
+    "plugins-aoc-nvim" = {
+      url = "github:csessh/aoc.nvim";
+      flake = false;
+    };
+
     "plugins-hlargs" = {
       url = "github:m-demare/hlargs.nvim";
       flake = false;
@@ -336,6 +341,7 @@
               which-key-nvim
             ]
             ++ (with pkgs.neovimPlugins; [
+              aoc-nvim
               hlargs
               # TODO: See above
               mini-align
