@@ -251,7 +251,7 @@ require("lze").load({
               local config = require("leetcode.config")
               local repo = config.user.storage.home
               if question.lang == "rust" then
-                local cargo = repo .. "/rust/Cargo.toml"
+                local cargo = repo .. "/Cargo.toml"
                 local content = [[
                     [package]
                     name = "leetcode"
