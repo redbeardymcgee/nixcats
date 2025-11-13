@@ -173,15 +173,15 @@ if nixCats("general.extra") then
       cmdlineTimeout = 3000,
     },
     localSettings = {
+      -- NOTE: These are js patterns, not lua
       [".*"] = {
         cmdline = "firenvim",
         content = "text",
         priority = 0,
         selector = "textarea",
-        takeover = "never", -- TODO: fix lounge regex, set this back to always
+        takeover = "always", -- TODO: fix lounge regex, set this back to always
       },
-      -- FIXME: This regex doesn't seem to match
-      ["https?://[^/]+lounge.mcgee.red/"] = {
+      ["https?://lounge[.]mcgee[.]red/.*"] = {
         takeover = "never",
         priority = 1,
       },
