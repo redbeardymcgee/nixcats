@@ -215,78 +215,13 @@ require("lze").load({
   { import = "myLuaConf.plugins.completion" },
   { import = "myLuaConf.plugins.edit" },
   { import = "myLuaConf.plugins.focus" },
+  { import = "myLuaConf.plugins.leetcode" },
   { import = "myLuaConf.plugins.markdown" },
   { import = "myLuaConf.plugins.tasks" },
   { import = "myLuaConf.plugins.telescope" },
   { import = "myLuaConf.plugins.treesitter" },
   { import = "myLuaConf.plugins.typescript" },
   { import = "myLuaConf.plugins.ui" },
-  {
-    "leetcode.nvim",
-    for_cat = "general.extra",
-    cmd = { "Leet" },
-    after = function()
-      require("leetcode").setup({
-        lang = "typescript",
-        image_support = false, -- breaks soft-wrapping problem descriptions
-        storage = {
-          home = vim.fn.expand("~/src/redbeardymcgee/leetcode"),
-        },
-        injector = {
-          ["rust"] = {
-            before = {
-              "#[allow(dead_code)]",
-              "fn main(){}",
-              "#[allow(dead_code)]",
-              "struct Solution;",
-            },
-          },
-          ["typescript"] = {
-            imports = function(default_imports)
-              vim.list_extend(default_imports, {})
-              return default_imports
-            end,
-          },
-        },
-        hooks = {
-          ["question_enter"] = {
-            function(question)
-              local config = require("leetcode.config")
-              local repo = config.user.storage.home
-              if question.lang == "rust" then
-                local cargo = repo .. "/Cargo.toml"
-                local content = [[
-                    [package]
-                    name = "leetcode"
-                    edition = "2024"
-
-                    [lib]
-                    name = "%s"
-                    path = "%s"
-
-                    [dependencies]
-                    rand = "0.8"
-                    regex = "1"
-                    itertools = "0.14.0"
-                  ]]
-                local file = io.open(cargo, "w")
-                if file then
-                  local formatted = (content:gsub(" +", "")):format(
-                    question.q.frontend_id,
-                    question:path()
-                  )
-                  file:write(formatted)
-                  file:close()
-                else
-                  print("Failed to open file: " .. cargo)
-                end
-              end
-            end,
-          },
-        },
-      })
-    end,
-  },
   {
     "aoc.nvim",
     for_cat = "general.extra",
