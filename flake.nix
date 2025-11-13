@@ -176,6 +176,10 @@
           inherit (pkgs) nix-doc lua-language-server nixd;
           # and each will be its own sub category
         };
+        typescript = with pkgs; [
+          typescript
+          tailwindcss-language-server
+        ];
       };
 
       # This is for plugins that will load at startup without using packadd:
@@ -258,6 +262,9 @@
         ];
         neonixdev = with pkgs.vimPlugins; [
           lazydev-nvim
+        ];
+        typescript = with pkgs.vimPlugins; [
+          typescript-tools-nvim
         ];
         general = {
           blink = with pkgs.vimPlugins; [
@@ -456,6 +463,7 @@
           lint = true;
           format = true;
           neonixdev = true;
+          typescript = true;
 
           # enabling this category will enable the go category,
           # and ALSO debug.go and debug.default due to our extraCats in categoryDefinitions.
