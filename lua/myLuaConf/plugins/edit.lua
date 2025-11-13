@@ -1,5 +1,22 @@
 return {
   {
+    "nvim-lastplace",
+    for_cat = "general.extra",
+    event = "DeferredUIEnter",
+    after = function()
+      require("nvim-lastplace").setup({
+        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+        lastplace_ignore_filetype = {
+          "gitcommit",
+          "gitrebase",
+          "svn",
+          "hgcommit",
+        },
+        lastplace_open_folds = true,
+      })
+    end,
+  },
+  {
     "dial.nvim",
     for_cat = "general.extra",
     event = "BufEnter",

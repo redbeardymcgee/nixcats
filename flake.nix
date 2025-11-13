@@ -319,6 +319,7 @@
               # mini-align
               # mini-animate
               mini-ai
+              nvim-lastplace
               noice-nvim
               substitute-nvim
               tiny-glimmer-nvim
