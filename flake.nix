@@ -137,21 +137,19 @@
       lspsAndRuntimeDeps = {
         # some categories of stuff.
         general = with pkgs; [
-          alejandra
           fd
           imagemagick
           lazygit
           luajitPackages.magick
-          marksman
-          manix
-          mdx-language-server
-          nixd
           ripgrep
-          tailwindcss-language-server
           zf
         ];
         # these names are arbitrary.
         lint = with pkgs; [
+        ];
+        markdown = with pkgs; [
+          marksman
+          mdx-language-server
         ];
         # but you can choose which ones you want
         # per nvim package you export
@@ -173,7 +171,7 @@
         ];
         neonixdev = {
           # also you can do this.
-          inherit (pkgs) nix-doc lua-language-server nixd;
+          inherit (pkgs) manix alejandra nix-doc lua-language-server nixd;
           # and each will be its own sub category
         };
         typescript = with pkgs; [
@@ -482,7 +480,9 @@
           # there is also an extra table you can use to pass extra stuff.
           # but you can pass all the same stuff in any of these sets and access it in lua
           nixdExtras = {
-            nixpkgs = ''import ${pkgs.path} {}'';
+            nixpkgs =
+              # nix
+              ''import ${pkgs.path} {}'';
             # or inherit nixpkgs;
           };
         };
