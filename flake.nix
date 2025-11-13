@@ -320,6 +320,7 @@
               # mini-animate
               mini-ai
               nvim-lastplace
+              nvim-spider
               noice-nvim
               substitute-nvim
               tiny-glimmer-nvim

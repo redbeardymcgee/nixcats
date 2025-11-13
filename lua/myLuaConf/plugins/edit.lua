@@ -1,8 +1,44 @@
 return {
   {
+    "nvim-spider",
+    for_cat = "general.extra",
+    keys = {
+      {
+        "w",
+        "<cmd>lua require('spider').motion('w')<CR>",
+        mode = { "n", "o", "x" },
+      },
+      {
+        "e",
+        "<cmd>lua require('spider').motion('e')<CR>",
+        mode = { "n", "o", "x" },
+      },
+      {
+        "b",
+        "<cmd>lua require('spider').motion('b')<CR>",
+        mode = { "n", "o", "x" },
+      },
+      {
+        "<c-f>",
+        "<esc>l<cmd>lua require('spider').motion('w')<cr>i",
+        mode = { "i" },
+      },
+      {
+        "<c-b>",
+        "<esc><cmd>lua require('spider').motion('b')<cr>i",
+        mode = { "i" },
+      },
+    },
+    after = function()
+      require("spider").setup({
+        consistentOperatorPending = true,
+      })
+    end,
+  },
+  {
     "nvim-lastplace",
     for_cat = "general.extra",
-    event = "DeferredUIEnter",
+    event = "BufEnter",
     after = function()
       require("nvim-lastplace").setup({
         lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
