@@ -181,6 +181,7 @@ return {
       vim.cmd.packadd("telescope-manix")
       vim.cmd.packadd("nerdy")
     end,
+    dep_of = { "overseer" },
     after = function(plugin)
       require("telescope").setup({
         -- You can put your default mappings / updates / etc. in here
