@@ -65,10 +65,6 @@ return {
     "gitsigns.nvim",
     for_cat = "general.always",
     event = "BufEnter",
-    -- cmd = { "" },
-    -- ft = "",
-    -- keys = "",
-    -- colorscheme = "",
     after = function(plugin)
       require("gitsigns").setup({
         -- See `:help gitsigns.txt`
@@ -111,10 +107,10 @@ return {
 
           -- Actions
           -- visual mode
-          map("v", "<leader>hs", function()
+          map("v", "<leader>gs", function()
             gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
           end, { desc = "stage git hunk" })
-          map("v", "<leader>hr", function()
+          map("v", "<leader>gr", function()
             gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
           end, { desc = "reset git hunk" })
           -- normal mode
