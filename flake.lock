@@ -17,17 +17,33 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1762286042,
-        "narHash": "sha256-OD5HsZ+sN7VvNucbrjiCz7CHF5zf9gP51YVJvPwYIH8=",
+        "lastModified": 1762943920,
+        "narHash": "sha256-ITeH8GBpQTw9457ICZBddQEBjlXMmilML067q0e6vqY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "12c1f0253aa9a54fdf8ec8aecaafada64a111e24",
+        "rev": "91c9a64ce2a84e648d0cf9671274bb9c2fb9ba60",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "plugins-aoc-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755069722,
+        "narHash": "sha256-YteFjsPac3rBSOlw5SmcagXSYwhTEMf0kVa5hLDFRE0=",
+        "owner": "csessh",
+        "repo": "aoc.nvim",
+        "rev": "da636bf21014553510c4780aa6e374a91b6f4b2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "csessh",
+        "repo": "aoc.nvim",
         "type": "github"
       }
     },
@@ -44,6 +60,22 @@
       "original": {
         "owner": "m-demare",
         "repo": "hlargs.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-mdx-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736017392,
+        "narHash": "sha256-jpMcrWx/Rg9sMfkQFXnIM8VB5qRuSB/70wuSh6Y5uFk=",
+        "owner": "davidmh",
+        "repo": "mdx.nvim",
+        "rev": "464a74be368dce212cff02f6305845dc7f209ab3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "davidmh",
+        "repo": "mdx.nvim",
         "type": "github"
       }
     },
@@ -76,6 +108,38 @@
       "original": {
         "owner": "nvim-mini",
         "repo": "mini.animate",
+        "type": "github"
+      }
+    },
+    "plugins-neotab": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754332989,
+        "narHash": "sha256-pSLvpKqfi1hQrFAYmXTOUOYERtnr79M23z5so2JOGhE=",
+        "owner": "kawre",
+        "repo": "neotab.nvim",
+        "rev": "e99d3e28c5a2066d2d368dfe4ef3827c8d75d337",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kawre",
+        "repo": "neotab.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-tiny-glimmer-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762512281,
+        "narHash": "sha256-vYPkYzjCkL5KKVh18m60quLWInJDVGgLygHEe50TkXo=",
+        "owner": "rachartier",
+        "repo": "tiny-glimmer.nvim",
+        "rev": "73b17b8a41ac7a61bfdcbe1cd3743c29d28d376e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rachartier",
+        "repo": "tiny-glimmer.nvim",
         "type": "github"
       }
     },
@@ -115,9 +179,13 @@
       "inputs": {
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
+        "plugins-aoc-nvim": "plugins-aoc-nvim",
         "plugins-hlargs": "plugins-hlargs",
+        "plugins-mdx-nvim": "plugins-mdx-nvim",
         "plugins-mini-align": "plugins-mini-align",
         "plugins-mini-animate": "plugins-mini-animate",
+        "plugins-neotab": "plugins-neotab",
+        "plugins-tiny-glimmer-nvim": "plugins-tiny-glimmer-nvim",
         "plugins-tmux-navigate": "plugins-tmux-navigate",
         "plugins-toggleterm-manager": "plugins-toggleterm-manager"
       }
