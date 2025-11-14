@@ -11,7 +11,20 @@ return {
       },
     },
     after = function()
-      require("twilight").setup()
+      require("twilight").setup({
+        expand = {
+          "class_definition",
+          "for_statement",
+          "function",
+          "function_declaration",
+          "function_definition",
+          "if_expression",
+          "if_statement",
+          "method",
+          "table",
+          "while_statement",
+        },
+      })
     end,
   },
   {
