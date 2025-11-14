@@ -214,14 +214,10 @@
             firenvim
             helpview-nvim
             leap-nvim
-            # pkgs.neovimPlugins.mdx-nvim
             nui-nvim
             nvim-web-devicons
             oil-nvim
-            overseer-nvim
-            twilight-nvim
             vim-tridactyl
-            zen-mode-nvim
           ];
         };
         # You can retreive information from the
@@ -339,13 +335,16 @@
               nvim-lastplace
               nvim-spider
               noice-nvim
+              overseer-nvim
               substitute-nvim
               tiny-glimmer-nvim
               todo-comments-nvim
               toggleterm-nvim
+              twilight-nvim
               undotree
               vim-startuptime
               which-key-nvim
+              zen-mode-nvim
             ]
             ++ (with pkgs.neovimPlugins; [
               aoc-nvim
