@@ -64,8 +64,6 @@ return {
     -- NOTE: our on attach function defines keybinds that call telescope.
     -- so, the on_require handler will load telescope when we use those.
     on_require = { "telescope" },
-    -- event = "",
-    -- ft = "",
     keys = {
       {
         "<leader>sM",
@@ -271,7 +269,7 @@ return {
     end,
   },
   {
-    "toggleterm-manager",
+    "toggleterm-manager-nvim",
     for_cat = "general.telescope",
     keys = {
       {
