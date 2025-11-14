@@ -26,6 +26,9 @@ return {
         desc = "[T]ask [T]oggle",
       },
     },
+    before = function()
+      require("telescope")
+    end,
     after = function()
       require("overseer").setup()
     end,
