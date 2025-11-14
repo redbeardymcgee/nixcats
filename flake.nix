@@ -60,6 +60,11 @@
       flake = false;
     };
 
+    "plugins-mdx-nvim" = {
+      url = "github:davidmh/mdx.nvim";
+      flake = false;
+    };
+
     # "quadlet-lsp" = {
     #   url = "github:onlyati/quadlet-lsp.nvim";
     #   flake = false;
@@ -209,6 +214,7 @@
             firenvim
             helpview-nvim
             leap-nvim
+            # pkgs.neovimPlugins.mdx-nvim
             nui-nvim
             nvim-web-devicons
             oil-nvim
@@ -262,6 +268,7 @@
           markdown-nvim
           markdown-preview-nvim
           render-markdown-nvim
+          pkgs.neovimPlugins.mdx-nvim
         ];
         neonixdev = with pkgs.vimPlugins; [
           lazydev-nvim

@@ -99,9 +99,15 @@ require("lze").load({
     -- also these are regular specs and you can use before and after and all the other normal fields
   },
   {
-    "mdx-language-server",
+    "mdx_analyzer",
     enabled = nixCats("markdown"),
-    ft = "mdx",
+    lsp = {
+      init_options = {
+        typescript = {
+          enabled = true,
+        },
+      },
+    },
   },
   {
     "gopls",
