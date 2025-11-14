@@ -26,6 +26,9 @@ return {
         desc = "[T]ask [T]oggle",
       },
     },
+    after = function()
+      require("overseer").setup()
+    end,
   },
   {
     "toggleterm.nvim",
