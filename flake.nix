@@ -45,7 +45,7 @@
       flake = false;
     };
 
-    "plugins-toggleterm-manager" = {
+    "plugins-toggleterm-manager-nvim" = {
       url = "github:ryanmsnyder/toggleterm-manager.nvim";
       flake = false;
     };
