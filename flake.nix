@@ -6,7 +6,7 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
-    quadlet-lsp.url = "git+file:///home/rbm/src/forks/quadlet-lsp";
+    quadlet-lsp.url = "github:onlyati/quadlet-lsp";
 
     # see :help nixCats.flake.inputs
     # If you want your plugin to be loaded by the standard overlay,
