@@ -100,6 +100,12 @@ require("lze").load({
     },
   },
   {
+    "tailwindcss",
+    enabled = nixCats("typescript"),
+    for_cat = "typescript",
+    lsp = {},
+  },
+  {
     "gopls",
     for_cat = "go",
     -- if you don't provide the filetypes it asks lspconfig for them
