@@ -168,13 +168,13 @@
         # but you can choose which ones you want
         # per nvim package you export
         debug = with pkgs; {
-          # go = [delve];
+          go = [delve];
         };
         go = with pkgs; [
-          # gopls
-          # gotools
-          # go-tools
-          # gccgo
+          gopls
+          gotools
+          go-tools
+          gccgo
         ];
         # and easily check if they are included in lua
         format = with pkgs; [
@@ -256,7 +256,7 @@
             nvim-dap-ui
             nvim-dap-virtual-text
           ];
-          # go = [nvim-dap-go];
+          go = [nvim-dap-go];
         };
         lint = with pkgs.vimPlugins; [
           nvim-lint
