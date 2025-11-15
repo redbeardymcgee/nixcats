@@ -100,6 +100,17 @@ require("lze").load({
     },
   },
   {
+    "astro",
+    enabled = nixCats("typescript"),
+    lsp = {
+      init_options = {
+        typescript = {
+          enabled = true,
+        },
+      },
+    },
+  },
+  {
     "tailwindcss",
     enabled = nixCats("typescript"),
     for_cat = "typescript",

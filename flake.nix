@@ -189,6 +189,7 @@
           # and each will be its own sub category
         };
         typescript = with pkgs; [
+          astro-language-server
           typescript
           tailwindcss-language-server
         ];
