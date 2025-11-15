@@ -326,12 +326,12 @@
               fidget-nvim
               grug-far-nvim
               image-nvim
-              indent-blankline-nvim
               leetcode-nvim
               # TODO: Both of these break from nixpkgs-25.05 but work from git
               # mini-align
               # mini-animate
               mini-ai
+              mini-indentscope
               nvim-lastplace
               nvim-spider
               noice-nvim

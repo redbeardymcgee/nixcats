@@ -293,7 +293,6 @@ return {
     "mini-align",
     for_cat = "general.extra",
     event = "BufEnter",
-    -- keys = "",
     after = function(plugin)
       require("mini.align").setup({
         mappings = {
@@ -309,6 +308,22 @@ return {
     event = "BufEnter",
     after = function()
       require("mini.ai").setup()
+    end,
+  },
+  {
+    "mini.indentscope",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    before = function()
+      vim.api.nvim_create_autocmd("Filetype", {
+        pattern = "dashboard",
+        callback = function(args)
+          vim.b[args.buf].miniindentscope_disable = true
+        end,
+      })
+    end,
+    after = function()
+      require("mini.indentscope").setup()
     end,
   },
   {
@@ -399,20 +414,6 @@ return {
     before = function(_)
       vim.g.undotree_WindowLayout = 1
       vim.g.undotree_SplitWidth = 40
-    end,
-  },
-  {
-    "indent-blankline.nvim",
-    for_cat = "general.extra",
-    event = "BufEnter",
-    after = function(plugin)
-      require("ibl").setup({
-        scope = {
-          exclude = {
-            language = { "dashboard" },
-          },
-        },
-      })
     end,
   },
   {
