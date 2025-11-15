@@ -6,6 +6,8 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
+    quadlet-lsp.url = "git+file:///home/rbm/src/forks/quadlet-lsp";
+
     # see :help nixCats.flake.inputs
     # If you want your plugin to be loaded by the standard overlay,
     # i.e. if it wasnt on nixpkgs, but doesnt have an extra build step.
@@ -65,10 +67,10 @@
       flake = false;
     };
 
-    # "quadlet-lsp" = {
-    #   url = "github:onlyati/quadlet-lsp.nvim";
-    #   flake = false;
-    # };
+    "plugins-quadlet-lsp-nvim" = {
+      url = "github:onlyati/quadlet-lsp.nvim";
+      flake = false;
+    };
 
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
@@ -79,6 +81,7 @@
   outputs = {
     self,
     nixpkgs,
+    quadlet-lsp,
     ...
   } @ inputs: let
     inherit (inputs.nixCats) utils;
@@ -151,6 +154,7 @@
           imagemagick
           lazygit
           luajitPackages.magick
+          quadlet-lsp.packages.${system}.default
           ripgrep
           zf
         ];
@@ -353,6 +357,7 @@
               mini-align
               mini-animate
               neotab
+              quadlet-lsp-nvim
             ]);
         };
       };

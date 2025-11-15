@@ -303,4 +303,12 @@ require("lze").load({
       })
     end,
   },
+  {
+    "quadlet-lsp-nvim",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    after = function()
+      require("quadlet-lsp").setup()
+    end,
+  },
 })
