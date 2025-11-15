@@ -49,12 +49,10 @@ require("lze").load({
       vim.cmd.packadd(name)
       vim.cmd.packadd("mason-lspconfig.nvim")
       require("mason").setup()
-      -- auto install will make it install servers when lspconfig is called on them.
       require("mason-lspconfig").setup({ automatic_installation = true })
     end,
   },
   {
-    -- lazydev makes your lsp way better in your config without needing extra lsp configuration.
     "lazydev.nvim",
     for_cat = "neonixdev",
     cmd = { "LazyDev" },
@@ -71,16 +69,9 @@ require("lze").load({
     end,
   },
   {
-    -- name of the lsp
     "lua_ls",
     enabled = nixCats("lua") or nixCats("neonixdev") or false,
-    -- provide a table containing filetypes,
-    -- and then whatever your functions defined in the function type specs expect.
-    -- in our case, it just expects the normal lspconfig setup options,
-    -- but with a default on_attach and capabilities
     lsp = {
-      -- if you provide the filetypes it doesn't ask lspconfig for the filetypes
-      filetypes = { "lua" },
       settings = {
         Lua = {
           runtime = { version = "LuaJIT" },
@@ -96,7 +87,6 @@ require("lze").load({
         },
       },
     },
-    -- also these are regular specs and you can use before and after and all the other normal fields
   },
   {
     "mdx_analyzer",
@@ -113,32 +103,25 @@ require("lze").load({
     "gopls",
     for_cat = "go",
     -- if you don't provide the filetypes it asks lspconfig for them
-    lsp = {
-      filetypes = { "go", "gomod", "gowork", "gotmpl" },
-    },
+    lsp = {},
   },
   {
     "rnix",
     -- mason doesn't have nixd
     enabled = not catUtils.isNixCats,
-    lsp = {
-      filetypes = { "nix" },
-    },
+    lsp = {},
   },
   {
     "nil_ls",
     -- mason doesn't have nixd
     enabled = not catUtils.isNixCats,
-    lsp = {
-      filetypes = { "nix" },
-    },
+    lsp = {},
   },
   {
     "nixd",
     enabled = catUtils.isNixCats and (nixCats("nix") or nixCats("neonixdev"))
       or false,
     lsp = {
-      filetypes = { "nix" },
       settings = {
         nixd = {
           -- nixd requires some configuration.
