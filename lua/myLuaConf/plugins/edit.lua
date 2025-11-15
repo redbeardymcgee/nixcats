@@ -315,11 +315,15 @@ return {
     for_cat = "general.extra",
     event = "BufEnter",
     before = function()
+      local function disable(args)
+        vim.b[args.buf].miniindentscope_disable = true
+      end
       vim.api.nvim_create_autocmd("Filetype", {
         pattern = "dashboard",
-        callback = function(args)
-          vim.b[args.buf].miniindentscope_disable = true
-        end,
+        callback = disable,
+      })
+      vim.api.nvim_create_autocmd("TermOpen", {
+        callback = disable,
       })
     end,
     after = function()
