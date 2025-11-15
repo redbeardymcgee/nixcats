@@ -310,7 +310,7 @@
             telescope-ui-select-nvim
             telescope-nvim
             telescope-manix
-            pkgs.neovimPlugins.toggleterm-manager
+            pkgs.neovimPlugins.toggleterm-manager-nvim
           ];
           always = with pkgs.vimPlugins; [
             nvim-lspconfig
