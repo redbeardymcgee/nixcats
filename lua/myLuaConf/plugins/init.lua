@@ -283,7 +283,7 @@ require("lze").load({
         { "<leader>r_", hidden = true },
         { "<leader>s", group = "[s]earch" },
         { "<leader>s_", hidden = true },
-        { "<leader>t", group = "[t]asks},
+        { "<leader>t", group = "[t]asks" },
         { "<leader>t_", hidden = true },
         { "<leader>W", group = "[W]orkspace" },
         { "<leader>W_", hidden = true },
