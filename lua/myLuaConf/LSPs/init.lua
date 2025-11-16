@@ -128,6 +128,18 @@ require("lze").load({
     lsp = {},
   },
   {
+    "fish_lsp",
+    enabled = nixCats("shell"),
+    for_cat = "shell",
+    lsp = {},
+  },
+  {
+    "bashls",
+    enabled = nixCats("shell"),
+    for_cat = "shell",
+    lsp = {},
+  },
+  {
     "scheme_langserver",
     enabled = nixCats("lisp"),
     for_cat = "lisp",

@@ -173,6 +173,10 @@
           nix-doc
           nixd
         ];
+        shell = with pkgs; [
+          bash-language-server
+          fish-lsp
+        ];
         typescript = with pkgs; [
           astro-language-server
           typescript
@@ -466,6 +470,7 @@
           lisp = true;
           lua = true;
           nix = true;
+          shell = true;
           typescript = true;
 
           # enabling this category will enable the go category,
