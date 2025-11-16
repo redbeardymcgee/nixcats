@@ -168,18 +168,6 @@ require("lze").load({
     lsp = {},
   },
   {
-    "rnix",
-    -- mason doesn't have nixd
-    enabled = not catUtils.isNixCats,
-    lsp = {},
-  },
-  {
-    "nil_ls",
-    -- mason doesn't have nixd
-    enabled = not catUtils.isNixCats,
-    lsp = {},
-  },
-  {
     "nixd",
     enabled = catUtils.isNixCats and nixCats("nix"),
     lsp = {
