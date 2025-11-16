@@ -105,6 +105,11 @@ require("lze").load({
     },
   },
   {
+    "marksman",
+    enabled = nixCats("markdown"),
+    lsp = {},
+  },
+  {
     "jsonls",
     enabled = nixCats("typescript"),
     lsp = {},
