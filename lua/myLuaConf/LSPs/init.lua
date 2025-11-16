@@ -105,6 +105,11 @@ require("lze").load({
     },
   },
   {
+    "jsonls",
+    enabled = nixCats("typescript"),
+    lsp = {},
+  },
+  {
     "astro",
     enabled = nixCats("typescript"),
     lsp = {

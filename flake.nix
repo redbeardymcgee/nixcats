@@ -164,8 +164,6 @@
         lua = with pkgs; [
           lua-language-server
           stylua
-          prettierd
-          nodePackages.prettier
         ];
         nix = with pkgs; [
           manix
@@ -182,8 +180,11 @@
         ];
         typescript = with pkgs; [
           astro-language-server
-          typescript
+          nodePackages.prettier
+          prettierd
           tailwindcss-language-server
+          typescript
+          vscode-langservers-extracted
         ];
       };
 
