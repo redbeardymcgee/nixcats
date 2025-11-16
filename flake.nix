@@ -187,6 +187,7 @@
         ];
         typescript = with pkgs; [
           astro-language-server
+          eslint
           nodePackages.prettier
           prettierd
           tailwindcss-language-server
