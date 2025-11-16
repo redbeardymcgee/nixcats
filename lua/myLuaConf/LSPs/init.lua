@@ -128,6 +128,12 @@ require("lze").load({
     lsp = {},
   },
   {
+    "rust_analyzer",
+    enabled = nixCats("rust"),
+    for_cat = "rust",
+    lsp = {},
+  },
+  {
     "fish_lsp",
     enabled = nixCats("shell"),
     for_cat = "shell",

@@ -173,6 +173,9 @@
           nix-doc
           nixd
         ];
+        rust = with pkgs; [
+          rust-analyzer
+        ];
         shell = with pkgs; [
           bash-language-server
           fish-lsp
@@ -470,6 +473,7 @@
           lisp = true;
           lua = true;
           nix = true;
+          rust = true;
           shell = true;
           typescript = true;
 
