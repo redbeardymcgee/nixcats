@@ -156,6 +156,12 @@ require("lze").load({
     lsp = {},
   },
   {
+    "html",
+    enabled = nixCats("typescript"),
+    for_cat = "typescript",
+    lsp = {},
+  },
+  {
     "scheme_langserver",
     enabled = nixCats("lisp"),
     for_cat = "lisp",
