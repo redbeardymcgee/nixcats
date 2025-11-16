@@ -22,6 +22,11 @@ require("lze").h.lsp.set_ft_fallback(function(name)
     return old_ft_fallback(name)
   end
 end)
+
+-- NOTE: `jq` isn't a recognized filetype by default
+-- but we have a language server that expects it
+vim.cmd([[au BufRead,BufNewFile *.jq setfiletype jq]])
+
 require("lze").load({
   {
     "nvim-lspconfig",
@@ -159,6 +164,12 @@ require("lze").load({
     "html",
     enabled = nixCats("typescript"),
     for_cat = "typescript",
+    lsp = {},
+  },
+  {
+    "jqls",
+    enabled = nixCats("general"),
+    for_cat = "general",
     lsp = {},
   },
   {

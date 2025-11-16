@@ -139,6 +139,7 @@
         general = with pkgs; [
           fd
           imagemagick
+          jq-lsp
           lazygit
           luajitPackages.magick
           quadlet-lsp.packages.${system}.default
@@ -282,6 +283,7 @@
                   gotmpl
                   html
                   javascript
+                  jq
                   jsdoc
                   json
                   jsonc
