@@ -145,8 +145,6 @@
           ripgrep
           zf
         ];
-        lint = with pkgs; [
-        ];
         markdown = with pkgs; [
           marksman
           mdx-language-server
@@ -160,8 +158,6 @@
           go-tools
           gccgo
         ];
-        format = with pkgs; [
-          alejandra
         lua = with pkgs; [
           lua-language-server
           stylua
@@ -235,12 +231,6 @@
           ];
           go = [nvim-dap-go];
         };
-        lint = with pkgs.vimPlugins; [
-          nvim-lint
-        ];
-        format = with pkgs.vimPlugins; [
-          conform-nvim
-        ];
         markdown = with pkgs.vimPlugins; [
           markdown-nvim
           markdown-preview-nvim
@@ -317,6 +307,7 @@
           ];
           extra = with pkgs.vimPlugins;
             [
+              conform-nvim
               dial-nvim
               fidget-nvim
               grug-far-nvim
@@ -328,6 +319,7 @@
               mini-ai
               mini-indentscope
               nvim-lastplace
+              nvim-lint
               nvim-spider
               noice-nvim
               overseer-nvim
@@ -467,8 +459,6 @@
           debug.default = true;
           markdown = true;
           general = true;
-          lint = true;
-          format = true;
           lua = true;
           nix = true;
           typescript = true;
@@ -521,10 +511,8 @@
         };
         categories = {
           colorscheme = "catppuccin";
-          format = true;
           general = true;
           # go = true; # <- disabled but you could enable it with override or module on install
-          lint = true;
           lua = true;
           lspDebugMode = false;
           markdown = true;

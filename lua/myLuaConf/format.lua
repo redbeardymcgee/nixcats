@@ -1,14 +1,10 @@
 require("lze").load({
   {
     "conform.nvim",
-    for_cat = "format",
-    -- cmd = { "" },
-    -- event = "",
-    -- ft = "",
+    for_cat = "general.extra",
     keys = {
       { "<leader>ff", desc = "[F]ormat [F]ile" },
     },
-    -- colorscheme = "",
     after = function(plugin)
       local conform = require("conform")
 
@@ -21,10 +17,8 @@ require("lze").load({
           -- NOTE: download some formatters in lspsAndRuntimeDeps
           -- and configure them here
           lua = { "stylua" },
-          -- go = { "gofmt", "golint" },
-          -- templ = { "templ" },
-          -- Conform will run multiple formatters sequentially
-          -- python = { "isort", "black" },
+          go = { "gofmt", "golint" },
+          templ = { "templ" },
           javascript = { "prettierd", "prettier", stop_after_first = true },
           nix = { "alejandra", "nixfmt", stop_after_first = true },
         },
