@@ -144,6 +144,7 @@
           lazygit
           luajitPackages.magick
           quadlet-lsp.packages.${system}.default
+          reuse
           ripgrep
           zf
           yq
