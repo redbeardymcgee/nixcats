@@ -54,7 +54,7 @@ require("lze").load({
   },
   {
     "lazydev.nvim",
-    for_cat = "neonixdev",
+    for_cat = "lua",
     cmd = { "LazyDev" },
     ft = "lua",
     after = function(_)
@@ -70,7 +70,7 @@ require("lze").load({
   },
   {
     "lua_ls",
-    enabled = nixCats("lua") or nixCats("neonixdev") or false,
+    enabled = nixCats("lua"),
     lsp = {
       settings = {
         Lua = {
@@ -87,6 +87,11 @@ require("lze").load({
         },
       },
     },
+  },
+  {
+    "stylua",
+    enabled = nixCats("lua"),
+    lsp = {},
   },
   {
     "mdx_analyzer",
@@ -136,8 +141,7 @@ require("lze").load({
   },
   {
     "nixd",
-    enabled = catUtils.isNixCats and (nixCats("nix") or nixCats("neonixdev"))
-      or false,
+    enabled = catUtils.isNixCats and nixCats("nix"),
     lsp = {
       settings = {
         nixd = {

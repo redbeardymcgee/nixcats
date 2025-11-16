@@ -162,15 +162,18 @@
         ];
         format = with pkgs; [
           alejandra
+        lua = with pkgs; [
+          lua-language-server
           stylua
           prettierd
           nodePackages.prettier
         ];
-        neonixdev = {
-          # also you can do this.
-          inherit (pkgs) manix alejandra nix-doc lua-language-server nixd;
-          # and each will be its own sub category
-        };
+        nix = with pkgs; [
+          manix
+          alejandra
+          nix-doc
+          nixd
+        ];
         typescript = with pkgs; [
           astro-language-server
           typescript
@@ -244,7 +247,7 @@
           render-markdown-nvim
           pkgs.neovimPlugins.mdx-nvim
         ];
-        neonixdev = with pkgs.vimPlugins; [
+        lua = with pkgs.vimPlugins; [
           lazydev-nvim
         ];
         typescript = with pkgs.vimPlugins; [
@@ -466,7 +469,8 @@
           general = true;
           lint = true;
           format = true;
-          neonixdev = true;
+          lua = true;
+          nix = true;
           typescript = true;
 
           # enabling this category will enable the go category,
@@ -521,9 +525,10 @@
           general = true;
           # go = true; # <- disabled but you could enable it with override or module on install
           lint = true;
+          lua = true;
           lspDebugMode = false;
           markdown = true;
-          neonixdev = true;
+          nix = true;
           themer = true;
         };
         extra = {
