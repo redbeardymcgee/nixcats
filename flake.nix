@@ -72,6 +72,11 @@
       flake = false;
     };
 
+    "plugins-nvim-colorizer-lua" = {
+      url = "github:catgoose/nvim-colorizer.lua";
+      flake = false;
+    };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -358,6 +363,7 @@
               mini-align
               mini-animate
               neotab
+              nvim-colorizer-lua
               quadlet-lsp-nvim
             ]);
         };
