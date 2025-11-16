@@ -158,6 +158,9 @@
           go-tools
           gccgo
         ];
+        lisp = with pkgs; [
+          akkuPackages.scheme-langserver
+        ];
         lua = with pkgs; [
           lua-language-server
           stylua
@@ -280,6 +283,7 @@
                   markdown_inline
                   nix
                   rust
+                  scheme
                   tmux
                   tsx
                   typescript
@@ -459,6 +463,7 @@
           debug.default = true;
           markdown = true;
           general = true;
+          lisp = true;
           lua = true;
           nix = true;
           typescript = true;

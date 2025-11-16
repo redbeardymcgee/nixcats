@@ -128,6 +128,12 @@ require("lze").load({
     lsp = {},
   },
   {
+    "scheme_langserver",
+    enabled = nixCats("lisp"),
+    for_cat = "lisp",
+    lsp = {},
+  },
+  {
     "rnix",
     -- mason doesn't have nixd
     enabled = not catUtils.isNixCats,
