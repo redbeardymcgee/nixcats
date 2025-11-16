@@ -471,6 +471,7 @@
           debug.default = true;
           markdown = true;
           general = true;
+          go = true;
           lisp = true;
           lua = true;
           nix = true;
