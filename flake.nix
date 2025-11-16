@@ -178,6 +178,7 @@
         shell = with pkgs; [
           bash-language-server
           fish-lsp
+          shfmt
         ];
         typescript = with pkgs; [
           astro-language-server
