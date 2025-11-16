@@ -139,12 +139,14 @@
         general = with pkgs; [
           fd
           imagemagick
+          jq
           jq-lsp
           lazygit
           luajitPackages.magick
           quadlet-lsp.packages.${system}.default
           ripgrep
           zf
+          yq
         ];
         markdown = with pkgs; [
           marksman
