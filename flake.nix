@@ -18,10 +18,6 @@
     # for specific tags, branches and commits, see:
     # https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#examples
 
-    # No longer fetched to avoid forcing people to import it, but this remains here as a tutorial.
-    # How to import it into your config is shown farther down in the startupPlugins set.
-    # You put it here like this, and then below you would use it with `pkgs.neovimPlugins.hlargs`
-
     "plugins-aoc-nvim" = {
       url = "github:csessh/aoc.nvim";
       flake = false;
@@ -82,7 +78,6 @@
     # };
   };
 
-  # see :help nixCats.flake.outputs
   outputs = {
     self,
     nixpkgs,
@@ -131,9 +126,6 @@
         # )
       ];
 
-    # see :help nixCats.flake.outputs.categories
-    # and
-    # :help nixCats.flake.outputs.categoryDefinitions.scheme
     categoryDefinitions = {
       pkgs,
       settings,
@@ -143,17 +135,7 @@
       mkPlugin,
       ...
     } @ packageDef: {
-      # to define and use a new category, simply add a new list to a set here,
-      # and later, you will include categoryname = true; in the set you
-      # provide when you build the package using this builder function.
-      # see :help nixCats.flake.outputs.packageDefinitions for info on that section.
-
-      # lspsAndRuntimeDeps:
-      # this section is for dependencies that should be available
-      # at RUN TIME for plugins. Will be available to PATH within neovim terminal
-      # this includes LSPs
       lspsAndRuntimeDeps = {
-        # some categories of stuff.
         general = with pkgs; [
           fd
           imagemagick
@@ -163,15 +145,12 @@
           ripgrep
           zf
         ];
-        # these names are arbitrary.
         lint = with pkgs; [
         ];
         markdown = with pkgs; [
           marksman
           mdx-language-server
         ];
-        # but you can choose which ones you want
-        # per nvim package you export
         debug = with pkgs; {
           go = [delve];
         };
@@ -181,7 +160,6 @@
           go-tools
           gccgo
         ];
-        # and easily check if they are included in lua
         format = with pkgs; [
           alejandra
           stylua
@@ -200,14 +178,11 @@
         ];
       };
 
-      # This is for plugins that will load at startup without using packadd:
       startupPlugins = {
         debug = with pkgs.vimPlugins; [
           nvim-nio
         ];
         general = with pkgs.vimPlugins; {
-          # you can make subcategories!!!
-          # (always isnt a special name, just the one I chose for this subcategory)
           always =
             [
               auto-session
@@ -235,7 +210,6 @@
         # :help nixCats.flake.outputs.categoryDefinitions.scheme
         themer = with pkgs.vimPlugins; (
           builtins.getAttr (categories.colorscheme or "onedark") {
-            # Theme switcher without creating a new category
             "catppuccin" = catppuccin-nvim;
             "catppuccin-mocha" = catppuccin-nvim;
             "onedark" = onedark-nvim;
@@ -243,14 +217,8 @@
             "tokyonight-day" = tokyonight-nvim;
           }
         );
-        # This is obviously a fairly basic usecase for this, but still nice.
       };
 
-      # not loaded automatically at startup.
-      # use with packadd and an autocommand in config to achieve lazy loading
-      # or a tool for organizing this like lze or lz.n!
-      # to get the name packadd expects, use the
-      # `:NixCats pawsible` command to see them all
       optionalPlugins = {
         debug = with pkgs.vimPlugins; {
           # it is possible to add default values.
