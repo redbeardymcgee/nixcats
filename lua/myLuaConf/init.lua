@@ -23,3 +23,6 @@ require("myLuaConf.LSPs")
 if nixCats("debug") then
   require("myLuaConf.debug")
 end
+
+require("myLuaConf.lint")
+require("myLuaConf.format")
