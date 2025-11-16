@@ -158,6 +158,8 @@
           gotools
           go-tools
           gccgo
+          golint
+          templ
         ];
         lisp = with pkgs; [
           akkuPackages.scheme-langserver
