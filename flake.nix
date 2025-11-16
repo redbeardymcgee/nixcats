@@ -267,14 +267,28 @@
             (nvim-treesitter.withPlugins (
               plugins:
                 with plugins; [
+                  astro
                   bash
+                  caddy
+                  css
                   fish
+                  go
+                  gomod
+                  gosum
+                  gotmpl
                   html
                   javascript
+                  jsdoc
+                  json
+                  jsonc
                   lua
+                  luadoc
                   markdown
                   markdown_inline
                   nix
+                  rust
+                  tmux
+                  tsx
                   typescript
                   vimdoc
                 ]
