@@ -53,6 +53,14 @@ return {
     end,
   },
   {
+    "deadcolumn-nvim",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    after = function()
+      require("deadcolumn").setup()
+    end,
+  },
+  {
     "dial.nvim",
     for_cat = "general.extra",
     event = "BufEnter",

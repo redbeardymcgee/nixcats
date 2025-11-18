@@ -23,6 +23,11 @@
       flake = false;
     };
 
+    "plugins-deadcolumn-nvim" = {
+      url = "github:Bekaboo/deadcolumn.nvim";
+      flake = false;
+    };
+
     "plugins-hlargs" = {
       url = "github:m-demare/hlargs.nvim";
       flake = false;
@@ -357,6 +362,7 @@
             ]
             ++ (with pkgs.neovimPlugins; [
               aoc-nvim
+              deadcolumn-nvim
               hlargs
               # TODO: See above
               mini-align
