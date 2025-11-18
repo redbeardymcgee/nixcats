@@ -345,11 +345,11 @@
               # mini-animate
               mini-ai
               mini-indentscope
-              nvim-lastplace
               nvim-lint
               nvim-spider
               noice-nvim
               overseer-nvim
+              remember-nvim
               substitute-nvim
               tiny-glimmer-nvim
               todo-comments-nvim

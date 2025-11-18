@@ -36,19 +36,25 @@ return {
     end,
   },
   {
-    "nvim-lastplace",
+    "remember.nvim",
     for_cat = "general.extra",
     event = "BufEnter",
     after = function()
-      require("nvim-lastplace").setup({
-        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-        lastplace_ignore_filetype = {
+      require("remember").setup({
+        ignore_buftype = {
+          "quickfix",
+          "nofile",
+          "help",
+          "dashboard",
+        },
+        ignore_filetype = {
           "gitcommit",
           "gitrebase",
           "svn",
           "hgcommit",
+          "dap-repl",
         },
-        lastplace_open_folds = true,
+        open_folds = true,
       })
     end,
   },
