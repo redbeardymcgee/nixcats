@@ -139,7 +139,7 @@ require("lze").load({
   {
     "gopls",
     for_cat = "go",
-    -- if you don't provide the filetypes it asks lspconfig for them
+    enabled = nixCats("go"),
     lsp = {},
   },
   {
