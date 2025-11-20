@@ -231,6 +231,10 @@ return {
       -- },
     },
     after = function(plugin)
+      local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
+      if client ~= nil and client.name == "Firenvim" then
+        return
+      end
       require("noice").setup({
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
