@@ -71,68 +71,37 @@ require("dashboard").setup({
   },
 })
 
--- NOTE: you can check if you included the category with the thing wherever you want.
 if nixCats("general.extra") then
-  -- I didnt want to bother with lazy loading this.
-  -- I could put it in opt and put it in a spec anyway
-  -- and then not set any handlers and it would load at startup,
-  -- but why... I guess I could make it load
-  -- after the other lze definitions in the next call using priority value?
-  -- didnt seem necessary.
   vim.g.loaded_netrwPlugin = 1
-  local oil = require("oil")
-  oil.setup({
-    default_file_explorer = true,
-    view_options = {
-      show_hidden = true,
-    },
-    columns = {
-      "icon",
-      "permissions",
-      "size",
-      -- "mtime",
-    },
-    keymaps = {
-      ["gS"] = {
-        -- FIXME: Breaks until lze.load() below is triggered
-        callback = function()
-          -- get the current directory
-          local prefills = { paths = oil.get_current_dir() }
+  local fyler = require("fyler")
 
-          local grug_far = require("grug-far")
-          -- instance check
-          if not grug_far.has_instance("explorer") then
-            grug_far.open({
-              instanceName = "explorer",
-              prefills = prefills,
-              staticTitle = "Find and Replace from Explorer",
-            })
-          else
-            grug_far.get_instance("explorer"):open()
-            -- updating the prefills without clearing the search and other fields
-            grug_far
-              .get_instance("explorer")
-              :update_input_values(prefills, false)
-          end
-        end,
-        desc = "oil: Search in directory",
+  fyler.setup({
+    integrations = {
+      icon = "nvim_web_devicons",
+    },
+    views = {
+      finder = {
+        default_explorer = true,
+        delete_to_trash = true,
+        watcher = {
+          enabled = true,
+        },
       },
     },
-    skip_confirm_for_simple_edits = true,
-    delete_to_trash = true,
   })
-  vim.keymap.set(
-    "n",
-    "-",
-    "<cmd>Oil<CR>",
-    { noremap = true, desc = "Open Parent Directory" }
-  )
-  vim.keymap.set(
-    "n",
-    "<leader>-",
-    "<cmd>Oil .<CR>",
-    { noremap = true, desc = "Open nvim root directory" }
-  )
+
+  vim.keymap.set("n", "-", function()
+    fyler.toggle({
+      kind = "split_left_most",
+    })
+  end, { noremap = true, desc = "Open parent directory" })
+
+  vim.keymap.set("n", "<leader>-", function()
+    fyler.toggle({
+      kind = "split_left_most",
+      dir = vim.fn.getcwd(),
+    })
+  end, { noremap = true, desc = "Open working directory" })
 
   -- leap.nvim
   vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")

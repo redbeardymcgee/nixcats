@@ -38,6 +38,11 @@
       flake = false;
     };
 
+    "plugins-fyler-nvim" = {
+      url = "github:A7Lavinraj/fyler.nvim";
+      flake = false;
+    };
+
     "plugins-mini-animate" = {
       url = "github:nvim-mini/mini.animate";
       flake = false;
@@ -209,8 +214,6 @@
         general = with pkgs.vimPlugins; {
           always =
             [
-              auto-session
-              dashboard-nvim
               lze
               lzextras
               (nvim-notify.overrideAttrs {doCheck = false;}) # TODO: remove overrideAttrs after check is fixed
@@ -219,15 +222,20 @@
             ++ (with pkgs.neovimPlugins; [
               tmux-navigate
             ]);
-          extra = [
-            firenvim
-            helpview-nvim
-            leap-nvim
-            nui-nvim
-            nvim-web-devicons
-            oil-nvim
-            vim-tridactyl
-          ];
+          extra =
+            [
+              auto-session
+              dashboard-nvim
+              firenvim
+              helpview-nvim
+              leap-nvim
+              nui-nvim
+              nvim-web-devicons
+              vim-tridactyl
+            ]
+            ++ (with pkgs.neovimPlugins; [
+              fyler-nvim
+            ]);
         };
         # You can retreive information from the
         # packageDefinitions of the package this was packaged with.

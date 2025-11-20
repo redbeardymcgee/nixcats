@@ -242,6 +242,7 @@ return {
       pcall(require("telescope").load_extension, "ui-select")
       pcall(require("telescope").load_extension, "manix")
       pcall(require("telescope").load_extension, "nerdy")
+      pcall(require("telescope").load_extension, "fyler")
 
       vim.api.nvim_create_user_command(
         "LiveGrepGitRoot",
