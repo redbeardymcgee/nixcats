@@ -2,11 +2,11 @@
   "nodes": {
     "nixCats": {
       "locked": {
-        "lastModified": 1762227818,
-        "narHash": "sha256-GSnU4XJucZojGVBGY7djqsT37P9YViCMTVw58tsqrOs=",
+        "lastModified": 1763330129,
+        "narHash": "sha256-KbOeWIF52SV53BOeETGO2C5ewaV2Ex9iaXH7G72gOr8=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "fa7991a4fa7d7227486910ce6724215b88eb8296",
+        "rev": "c81551ed87db2aefab30a12cf7425ff94dc0ad64",
         "type": "github"
       },
       "original": {
@@ -17,16 +17,32 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1762943920,
-        "narHash": "sha256-ITeH8GBpQTw9457ICZBddQEBjlXMmilML067q0e6vqY=",
+        "lastModified": 1763618868,
+        "narHash": "sha256-v5afmLjn/uyD9EQuPBn7nZuaZVV9r+JerayK/4wvdWA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "91c9a64ce2a84e648d0cf9671274bb9c2fb9ba60",
+        "rev": "a8d610af3f1a5fb71e23e08434d8d61a466fc942",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1762977756,
+        "narHash": "sha256-4PqRErxfe+2toFJFgcRKZ0UI9NSIOJa+7RXVtBhy4KE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c5ae371f1a6a7fd27823bc500d9390b38c05fa55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -44,6 +60,38 @@
       "original": {
         "owner": "csessh",
         "repo": "aoc.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-deadcolumn-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756951626,
+        "narHash": "sha256-uYiq6ZbvbHf5eY5EUW70CamlB7DHMY5CQu2hicoCY5I=",
+        "owner": "Bekaboo",
+        "repo": "deadcolumn.nvim",
+        "rev": "92c86f10bfba2717ca2280e2e759b047135d5288",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Bekaboo",
+        "repo": "deadcolumn.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-fyler-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763529051,
+        "narHash": "sha256-024/7OdbLjMRkseYLyyvwk6bdQ0TUVw7VVZLPyrLb1o=",
+        "owner": "A7Lavinraj",
+        "repo": "fyler.nvim",
+        "rev": "fd89f751cd459e2f029763b4d091e4cca2bc39ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "A7Lavinraj",
+        "repo": "fyler.nvim",
         "type": "github"
       }
     },
@@ -127,14 +175,46 @@
         "type": "github"
       }
     },
+    "plugins-nvim-colorizer-lua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762088486,
+        "narHash": "sha256-1faAhmHrYhCyeVc4vRaRWC1OW38POjTEwORjtnRdoV4=",
+        "owner": "catgoose",
+        "repo": "nvim-colorizer.lua",
+        "rev": "81e676d3203c9eb6e4c0ccf1eba1679296ef923f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catgoose",
+        "repo": "nvim-colorizer.lua",
+        "type": "github"
+      }
+    },
+    "plugins-quadlet-lsp-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762896356,
+        "narHash": "sha256-pFblSArmgSeIScwUoN9wd3d4724CimdYgj69WtrHDKk=",
+        "owner": "onlyati",
+        "repo": "quadlet-lsp.nvim",
+        "rev": "8df3297dbf5ca5da1aa8bd79dfbf1e4240ead3b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "onlyati",
+        "repo": "quadlet-lsp.nvim",
+        "type": "github"
+      }
+    },
     "plugins-tiny-glimmer-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1762512281,
-        "narHash": "sha256-vYPkYzjCkL5KKVh18m60quLWInJDVGgLygHEe50TkXo=",
+        "lastModified": 1763759115,
+        "narHash": "sha256-tjqUiwzkl46RJov+SQr/KBPW4HyAoZ+QjiHdzqrT68E=",
         "owner": "rachartier",
         "repo": "tiny-glimmer.nvim",
-        "rev": "73b17b8a41ac7a61bfdcbe1cd3743c29d28d376e",
+        "rev": "741d2a78481ac0a163822d73cd8e5f17df21dbe2",
         "type": "github"
       },
       "original": {
@@ -159,7 +239,7 @@
         "type": "github"
       }
     },
-    "plugins-toggleterm-manager": {
+    "plugins-toggleterm-manager-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1701400122,
@@ -175,19 +255,59 @@
         "type": "github"
       }
     },
+    "plugins-typewriter-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760919014,
+        "narHash": "sha256-B3b3WWSfp5yP85Ky5IedO6iBvajwUfoVPBxa6+NhSEg=",
+        "owner": "joshuadanpeterson",
+        "repo": "typewriter.nvim",
+        "rev": "1554b1a100b53484befda9d15a78e09373ed1a45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joshuadanpeterson",
+        "repo": "typewriter.nvim",
+        "type": "github"
+      }
+    },
+    "quadlet-lsp": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1763253875,
+        "narHash": "sha256-qIx5AgeG3FO3D32manQexFcwwSiOAHAvTVVGLHAHLLI=",
+        "owner": "onlyati",
+        "repo": "quadlet-lsp",
+        "rev": "4cafc62340960d06139548acb7ef5f2fcc048006",
+        "type": "github"
+      },
+      "original": {
+        "owner": "onlyati",
+        "repo": "quadlet-lsp",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "plugins-aoc-nvim": "plugins-aoc-nvim",
+        "plugins-deadcolumn-nvim": "plugins-deadcolumn-nvim",
+        "plugins-fyler-nvim": "plugins-fyler-nvim",
         "plugins-hlargs": "plugins-hlargs",
         "plugins-mdx-nvim": "plugins-mdx-nvim",
         "plugins-mini-align": "plugins-mini-align",
         "plugins-mini-animate": "plugins-mini-animate",
         "plugins-neotab": "plugins-neotab",
+        "plugins-nvim-colorizer-lua": "plugins-nvim-colorizer-lua",
+        "plugins-quadlet-lsp-nvim": "plugins-quadlet-lsp-nvim",
         "plugins-tiny-glimmer-nvim": "plugins-tiny-glimmer-nvim",
         "plugins-tmux-navigate": "plugins-tmux-navigate",
-        "plugins-toggleterm-manager": "plugins-toggleterm-manager"
+        "plugins-toggleterm-manager-nvim": "plugins-toggleterm-manager-nvim",
+        "plugins-typewriter-nvim": "plugins-typewriter-nvim",
+        "quadlet-lsp": "quadlet-lsp"
       }
     }
   },
