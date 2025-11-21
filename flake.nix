@@ -23,6 +23,11 @@
       flake = false;
     };
 
+    "plugins-typewriter-nvim" = {
+      url = "github:joshuadanpeterson/typewriter.nvim";
+      flake = false;
+    };
+
     "plugins-deadcolumn-nvim" = {
       url = "github:Bekaboo/deadcolumn.nvim";
       flake = false;
@@ -378,6 +383,7 @@
               neotab
               nvim-colorizer-lua
               quadlet-lsp-nvim
+              typewriter-nvim
             ]);
         };
       };
