@@ -27,6 +27,7 @@ vim.o.sessionoptions =
 require("auto-session").setup({
   allowed_dirs = {
     "~/src/redbeardymcgee/*",
+    "~/src/redbeardymcgee/quadlet-store/*",
     "~/src/forks/*",
   },
   suppressed_dirs = {
