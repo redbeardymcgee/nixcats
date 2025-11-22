@@ -21,60 +21,63 @@ if ok then
   end, { desc = "dismiss notify popup and clear hlsearch" })
 end
 
--- auto-session
-vim.o.sessionoptions =
-  "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-require("auto-session").setup({
-  allowed_dirs = {
-    "~/src/redbeardymcgee/*",
-    "~/src/redbeardymcgee/quadlet-store/*",
-    "~/src/forks/*",
-  },
-  suppressed_dirs = {
-    "~/src/redbeardymcgee/leetcode",
-  },
-  bypass_save_filetypes = { "dashboard" },
-})
-vim.keymap.set(
-  "n",
-  "<leader>Ss",
-  "<cmd>AutoSession search<CR>",
-  { desc = "Session search" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>SS",
-  "<cmd>AutoSession save<CR>",
-  { desc = "Save session" }
-)
-
--- Dashboard
-require("dashboard").setup({
-  theme = "hyper",
-  config = {
-    week_header = {
-      enable = true,
-    },
-    shortcut = {
-      {
-        key = "L",
-        group = "DiagnosticHint",
-        action = "Leet",
-        desc = "Leetcode",
-      },
-      {
-        key = "S",
-        group = "@property",
-        action = "AutoSession search",
-        desc = "Sessions",
-      },
-    },
-  },
-})
-
 if nixCats("general.extra") then
+  -- Dashboard
+  require("dashboard").setup({
+    theme = "hyper",
+    config = {
+      week_header = {
+        enable = true,
+      },
+      shortcut = {
+        {
+          key = "L",
+          group = "DiagnosticHint",
+          action = "Leet",
+          desc = "Leetcode",
+        },
+        {
+          key = "S",
+          group = "@property",
+          action = "AutoSession search",
+          desc = "Sessions",
+        },
+      },
+    },
+  })
+
+  -- AutoSession
+  vim.o.sessionoptions =
+    "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+  require("auto-session").setup({
+    allowed_dirs = {
+      "~/src/redbeardymcgee/*",
+      "~/src/redbeardymcgee/quadlet-store/*",
+      "~/src/forks/*",
+    },
+    suppressed_dirs = {
+      "~/src/redbeardymcgee/leetcode",
+    },
+    bypass_save_filetypes = { "dashboard" },
+  })
+
+  vim.keymap.set(
+    "n",
+    "<leader>Ss",
+    "<cmd>AutoSession search<CR>",
+    { desc = "Session search" }
+  )
+
+  vim.keymap.set(
+    "n",
+    "<leader>SS",
+    "<cmd>AutoSession save<CR>",
+    { desc = "Save session" }
+  )
+
   -- require("systemd")
 
+  -- Fyler
   vim.g.loaded_netrwPlugin = 1
   local fyler = require("fyler")
 
