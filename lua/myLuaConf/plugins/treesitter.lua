@@ -4,18 +4,13 @@ return {
   {
     "nvim-treesitter",
     for_cat = "general.treesitter",
-    -- cmd = { "" },
+    dep_of = "typewriter-nvim",
     event = "BufEnter",
-    -- ft = "",
-    -- keys = "",
-    -- colorscheme = "",
     load = function(name)
       vim.cmd.packadd(name)
       vim.cmd.packadd("nvim-treesitter-textobjects")
     end,
     after = function(plugin)
-      -- [[ Configure Treesitter ]]
-      -- See `:help nvim-treesitter`
       require("nvim-treesitter.configs").setup({
         highlight = { enable = true },
         indent = { enable = false },
