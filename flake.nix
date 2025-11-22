@@ -28,6 +28,11 @@
       flake = false;
     };
 
+    "plugins-systemd-syntax-nvim" = {
+      url = "github:chrisgeo/systemd-syntax.nvim";
+      flake = false;
+    };
+
     "plugins-deadcolumn-nvim" = {
       url = "github:Bekaboo/deadcolumn.nvim";
       flake = false;
@@ -240,6 +245,7 @@
             ]
             ++ (with pkgs.neovimPlugins; [
               fyler-nvim
+              systemd-syntax-nvim
             ]);
         };
         # You can retreive information from the

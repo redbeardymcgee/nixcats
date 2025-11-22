@@ -72,6 +72,8 @@ require("dashboard").setup({
 })
 
 if nixCats("general.extra") then
+  require("systemd")
+
   vim.g.loaded_netrwPlugin = 1
   local fyler = require("fyler")
 
