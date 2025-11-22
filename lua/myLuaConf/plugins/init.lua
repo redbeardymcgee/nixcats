@@ -50,14 +50,10 @@ if nixCats("general.extra") then
   vim.o.sessionoptions =
     "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
   require("auto-session").setup({
-    allowed_dirs = {
-      "~/src/redbeardymcgee/*",
-      "~/src/redbeardymcgee/quadlet-store/*",
-      "~/src/forks/*",
-    },
-    suppressed_dirs = {
-      "~/src/redbeardymcgee/leetcode",
-    },
+    auto_create = function()
+      local cmd = "git rev-parse --show-cdup"
+      return vim.fn.system(cmd) == "\n"
+    end,
     bypass_save_filetypes = { "dashboard" },
   })
 
