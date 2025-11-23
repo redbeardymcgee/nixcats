@@ -82,11 +82,11 @@
     "plugins-fyler-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1763529051,
-        "narHash": "sha256-024/7OdbLjMRkseYLyyvwk6bdQ0TUVw7VVZLPyrLb1o=",
+        "lastModified": 1763815723,
+        "narHash": "sha256-kmg+Um9UnL4+UG6YUef30a4kPoZQuNZ9BwFTHPeVAaQ=",
         "owner": "A7Lavinraj",
         "repo": "fyler.nvim",
-        "rev": "fd89f751cd459e2f029763b4d091e4cca2bc39ab",
+        "rev": "962b449b6befef5c7ae252c944459ee3b7d4e4fe",
         "type": "github"
       },
       "original": {
@@ -210,11 +210,11 @@
     "plugins-tiny-glimmer-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1763759115,
-        "narHash": "sha256-tjqUiwzkl46RJov+SQr/KBPW4HyAoZ+QjiHdzqrT68E=",
+        "lastModified": 1763851743,
+        "narHash": "sha256-4dSD4mosR87cA3Z+hm44y/krRtIDarWSTwPAKC9pqAo=",
         "owner": "rachartier",
         "repo": "tiny-glimmer.nvim",
-        "rev": "741d2a78481ac0a163822d73cd8e5f17df21dbe2",
+        "rev": "e83bab26665c2dd4153b8a24e172e674e7c6dee7",
         "type": "github"
       },
       "original": {
@@ -276,11 +276,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1763253875,
-        "narHash": "sha256-qIx5AgeG3FO3D32manQexFcwwSiOAHAvTVVGLHAHLLI=",
+        "lastModified": 1763844534,
+        "narHash": "sha256-6bZD5OXr9NbNQansH29sFYMKa+ZVz4cR4CvC9Y/Ahlc=",
         "owner": "onlyati",
         "repo": "quadlet-lsp",
-        "rev": "4cafc62340960d06139548acb7ef5f2fcc048006",
+        "rev": "74e25e04f3daff55497e6a05c2aad0165cf0024a",
         "type": "github"
       },
       "original": {
