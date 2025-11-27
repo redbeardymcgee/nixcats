@@ -163,7 +163,7 @@
           jq-lsp
           lazygit
           luajitPackages.magick
-          quadlet-lsp.packages.${system}.default
+          quadlet-lsp.packages.${pkgs.stdenv.hostPlatform.system}.default
           reuse
           ripgrep
           zf
