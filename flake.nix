@@ -23,10 +23,10 @@
       flake = false;
     };
 
-    "plugins-typewriter-nvim" = {
-      url = "github:joshuadanpeterson/typewriter.nvim";
-      flake = false;
-    };
+    # "plugins-typewriter-nvim" = {
+    #   url = "github:joshuadanpeterson/typewriter.nvim";
+    #   flake = false;
+    # };
 
     # "plugins-systemd-syntax-nvim" = {
     #   url = "github:chrisgeo/systemd-syntax.nvim";
@@ -389,7 +389,7 @@
               neotab
               nvim-colorizer-lua
               quadlet-lsp-nvim
-              typewriter-nvim
+              # typewriter-nvim
             ]);
         };
       };
