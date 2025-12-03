@@ -32,6 +32,8 @@ require("lze").load({
         table.insert(lint.linters_by_ft[k], "alex")
       end
 
+      require("lint").linters.biomejs.cmd = "biome"
+
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
           lint.try_lint()

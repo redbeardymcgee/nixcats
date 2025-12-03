@@ -40,6 +40,11 @@ require("lze").load({
           typescriptreact = { "biome" },
           yaml = { "yq" },
         },
+        formatters = {
+          biome = {
+            command = "biome",
+          },
+        },
       })
     end,
   },
