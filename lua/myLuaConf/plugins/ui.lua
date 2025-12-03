@@ -3,7 +3,6 @@ return {
     "fidget.nvim",
     for_cat = "general.extra",
     event = "DeferredUIEnter",
-    -- keys = "",
     after = function(plugin)
       require("fidget").setup({})
     end,
@@ -12,7 +11,6 @@ return {
     "mini-animate",
     for_cat = "general.extra",
     event = "DeferredUIEnter",
-    -- keys = "",
     after = function(plugin)
       require("mini.animate").setup({})
     end,
@@ -20,18 +18,12 @@ return {
   {
     "lualine.nvim",
     for_cat = "general.always",
-    -- cmd = { "" },
     event = "DeferredUIEnter",
-    -- ft = "",
-    -- keys = "",
-    -- colorscheme = "",
     after = function(plugin)
       require("lualine").setup({
         options = {
-          icons_enabled = false,
-          theme = colorschemeName,
-          component_separators = "|",
-          section_separators = "",
+          icons_enabled = true,
+          theme = nixCats("colorscheme"),
         },
         sections = {
           lualine_c = {
@@ -54,8 +46,6 @@ return {
         },
         tabline = {
           lualine_a = { "buffers" },
-          -- if you use lualine-lsp-progress, I have mine here instead of fidget
-          -- lualine_b = { 'lsp_progress', },
           lualine_z = { "tabs" },
         },
       })
