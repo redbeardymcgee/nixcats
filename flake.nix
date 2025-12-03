@@ -38,6 +38,11 @@
       flake = false;
     };
 
+    "plugins-direnv-nvim" = {
+      url = "github:NotAShelf/direnv.nvim";
+      flake = false;
+    };
+
     "plugins-hlargs" = {
       url = "github:m-demare/hlargs.nvim";
       flake = false;
@@ -234,6 +239,7 @@
             ]
             ++ (with pkgs.neovimPlugins; [
               tmux-navigate
+              direnv-nvim
             ]);
           extra =
             [

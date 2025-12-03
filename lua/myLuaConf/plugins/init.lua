@@ -21,6 +21,19 @@ if ok then
   end, { desc = "dismiss notify popup and clear hlsearch" })
 end
 
+require("direnv").setup({
+  autoload_direnv = true,
+  statusline = {
+    enabled = true,
+  },
+  keybindings = {
+    allow = "<leader>cda",
+    deny = "<leader>cdd",
+    reload = "<leader>cdr",
+    edit = "<leader>cde",
+  },
+})
+
 if nixCats("general.extra") then
   -- Dashboard
   require("dashboard").setup({
@@ -244,6 +257,8 @@ require("lze").load({
         { "<leader>b_", hidden = true },
         { "<leader>c", group = "[c]ode" },
         { "<leader>c_", hidden = true },
+        { "<leader>cd", group = "[d]irenv" },
+        { "<leader>cd_", hidden = true },
         { "<leader>d", group = "[d]ocument" },
         { "<leader>d_", hidden = true },
         { "<leader>f", group = "[f]ile" },

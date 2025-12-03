@@ -32,6 +32,15 @@ return {
               path = 1,
               status = true,
             },
+            -- FIXME: This fn causes a :LualineNotices warning, but seems valid
+            -- lualine_x = {
+            -- function ()
+            --   return require("direnv").statusline()
+            -- end,
+            --   "encoding",
+            --   "fileformat",
+            --   "filetype",
+            -- },
           },
         },
         inactive_sections = {
