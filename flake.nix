@@ -163,6 +163,7 @@
           jq-lsp
           lazygit
           luajitPackages.magick
+          nodePackages_latest.alex
           quadlet-lsp.packages.${pkgs.stdenv.hostPlatform.system}.default
           reuse
           ripgrep
@@ -188,6 +189,7 @@
           akkuPackages.scheme-langserver
         ];
         lua = with pkgs; [
+          lua
           lua-language-server
           stylua
         ];
@@ -208,8 +210,9 @@
         ];
         typescript = with pkgs; [
           astro-language-server
+          biome
           eslint
-          nodePackages.prettier
+          nodePackages_latest.prettier
           prettierd
           tailwindcss-language-server
           typescript
