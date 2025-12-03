@@ -2,11 +2,11 @@
   "nodes": {
     "nixCats": {
       "locked": {
-        "lastModified": 1763330129,
-        "narHash": "sha256-KbOeWIF52SV53BOeETGO2C5ewaV2Ex9iaXH7G72gOr8=",
+        "lastModified": 1764009888,
+        "narHash": "sha256-hJekfTiW1792txgRSM4LcHnz1lDSY87LYbsJEn2V378=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "c81551ed87db2aefab30a12cf7425ff94dc0ad64",
+        "rev": "16ac3281f322ea15d39843829e42a44d22da3715",
         "type": "github"
       },
       "original": {
@@ -17,11 +17,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1763618868,
-        "narHash": "sha256-v5afmLjn/uyD9EQuPBn7nZuaZVV9r+JerayK/4wvdWA=",
+        "lastModified": 1764642553,
+        "narHash": "sha256-mvbFFzVBhVK1FjyPHZGMAKpNiqkr7k++xIwy+p/NQvA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a8d610af3f1a5fb71e23e08434d8d61a466fc942",
+        "rev": "f720de59066162ee879adcc8c79e15c51fe6bfb4",
         "type": "github"
       },
       "original": {
@@ -50,11 +50,11 @@
     "plugins-aoc-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1755069722,
-        "narHash": "sha256-YteFjsPac3rBSOlw5SmcagXSYwhTEMf0kVa5hLDFRE0=",
+        "lastModified": 1764578084,
+        "narHash": "sha256-44ctzMD/tD8g9YXFWoNwyLcbf2i8/QW0Laxly4hx5Rg=",
         "owner": "csessh",
         "repo": "aoc.nvim",
-        "rev": "da636bf21014553510c4780aa6e374a91b6f4b2c",
+        "rev": "c8a5fc9e5d5ba65b2ea8e472c98e40ce861c3433",
         "type": "github"
       },
       "original": {
@@ -82,11 +82,11 @@
     "plugins-fyler-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1763815723,
-        "narHash": "sha256-kmg+Um9UnL4+UG6YUef30a4kPoZQuNZ9BwFTHPeVAaQ=",
+        "lastModified": 1764743033,
+        "narHash": "sha256-h2b3+FlVqbeFyco7IIOTw3mk/Daivg8MCwRSdK47+Sk=",
         "owner": "A7Lavinraj",
         "repo": "fyler.nvim",
-        "rev": "962b449b6befef5c7ae252c944459ee3b7d4e4fe",
+        "rev": "16176d6aacd4673f041832fac8ae857c537666c7",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
     "plugins-quadlet-lsp-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1762896356,
-        "narHash": "sha256-pFblSArmgSeIScwUoN9wd3d4724CimdYgj69WtrHDKk=",
+        "lastModified": 1764317865,
+        "narHash": "sha256-32qcAcT0EO+dmnDGpfHnqWIEULDMGoHMONlOLusD4B0=",
         "owner": "onlyati",
         "repo": "quadlet-lsp.nvim",
-        "rev": "8df3297dbf5ca5da1aa8bd79dfbf1e4240ead3b4",
+        "rev": "98c449b008107500f53d1c003446d4209caba934",
         "type": "github"
       },
       "original": {
@@ -255,32 +255,16 @@
         "type": "github"
       }
     },
-    "plugins-typewriter-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1760919014,
-        "narHash": "sha256-B3b3WWSfp5yP85Ky5IedO6iBvajwUfoVPBxa6+NhSEg=",
-        "owner": "joshuadanpeterson",
-        "repo": "typewriter.nvim",
-        "rev": "1554b1a100b53484befda9d15a78e09373ed1a45",
-        "type": "github"
-      },
-      "original": {
-        "owner": "joshuadanpeterson",
-        "repo": "typewriter.nvim",
-        "type": "github"
-      }
-    },
     "quadlet-lsp": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1763844534,
-        "narHash": "sha256-6bZD5OXr9NbNQansH29sFYMKa+ZVz4cR4CvC9Y/Ahlc=",
+        "lastModified": 1764096755,
+        "narHash": "sha256-sDthTizURnEJQ6rgFJL1qI6pltUB1MET+g7KBAsehSc=",
         "owner": "onlyati",
         "repo": "quadlet-lsp",
-        "rev": "74e25e04f3daff55497e6a05c2aad0165cf0024a",
+        "rev": "d7bf8356af8be1183b80f09bec85ee9f70a3b881",
         "type": "github"
       },
       "original": {
@@ -306,7 +290,6 @@
         "plugins-tiny-glimmer-nvim": "plugins-tiny-glimmer-nvim",
         "plugins-tmux-navigate": "plugins-tmux-navigate",
         "plugins-toggleterm-manager-nvim": "plugins-toggleterm-manager-nvim",
-        "plugins-typewriter-nvim": "plugins-typewriter-nvim",
         "quadlet-lsp": "quadlet-lsp"
       }
     }
