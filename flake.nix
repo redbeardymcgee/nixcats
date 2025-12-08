@@ -269,7 +269,7 @@
       optionalPlugins = {
         debug = with pkgs.vimPlugins; {
           # it is possible to add default values.
-          # there is nothing special about the word "default"
+          # there is nothing extraordinary about the word "default"
           # but we have turned this subcategory into a default value
           # via the extraCats section at the bottom of categoryDefinitions.
           default = [

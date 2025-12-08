@@ -4,11 +4,11 @@ This directory contains an example of the suggested, idiomatic way to manage a n
 
 This setup serves as a strong starting point for a `Neovim` configuration—think of it as `kickstart.nvim`, but using `nixCats` **instead of** `lazy.nvim` and `mason`, rather than in addition to them. It also follows a modular approach, spreading the configuration across multiple files rather than consolidating everything into one.
 
-While this is not a "perfect" configuration, nor does it claim to be, it is **a well-structured, recommended way to use `nixCats`**. You are encouraged to customize it to fit your needs. `nixCats` itself is just the `nix`-based package manager, along with its associated [Lua plugin](https://nixcats.org/nixCats_plugin.html).
+While this is not a "perfect" configuration, nor does it claim to be, it is **a well-structured, recommended way to use `nixCats`**. You are encouraged to customize it to fit your needs. `nixCats` itself is only the `nix`-based package manager, along with its associated [Lua plugin](https://nixcats.org/nixCats_plugin.html).
 
 ## Why Use This Approach?
 
-Using `nixCats` in this way provides a **simpler, more transparent** experience compared to solutions like `lazy.nvim`, which hijack normal plugin loading.
+Using `nixCats` in this way provides a **simpler, more transparent** experience compared to solutions like `lazy.nvim`, which pre-empt normal plugin loading.
 
 It leverages the normal packpath methods of loading plugins both at startup and lazily, allowing you to know what is going on behind the scenes.
 
