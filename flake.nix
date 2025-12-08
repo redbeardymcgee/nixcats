@@ -48,11 +48,6 @@
       flake = false;
     };
 
-    "plugins-tmux-navigate" = {
-      url = "github:sunaku/tmux-navigate";
-      flake = false;
-    };
-
     "plugins-fyler-nvim" = {
       url = "github:A7Lavinraj/fyler.nvim";
       flake = false;
@@ -239,7 +234,6 @@
               smart-splits-nvim
             ]
             ++ (with pkgs.neovimPlugins; [
-              # tmux-navigate
               direnv-nvim
             ]);
           extra =
