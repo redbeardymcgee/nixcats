@@ -236,9 +236,10 @@
               lzextras
               (nvim-notify.overrideAttrs {doCheck = false;}) # TODO: remove overrideAttrs after check is fixed
               plenary-nvim
+              smart-splits-nvim
             ]
             ++ (with pkgs.neovimPlugins; [
-              tmux-navigate
+              # tmux-navigate
               direnv-nvim
             ]);
           extra =

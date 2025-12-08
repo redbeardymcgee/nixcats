@@ -134,9 +134,9 @@ vim.keymap.set(
 )
 vim.keymap.set(
   "n",
-  "<leader><leader>l",
+  "<leader><leader>p",
   "<cmd>b#<cr>",
-  { desc = "Last buffer" }
+  { desc = "Prior buffer" }
 )
 vim.keymap.set(
   "n",
