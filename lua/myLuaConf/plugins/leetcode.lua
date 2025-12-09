@@ -116,4 +116,22 @@ return {
       })
     end,
   },
+  {
+    "aoc.nvim",
+    for_cat = "general.extra",
+    cmd = {
+      "AocGetPuzzleInput",
+      "AocGetTodayPuzzleInput",
+      "AocClearCache",
+      "AocInspectConfig",
+      "AocReloadSessionToken",
+    },
+    after = function()
+      require("aoc").setup({
+        session_filepath = vim.fn.expand(
+          "~/src/redbeardymcgee/aoc/session.txt"
+        ),
+      })
+    end,
+  },
 }
