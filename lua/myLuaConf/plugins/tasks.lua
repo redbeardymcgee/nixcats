@@ -37,7 +37,7 @@ return {
     keys = {
       {
         "<leader>gg",
-        "<cmd>lua _lazygit_toggle()<cr>",
+        Lazygit_toggle,
         mode = { "n", "t" },
         desc = "Toggle lazygit",
       },
@@ -63,19 +63,39 @@ return {
 
       function _G.set_terminal_keymaps()
         local opts = { buffer = 0 }
-        vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], opts)
-        -- vim.keymap.set("t", "<A-h>", [[<Cmd>wincmd h<CR>]], opts)
-        -- vim.keymap.set("t", "<A-j>", [[<Cmd>wincmd j<CR>]], opts)
-        -- vim.keymap.set("t", "<A-k>", [[<Cmd>wincmd k<CR>]], opts)
-        -- vim.keymap.set("t", "<A-l>", [[<Cmd>wincmd l<CR>]], opts)
+        vim.keymap.set("t", "<A-Esc>", [[<C-\><C-n>]], opts)
+        vim.keymap.set(
+          "t",
+          "<A-h>",
+          require("smart-splits").move_cursor_left,
+          opts
+        )
+        vim.keymap.set(
+          "t",
+          "<A-j>",
+          require("smart-splits").move_cursor_down,
+          opts
+        )
+        vim.keymap.set(
+          "t",
+          "<A-k>",
+          require("smart-splits").move_cursor_up,
+          opts
+        )
+        vim.keymap.set(
+          "t",
+          "<A-l>",
+          require("smart-splits").move_cursor_right,
+          opts
+        )
         -- vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
       end
 
       -- if you only want these mappings for toggle term use term://*toggleterm#* instead
       vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
-      local Terminal = require("toggleterm.terminal").Terminal
-      local lazygit = Terminal:new({
+      local terminal = require("toggleterm.terminal").Terminal
+      local lazygit = terminal:new({
         cmd = "lazygit",
         hidden = true,
         direction = "float",
@@ -87,7 +107,7 @@ return {
         },
       })
 
-      function _lazygit_toggle()
+      function Lazygit_toggle()
         lazygit:toggle()
       end
     end,
