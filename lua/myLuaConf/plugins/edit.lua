@@ -58,18 +58,6 @@ return {
       })
     end,
   },
-  -- {
-  --   "typewriter-nvim",
-  --   for_cat = "general.extra",
-  --   event = "BufEnter",
-  --   after = function()
-  --     require("typewriter").setup({
-  --       enable_notifications = false,
-  --       start_enabled = true,
-  --       always_center = false,
-  --     })
-  --   end,
-  -- },
   {
     "deadcolumn-nvim",
     for_cat = "general.extra",

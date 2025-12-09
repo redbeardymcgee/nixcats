@@ -4,7 +4,6 @@ return {
   {
     "nvim-treesitter",
     for_cat = "general.treesitter",
-    -- dep_of = "typewriter-nvim",
     event = "BufEnter",
     load = function(name)
       vim.cmd.packadd(name)
