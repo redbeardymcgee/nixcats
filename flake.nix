@@ -366,6 +366,7 @@
               nvim-lint
               nvim-spider
               noice-nvim
+              otter-nvim
               overseer-nvim
               remember-nvim
               substitute-nvim

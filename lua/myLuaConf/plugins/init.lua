@@ -230,6 +230,21 @@ require("lze").load({
   { import = "myLuaConf.plugins.treesitter" },
   { import = "myLuaConf.plugins.typescript" },
   { import = "myLuaConf.plugins.ui" },
+  -- {
+  --   "otter-nvim",
+  --   for_cat = "general.extra",
+  --   keys = {
+  --     {
+  --       "<leader>cO",
+  --       require("otter").activate,
+  --       mode = { "n" },
+  --       desc = "[O]tter",
+  --     },
+  --   },
+  --   after = function()
+  --     require("otter").setup({})
+  --   end,
+  -- },
   {
     "aoc.nvim",
     for_cat = "general.extra",
