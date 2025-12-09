@@ -37,7 +37,9 @@ return {
     keys = {
       {
         "<leader>gg",
-        Lazygit_toggle,
+        function()
+          Lazygit_toggle()
+        end,
         mode = { "n", "t" },
         desc = "Toggle lazygit",
       },
