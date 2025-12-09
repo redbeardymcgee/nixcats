@@ -257,11 +257,7 @@ require("lze").load({
   {
     "which-key.nvim",
     for_cat = "general.extra",
-    -- cmd = { "" },
     event = "DeferredUIEnter",
-    -- ft = "",
-    -- keys = "",
-    -- colorscheme = "",
     after = function(plugin)
       require("which-key").setup({})
       require("which-key").add({
