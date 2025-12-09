@@ -284,6 +284,7 @@ return {
   {
     "tiny-glimmer.nvim",
     for_cat = "general.extra",
+    dep_of = "substitute.nvim",
     event = "BufEnter",
     after = function()
       require("tiny-glimmer").setup({

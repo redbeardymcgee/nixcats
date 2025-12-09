@@ -466,64 +466,78 @@ return {
     --     require("nvim-treesitter-endwise").setup()
     -- end,
   },
-  -- {
-  --   "substitute.nvim",
-  --   for_cat = "general.extra",
-  --   event = "BufEnter",
-  --   keys = {
-  --     {
-  --       "<leader>cso",
-  --       require("substitute").operator,
-  --       noremap = true,
-  --       desc = "[S]ubstitute [O]perator",
-  --     },
-  --     {
-  --       "<leader>csl",
-  --       require("substitute").line,
-  --       noremap = true,
-  --       desc = "[S]ubstitute [L]ine",
-  --     },
-  --     {
-  --       "<leader>cse",
-  --       require("substitute").eol,
-  --       noremap = true,
-  --       desc = "[S]ubstitute [E]OL",
-  --     },
-  --     {
-  --       "<leader>cs",
-  --       require("substitute").visual,
-  --       mode = { "x" },
-  --       noremap = true,
-  --       desc = "[S]ubstitute Visual",
-  --     },
-  --     {
-  --       "<leader>cxo",
-  --       require("substitute.exchange").operator,
-  --       noremap = true,
-  --       desc = "e[X]change [O]perator",
-  --     },
-  --     {
-  --       "<leader>cxl",
-  --       require("substitute.exchange").line,
-  --       mode = { "x" },
-  --       noremap = true,
-  --       desc = "e[X]change [L]ine",
-  --     },
-  --     {
-  --       "<leader>cx",
-  --       require("substitute.exchange").visual,
-  --       mode = { "x" },
-  --       noremap = true,
-  --       desc = "e[X]change Visual",
-  --     },
-  --   },
-  --   after = function()
-  --     require("substitute").setup({
-  --       on_substitute = require("tiny-glimmer.support.substitute").substitute_cb,
-  --       highlight_substituted_text = {
-  --         enabled = false,
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "substitute.nvim",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    keys = {
+      {
+        "<leader>cso",
+        function()
+          require("substitute").operator()
+        end,
+        noremap = true,
+        desc = "[S]ubstitute [O]perator",
+      },
+      {
+        "<leader>csl",
+        function()
+          require("substitute").line()
+        end,
+        noremap = true,
+        desc = "[S]ubstitute [L]ine",
+      },
+      {
+        "<leader>cse",
+        function()
+          require("substitute").eol()
+        end,
+        noremap = true,
+        desc = "[S]ubstitute [E]OL",
+      },
+      {
+        "<leader>cs",
+        function()
+          require("substitute").visual()
+        end,
+        mode = { "x" },
+        noremap = true,
+        desc = "[S]ubstitute Visual",
+      },
+      {
+        "<leader>cxo",
+        function()
+          require("substitute.exchange").operator()
+        end,
+        noremap = true,
+        desc = "e[X]change [O]perator",
+      },
+      {
+        "<leader>cxl",
+        function()
+          require("substitute.exchange").line()
+        end,
+        mode = { "x" },
+        noremap = true,
+        desc = "e[X]change [L]ine",
+      },
+      {
+        "<leader>cx",
+        function()
+          require("substitute.exchange").visual()
+        end,
+        mode = { "x" },
+        noremap = true,
+        desc = "e[X]change Visual",
+      },
+    },
+    after = function()
+      require("substitute").setup({
+        on_substitute = require("tiny-glimmer.support.substitute").substitute_cb,
+        highlight_substituted_text = {
+          enabled = false,
+        },
+      })
+    end,
+  },
 }
