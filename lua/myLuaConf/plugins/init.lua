@@ -231,23 +231,6 @@ require("lze").load({
   { import = "myLuaConf.plugins.typescript" },
   { import = "myLuaConf.plugins.ui" },
   {
-    "otter.nvim",
-    for_cat = "general.extra",
-    keys = {
-      {
-        "<leader>cO",
-        function()
-          require("otter").activate()
-        end,
-        mode = { "n" },
-        desc = "[O]tter",
-      },
-    },
-    after = function()
-      require("otter").setup({})
-    end,
-  },
-  {
     "aoc.nvim",
     for_cat = "general.extra",
     cmd = {
@@ -321,14 +304,6 @@ require("lze").load({
         { "<leader>z", group = "[z]en" },
         { "<leader>z_", hidden = true },
       })
-    end,
-  },
-  {
-    "quadlet-lsp-nvim",
-    for_cat = "general.extra",
-    event = "BufEnter",
-    after = function()
-      require("quadlet-lsp").setup()
     end,
   },
   {

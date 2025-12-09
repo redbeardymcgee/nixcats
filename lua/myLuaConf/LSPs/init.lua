@@ -74,6 +74,31 @@ require("lze").load({
     end,
   },
   {
+    "otter.nvim",
+    for_cat = "general.extra",
+    keys = {
+      {
+        "<leader>cO",
+        function()
+          require("otter").activate()
+        end,
+        mode = { "n" },
+        desc = "[O]tter",
+      },
+    },
+    after = function()
+      require("otter").setup({})
+    end,
+  },
+  {
+    "quadlet-lsp-nvim",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    after = function()
+      require("quadlet-lsp").setup()
+    end,
+  },
+  {
     "lua_ls",
     enabled = nixCats("lua"),
     lsp = {
