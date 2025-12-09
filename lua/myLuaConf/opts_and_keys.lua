@@ -120,6 +120,8 @@ vim.keymap.set(
   "<cmd>lua vim.cmd('normal! N'); MiniAnimate.execute_after('scroll', 'normal! zzzv')<cr>",
   { desc = "Previous Search Result" }
 )
+
+-- Buffers
 vim.keymap.set(
   "n",
   "<leader><leader>[",
@@ -137,12 +139,6 @@ vim.keymap.set(
   "<leader><leader>p",
   "<cmd>b#<cr>",
   { desc = "Prior buffer" }
-)
-vim.keymap.set(
-  "n",
-  "<leader><leader>d",
-  "<cmd>bdelete<cr>",
-  { desc = "delete buffer" }
 )
 
 -- see help sticky keys on windows

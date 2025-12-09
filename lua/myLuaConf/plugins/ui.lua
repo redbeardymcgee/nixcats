@@ -16,6 +16,24 @@ return {
     end,
   },
   {
+    "mini.bufremove",
+    for_cat = "general.extra",
+    event = "BufEnter",
+    keys = {
+      {
+        "<leader><leader>d",
+        function()
+          require("mini.bufremove").delete()
+        end,
+        mode = { "n" },
+        desc = "[D]elete buffer",
+      },
+    },
+    after = function()
+      require("mini.bufremove").setup()
+    end,
+  },
+  {
     "lualine.nvim",
     for_cat = "general.always",
     event = "DeferredUIEnter",

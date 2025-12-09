@@ -362,6 +362,7 @@
               # mini-align
               # mini-animate
               mini-ai
+              mini-bufremove
               mini-indentscope
               nvim-lint
               nvim-spider
