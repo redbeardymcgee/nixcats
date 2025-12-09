@@ -219,17 +219,17 @@ if nixCats("general.extra") then
 end
 
 require("lze").load({
-  { import = "myLuaConf.plugins.comments" },
-  { import = "myLuaConf.plugins.completion" },
-  { import = "myLuaConf.plugins.edit" },
-  { import = "myLuaConf.plugins.focus" },
-  { import = "myLuaConf.plugins.leetcode" },
-  { import = "myLuaConf.plugins.markdown" },
-  { import = "myLuaConf.plugins.tasks" },
-  { import = "myLuaConf.plugins.telescope" },
-  { import = "myLuaConf.plugins.treesitter" },
-  { import = "myLuaConf.plugins.typescript" },
-  { import = "myLuaConf.plugins.ui" },
+  { import = "config.plugins.comments" },
+  { import = "config.plugins.completion" },
+  { import = "config.plugins.edit" },
+  { import = "config.plugins.focus" },
+  { import = "config.plugins.leetcode" },
+  { import = "config.plugins.markdown" },
+  { import = "config.plugins.tasks" },
+  { import = "config.plugins.telescope" },
+  { import = "config.plugins.treesitter" },
+  { import = "config.plugins.typescript" },
+  { import = "config.plugins.ui" },
   {
     "vim-startuptime",
     for_cat = "general.extra",
