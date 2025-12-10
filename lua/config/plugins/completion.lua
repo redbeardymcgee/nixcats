@@ -160,6 +160,9 @@ return {
     after = function()
       require("lspkind").setup({
         mode = "symbol_text",
+        symbol_map = {
+          TypeParameter = "",
+        },
       })
     end,
   },
