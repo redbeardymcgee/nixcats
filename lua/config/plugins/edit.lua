@@ -443,11 +443,6 @@ return {
     end,
   },
   {
-    "nvim-autopairs",
-    for_cat = "general.always",
-    event = "BufEnter",
-    after = function(plugin)
-      require("nvim-autopairs").setup()
     "nvim-colorizer-lua",
     for_cat = "general.extra",
     event = "BufReadPre",
