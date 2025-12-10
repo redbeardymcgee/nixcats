@@ -202,9 +202,6 @@ return {
           menu = {
             -- TODO: Add colorful-menu highlights
             -- format_entry = function(entry) end,
-            scrollbar = {
-              enabled = false,
-            },
           },
           type_icons = "lspkind",
         },
