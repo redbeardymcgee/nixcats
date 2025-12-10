@@ -288,23 +288,4 @@ require("lze").load({
       })
     end,
   },
-  {
-    "nvim-colorizer-lua",
-    for_cat = "general.extra",
-    event = "BufReadPre",
-    after = function()
-      require("colorizer").setup({
-        lazy_load = true,
-        names_opts = {
-          uppercase = true,
-        },
-        css = true,
-        tailwind = "both",
-        tailwind_opts = {
-          update_names = true,
-        },
-        xterm = true,
-      })
-    end,
-  },
 })
