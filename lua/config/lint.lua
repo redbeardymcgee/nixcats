@@ -10,7 +10,11 @@ require("lze").load({
         bash = { "shellcheck" },
         css = { "biomejs" },
         fish = { "fish" },
-        html = { "biomejs" },
+        html = { "biomejs", "alex" },
+        -- TODO: Set up vale
+        -- markdown = { "vale", "alex" },
+        markdown = { "alex" },
+        mdx = { "alex" },
         javascript = { "biomejs" },
         javascriptreact = { "biomejs" },
         jq = { "jq" },
@@ -18,7 +22,6 @@ require("lze").load({
         json5 = { "biomejs" },
         jsonc = { "biomejs" },
         lua = { "luac" },
-        markdown = { "vale" },
         nix = { "nix" },
         sh = { "shellcheck" },
         svelte = { "biomejs" },
@@ -28,11 +31,7 @@ require("lze").load({
         yaml = { "yamllint" },
       }
 
-      for k, _ in pairs(lint.linters_by_ft) do
-        table.insert(lint.linters_by_ft[k], "alex")
-      end
-
-      require("lint").linters.biomejs.cmd = "biome"
+      lint.linters.biomejs.cmd = "biome"
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
