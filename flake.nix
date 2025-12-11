@@ -251,7 +251,6 @@
             [
               auto-session
               dashboard-nvim
-              firenvim
               helpview-nvim
               leap-nvim
               nui-nvim

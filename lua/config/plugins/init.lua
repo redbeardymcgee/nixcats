@@ -174,43 +174,6 @@ if nixCats("general.extra") then
   -- explicitly invoking Leap:
   require("leap.user").set_repeat_keys("<enter>", "<backspace>")
 
-  -- Firenvim
-  vim.g.firenvim_config = {
-    globalSettings = {
-      alt = "all",
-      cmdlineTimeout = 3000,
-    },
-    localSettings = {
-      -- NOTE: These are js patterns, not lua
-      [".*"] = {
-        cmdline = "firenvim",
-        content = "text",
-        priority = 0,
-        selector = "textarea",
-        takeover = "always", -- TODO: fix lounge regex, set this back to always
-      },
-      ["https?://lounge[.]mcgee[.]red/.*"] = {
-        takeover = "never",
-        priority = 1,
-      },
-    },
-  }
-
-  vim.api.nvim_create_autocmd({ "UIEnter" }, {
-    callback = function(event)
-      local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
-      if client ~= nil and client.name == "Firenvim" then
-        vim.o.laststatus = 0
-        vim.g.auto_session_enabled = false
-      end
-    end,
-  })
-
-  vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    pattern = "github.com_*.txt",
-    command = "set filetype=markdown",
-  })
-
   require("helpview").setup({
     preview = {
       icon_provider = "devicons",
