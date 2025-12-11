@@ -55,6 +55,7 @@ return {
     keys = {},
     after = function()
       require("care").setup({
+        debug = true,
         snippet_expansion = function(body)
           require("luasnip").lsp_expand(body)
         end,
