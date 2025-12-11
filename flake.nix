@@ -314,13 +314,6 @@
               care-cmp
               cmp_luasnip
             ]);
-          # blink = with pkgs.vimPlugins; [
-          #   luasnip
-          #   cmp-cmdline
-          #   blink-cmp
-          #   blink-compat
-          #   colorful-menu-nvim
-          # ];
           treesitter = with pkgs.vimPlugins; [
             nvim-treesitter-textobjects
             nvim-treesitter-endwise
