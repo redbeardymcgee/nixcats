@@ -179,7 +179,7 @@
           reuse
           ripgrep
           zf
-          yq
+          yq-go
         ];
         markdown = with pkgs; [
           marksman
