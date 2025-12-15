@@ -67,7 +67,7 @@ return {
             -- TODO: Add colorful-menu highlights
             -- format_entry = function(entry) end,
           },
-          type_icons = "lspkind",
+          -- type_icons = "lspkind",
         },
       })
 
