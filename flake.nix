@@ -5,7 +5,6 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    nix-ld.url = "github:Mic92/nix-ld";
 
     quadlet-lsp.url = "github:onlyati/quadlet-lsp";
 
@@ -112,14 +111,12 @@
   outputs = {
     self,
     nixpkgs,
-    nix-ld,
     quadlet-lsp,
     ...
   } @ inputs: let
     inherit (inputs.nixCats) utils;
     luaPath = ./.;
     modules = [
-      nix-ld.nixosModules.nix-ld
       {programs.nix-ld.dev.enable = true;}
     ];
 
