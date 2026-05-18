@@ -88,20 +88,20 @@
       flake = false;
     };
 
-    "plugins-care" = {
-      url = "github:max397574/care.nvim";
-      flake = false;
-    };
-
-    "plugins-care-cmp" = {
-      url = "github:max397574/care-cmp";
-      flake = false;
-    };
-
-    "plugins-cmp_luasnip" = {
-      url = "github:saadparwaiz1/cmp_luasnip";
-      flake = false;
-    };
+    # "plugins-care" = {
+    #   url = "github:max397574/care.nvim";
+    #   flake = false;
+    # };
+    #
+    # "plugins-care-cmp" = {
+    #   url = "github:max397574/care-cmp";
+    #   flake = false;
+    # };
+    #
+    # "plugins-cmp_luasnip" = {
+    #   url = "github:saadparwaiz1/cmp_luasnip";
+    #   flake = false;
+    # };
 
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
@@ -306,18 +306,21 @@
           typescript-tools-nvim
         ];
         general = {
-          completion = with pkgs.vimPlugins;
-            [
-              luasnip
-              lspkind-nvim
-              friendly-snippets
-              nvim-autopairs
-            ]
-            ++ (with pkgs.neovimPlugins; [
-              care
-              care-cmp
-              cmp_luasnip
-            ]);
+          completion = with pkgs.vimPlugins; [
+            blink-cmp
+            blink-compat
+            cmp-cmdline
+            colorful-menu-nvim
+            friendly-snippets
+            lspkind-nvim
+            luasnip
+            nvim-autopairs
+          ];
+          # ++ (with pkgs.neovimPlugins; [
+          #   care
+          #   care-cmp
+          #   cmp_luasnip
+          # ]);
           treesitter = with pkgs.vimPlugins; [
             nvim-treesitter-textobjects
             nvim-treesitter-endwise
