@@ -23,6 +23,16 @@
       flake = false;
     };
 
+    "plugins-opencode-nvim" = {
+      url = "github:sudo-tee/opencode.nvim";
+      flake = false;
+    };
+
+    "plugins-icon-picker-nvim" = {
+      url = "github:SaptanshuWanjari/icon-picker.nvim";
+      flake = false;
+    };
+
     # "plugins-systemd-syntax-nvim" = {
     #   url = "github:chrisgeo/systemd-syntax.nvim";
     #   flake = false;
@@ -226,9 +236,8 @@
         typescript = with pkgs; [
           astro-language-server
           biome
+          chafa
           eslint
-          nodePackages_latest.prettier
-          prettierd
           tailwindcss-language-server
           typescript
           vscode-langservers-extracted
@@ -415,6 +424,8 @@
               mini-animate
               neotab
               nvim-colorizer-lua
+              opencode-nvim
+              icon-picker-nvim
               quadlet-lsp-nvim
             ]);
         };

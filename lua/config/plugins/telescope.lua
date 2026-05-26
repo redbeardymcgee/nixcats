@@ -271,7 +271,7 @@ return {
     cmd = "Nerdy",
     keys = {
       {
-        "<leader>si",
+        "<leader>in",
         function()
           return require("telescope").extensions.nerdy.nerdy()
         end,
@@ -279,7 +279,7 @@ return {
         desc = "[S]earch [I]cons",
       },
       {
-        "<leader>sI",
+        "<leader>iN",
         function()
           return require("telescope").extensions.nerdy.nerdy_recents()
         end,
@@ -289,6 +289,26 @@ return {
     },
     after = function(plugin)
       require("nerdy").setup()
+    end,
+  },
+  {
+    "icon-picker-nvim",
+    for_cat = "general.telescope",
+    command = { "IconPicker", "IconPickerDebug" },
+    after = function(plugin)
+      require("icon_picker").setup({
+        keymaps = {
+          normal = "<leader>ii",
+          insert = "<C-g>i",
+        },
+        picker = {
+          ui = "telescope",
+          toggle_source_key = "<C-t>",
+          notify_source_toggle = false,
+          stopinsert_on_open = true,
+          telescope = {},
+        },
+      })
     end,
   },
 }
