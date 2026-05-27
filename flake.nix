@@ -272,6 +272,7 @@
             ]
             ++ (with pkgs.neovimPlugins; [
               fyler-nvim
+              mdx-nvim
               # systemd-syntax-nvim
             ]);
         };
@@ -306,7 +307,6 @@
           markdown-nvim
           markdown-preview-nvim
           render-markdown-nvim
-          pkgs.neovimPlugins.mdx-nvim
         ];
         lua = with pkgs.vimPlugins; [
           lazydev-nvim

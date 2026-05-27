@@ -47,12 +47,12 @@ return {
       })
     end,
   },
-  {
-    "mdx-nvim",
-    for_cat = "markdown",
-    event = "BufEnter *.mdx",
-    after = function()
-      require("mdx").setup()
-    end,
-  },
+  -- {
+  --   "mdx-nvim",
+  --   for_cat = "markdown",
+  --   event = "BufEnter *.mdx",
+  --   after = function()
+  --     require("mdx").setup()
+  --   end,
+  -- },
 }
